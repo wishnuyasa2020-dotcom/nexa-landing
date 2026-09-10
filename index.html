@@ -1353,18 +1353,32 @@
       bottom: 22px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(12, 22, 38, .9);
+      background: rgba(12, 22, 38, .92);
       border: 1px solid var(--bdh);
       border-radius: 999px;
-      padding: 9px 9px 9px 18px;
+      padding: 9px 12px 9px 18px;
       display: flex;
       align-items: center;
       gap: 12px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .5), 0 0 30px rgba(0, 214, 143, 0.08);
       z-index: 999;
       white-space: nowrap;
       backdrop-filter: blur(20px);
-      animation: sUp .6s ease 1.2s both
+      -webkit-backdrop-filter: blur(20px);
+      animation: sUp .6s ease 1.2s both;
+      max-width: calc(100vw - 32px);
+    }
+
+    .dbar-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     @keyframes sUp {
@@ -1515,6 +1529,70 @@
         flex-direction: column;
         gap: 10px;
         text-align: center
+      }
+
+      .dbar {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        transform: none;
+        width: auto;
+        max-width: 440px;
+        margin: 0 auto;
+        border-radius: 18px;
+        padding: 12px 14px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        white-space: normal;
+        animation: sUpMob .6s ease 1.2s both;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, .7), 0 0 25px rgba(0, 214, 143, .1);
+      }
+
+      @keyframes sUpMob {
+        from {
+          transform: translateY(24px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .dbar-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-right: 28px;
+      }
+
+      .dbar-info .dtx {
+        font-size: 11.5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .dbar-actions {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .dbar-actions .btn {
+        flex: 1;
+        justify-content: center;
+        padding: 9px 8px;
+        font-size: 12px;
+        white-space: nowrap;
+        text-align: center;
+      }
+
+      .dbar .dcl {
+        position: absolute;
+        top: 10px;
+        right: 10px;
       }
     }
 
@@ -2348,12 +2426,16 @@
     </div>
   </footer>
   <div class="dbar" id="dbar">
-    <div class="pdot"></div>
-    <span class="dtx"><strong>Demo Live:</strong> admin / admin123</span>
-    <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bp bsm">Buka Demo &#8599;</a>
-    <button type="button" onclick="openSignupModal()" class="btn bg bsm"
-      style="border-color:rgba(0,214,143,0.35);color:var(--gr);background:rgba(0,214,143,0.08);cursor:pointer">Mulai
-      Gratis</button>
+    <div class="dbar-info">
+      <div class="pdot"></div>
+      <span class="dtx"><strong>Demo Live:</strong> admin / admin123</span>
+    </div>
+    <div class="dbar-actions">
+      <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bp bsm">Buka Demo &#8599;</a>
+      <button type="button" onclick="openSignupModal()" class="btn bg bsm"
+        style="border-color:rgba(0,214,143,0.35);color:var(--gr);background:rgba(0,214,143,0.08);cursor:pointer">Mulai
+        Gratis</button>
+    </div>
     <div class="dcl" id="dcl">&#10005;</div>
   </div>
 
