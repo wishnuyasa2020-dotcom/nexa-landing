@@ -598,30 +598,55 @@
     .pg {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .prob-box {
+      background: linear-gradient(135deg, rgba(248, 113, 113, .04), var(--bg3));
+      border: 1px solid rgba(248, 113, 113, .22);
+      border-radius: 20px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, .25);
+    }
+
+    .tag-red {
+      background: rgba(248, 113, 113, .12);
+      color: var(--rd);
+      border-color: rgba(248, 113, 113, .3);
+    }
+
+    .tag-green {
+      background: var(--grd);
+      color: var(--gr);
+      border-color: rgba(0, 214, 143, .3);
     }
 
     .pl2 {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-top: 26px
+      gap: 12px;
+      flex-grow: 1;
+      margin-bottom: 16px;
     }
 
     .pai {
       display: flex;
       gap: 14px;
       align-items: flex-start;
-      background: var(--bg3);
+      background: rgba(4, 8, 15, .45);
       border: 1px solid var(--bd);
-      border-radius: var(--r);
-      padding: 18px;
-      transition: border-color .3s
+      border-radius: 12px;
+      padding: 14px 16px;
+      transition: border-color .3s, transform .2s;
     }
 
     .pai:hover {
-      border-color: rgba(248, 113, 113, .4)
+      border-color: rgba(248, 113, 113, .4);
+      transform: translateY(-2px);
     }
 
     .pio {
@@ -629,47 +654,58 @@
       height: 38px;
       border-radius: 9px;
       flex-shrink: 0;
-      background: rgba(248, 113, 113, .1);
+      background: rgba(248, 113, 113, .12);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 17px
+      font-size: 17px;
     }
 
     .pai h4 {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 700;
-      margin-bottom: 3px
+      margin-bottom: 3px;
+      color: #fff;
     }
 
     .pai p {
       font-size: 12px;
       color: var(--tx2);
-      line-height: 1.5
+      line-height: 1.5;
     }
 
     .sol {
-      background: linear-gradient(135deg, var(--bg3), var(--bg4));
-      border: 1px solid var(--bdh);
+      background: linear-gradient(135deg, rgba(0, 214, 143, .05), var(--bg3));
+      border: 1px solid rgba(0, 214, 143, .25);
       border-radius: 20px;
-      padding: 32px
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, .25);
     }
 
     .pipe {
       display: flex;
       flex-direction: column;
-      margin-top: 14px
+      gap: 8px;
+      flex-grow: 1;
+      margin-bottom: 16px;
     }
 
     .ps {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 10px 0
+      padding: 9px 12px;
+      background: rgba(4, 8, 15, .45);
+      border: 1px solid var(--bd);
+      border-radius: 10px;
+      transition: border-color .2s;
     }
 
-    .ps:not(:last-child) {
-      border-bottom: 1px dashed var(--bd)
+    .ps:hover {
+      border-color: var(--bdh);
     }
 
     .pb {
@@ -681,48 +717,69 @@
       justify-content: center;
       font-size: 11px;
       font-weight: 700;
-      flex-shrink: 0
+      flex-shrink: 0;
     }
 
     .pb.l {
       background: var(--bld);
-      color: var(--bl)
+      color: var(--bl);
     }
 
     .pb.p {
       background: var(--pud);
-      color: var(--pu)
+      color: var(--pu);
     }
 
     .pb.o {
       background: var(--grd);
-      color: var(--gr)
+      color: var(--gr);
     }
 
     .pb.c {
       background: rgba(251, 191, 36, .12);
-      color: var(--am)
+      color: var(--am);
     }
 
     .pb.d {
       background: rgba(34, 211, 238, .12);
-      color: #22d3ee
+      color: #22d3ee;
     }
 
     .pi h5 {
       font-size: 13px;
-      font-weight: 700
+      font-weight: 700;
     }
 
     .pi small {
       font-size: 11px;
-      color: var(--tx3)
+      color: var(--tx3);
     }
 
     .pa {
       color: var(--tx3);
-      font-size: 16px;
-      margin-left: auto
+      font-size: 15px;
+      margin-left: auto;
+    }
+
+    .box-foot {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px dashed var(--bd);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .box-foot-red {
+      border-top-color: rgba(248, 113, 113, .2);
+      color: #fca5a5;
+    }
+
+    .box-foot-green {
+      border-top-color: rgba(0, 214, 143, .2);
+      color: #86efac;
     }
 
     #features {
@@ -1810,30 +1867,34 @@
   </section>
   <section id="problem">
     <div class="w">
+      <div class="sh">
+        <div class="sl3">Masalah Yang Kita Selesaikan</div>
+        <h2 class="st fu">CRM Generik Tidak Dirancang untuk <span style="color:var(--rd)">Realitas Lapangan</span> LPK</h2>
+        <p class="ss fu" style="transition-delay:.1s">HubSpot dan Pipedrive tidak paham: keputusan kolektif orang tua,
+          siklus penjualan 6&ndash;12 bulan, dan ketergantungan WhatsApp API Indonesia.</p>
+      </div>
       <div class="pg">
-        <div>
-          <div class="sl3">Masalah Yang Kita Selesaikan</div>
-          <h2 class="st fu">CRM Generik Tidak Dirancang untuk <span style="color:var(--rd)">Realitas Lapangan</span> LPK
-          </h2>
-          <p class="ss fu" style="transition-delay:.1s">HubSpot dan Pipedrive tidak paham: keputusan kolektif orang tua,
-            siklus penjualan 6&ndash;12 bulan, dan ketergantungan WhatsApp API Indonesia.</p>
+        <div class="prob-box fu" style="transition-delay:.2s">
+          <div style="margin-bottom:14px">
+            <span class="tag tag-red">&#9888;&#65039; 3 Masalah Lapangan</span>
+            <p style="font-size:13px;color:var(--tx2);margin-top:10px">Realitas operasional yang sering membuat konversi siswa bocor:</p>
+          </div>
           <div class="pl2">
-            <div class="pai fu" style="transition-delay:.2s">
+            <div class="pai">
               <div class="pio">&#128241;</div>
               <div>
                 <h4>Silo Inbox WhatsApp yang Kacau</h4>
                 <p>CRO tidak bisa lihat chat CRO lain, tapi manager tidak bisa monitor semuanya dalam satu tampilan.</p>
               </div>
             </div>
-            <div class="pai fu" style="transition-delay:.3s">
+            <div class="pai">
               <div class="pio">&#128184;</div>
               <div>
                 <h4>Tagihan Meta API Membengkak</h4>
-                <p>Template WhatsApp dikenakan biaya meski Service Window terbuka &mdash; tidak ada yang mengoptimalkan
-                  ini otomatis.</p>
+                <p>Template WhatsApp dikenakan biaya meski Service Window terbuka &mdash; tidak ada yang mengoptimalkan ini otomatis.</p>
               </div>
             </div>
-            <div class="pai fu" style="transition-delay:.4s">
+            <div class="pai">
               <div class="pio">&#127919;</div>
               <div>
                 <h4>Status Pipeline Berdasarkan &ldquo;Perasaan&rdquo;</h4>
@@ -1841,11 +1902,15 @@
               </div>
             </div>
           </div>
+          <div class="box-foot box-foot-red">
+            <span>&#10008;</span> Dampak: Konversi bocor &amp; biaya iklan terbuang sia-sia
+          </div>
         </div>
-        <div class="sol fu" style="transition-delay:.2s">
-          <span class="tag" style="margin-bottom:14px">Pipeline Berbasis Bukti</span>
-          <p style="font-size:13px;color:var(--tx2);margin-bottom:4px">Status hanya berubah jika ada bukti nyata
-            tercatat:</p>
+        <div class="sol fu" style="transition-delay:.3s">
+          <div style="margin-bottom:14px">
+            <span class="tag tag-green">&#9989; Solusi Nexa OS</span>
+            <p style="font-size:13px;color:var(--tx2);margin-top:10px">Pipeline Berbasis Bukti &mdash; status hanya berubah jika ada bukti nyata:</p>
+          </div>
           <div class="pipe">
             <div class="ps">
               <div class="pb l">L</div>
@@ -1881,6 +1946,9 @@
                 <h5>Delivery State</h5><small>Pre-Core &#8594; Training &#8594; Placement</small>
               </div>
             </div>
+          </div>
+          <div class="box-foot box-foot-green">
+            <span>&#10004;</span> Hasil: Validitas mutlak &amp; 100% audit-ready
           </div>
         </div>
       </div>
