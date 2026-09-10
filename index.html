@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -1383,6 +1383,264 @@
         text-align: center
       }
     }
+
+    /* ── Quick Sign-Up Modal ───────────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(4, 8, 15, .86);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      position: relative;
+      width: 100%;
+      max-width: 470px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: linear-gradient(180deg, #0d182b 0%, #080f1c 100%);
+      border: 1px solid var(--bdh);
+      border-radius: 20px;
+      padding: 30px 28px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, .8), 0 0 45px rgba(0, 214, 143, .12);
+      transform: scale(.94) translateY(12px);
+      transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.open .modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .m-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid var(--bd);
+      color: var(--tx2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .m-close:hover {
+      background: rgba(255, 255, 255, .15);
+      color: #fff;
+    }
+
+    .m-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--gr);
+      background: var(--grd);
+      border: 1px solid rgba(0, 214, 143, .25);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .m-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--tx);
+      margin-bottom: 6px;
+      letter-spacing: -.02em;
+    }
+
+    .m-desc {
+      font-size: 13px;
+      color: var(--tx2);
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .m-form {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .m-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      text-align: left;
+    }
+
+    .m-field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--tx2);
+    }
+
+    .m-input-wrap {
+      position: relative;
+    }
+
+    .m-input {
+      width: 100%;
+      padding: 11px 14px;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid var(--bd);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: all .2s;
+    }
+
+    .m-input:focus {
+      border-color: var(--gr);
+      box-shadow: 0 0 0 3px rgba(0, 214, 143, .15);
+      background: rgba(255, 255, 255, .07);
+    }
+
+    .m-input::placeholder {
+      color: var(--tx3);
+    }
+
+    .m-pw-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--tx3);
+      cursor: pointer;
+      font-size: 14px;
+      padding: 4px;
+    }
+
+    .m-pw-toggle:hover {
+      color: var(--tx);
+    }
+
+    .m-benefits {
+      background: rgba(0, 214, 143, .05);
+      border: 1px dashed rgba(0, 214, 143, .25);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 11.5px;
+      color: var(--tx2);
+      line-height: 1.6;
+    }
+
+    .m-benefits strong {
+      color: var(--gr);
+    }
+
+    .m-alert {
+      display: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    .m-alert.error {
+      display: block;
+      background: rgba(248, 113, 113, .12);
+      border: 1px solid rgba(248, 113, 113, .3);
+      color: #fca5a5;
+    }
+
+    .m-alert.success {
+      display: block;
+      background: rgba(0, 214, 143, .12);
+      border: 1px solid rgba(0, 214, 143, .3);
+      color: #86efac;
+    }
+
+    .m-btn-submit {
+      width: 100%;
+      justify-content: center;
+      padding: 13px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .m-footer-text {
+      font-size: 12px;
+      color: var(--tx3);
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .m-footer-text a {
+      color: var(--gr);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .m-footer-text a:hover {
+      text-decoration: underline;
+    }
+
+    .m-cred-box {
+      background: rgba(0, 0, 0, .35);
+      border: 1px solid var(--bd);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 16px 0;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .m-cred-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    .m-cred-row:last-child {
+      border-bottom: none;
+    }
+
+    .m-cred-label {
+      color: var(--tx3);
+      font-size: 12px;
+    }
+
+    .m-cred-val {
+      color: #fff;
+      font-weight: 600;
+      font-family: monospace;
+      font-size: 13px;
+    }
   </style>
 </head>
 
@@ -1398,7 +1656,7 @@
       <div class="nl"><a href="#features">Fitur</a><a href="#how">Cara Kerja</a><a href="#pricing">Harga</a><a
           href="#proof">Testimoni</a></div>
       <div class="ne"><a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bg bsm">Demo
-          &#8599;</a><a href="#pricing" class="btn bp bsm">Mulai Gratis</a></div>
+          &#8599;</a><button type="button" onclick="openSignupModal()" class="btn bp bsm">Mulai Gratis</button></div>
       <button class="hb" id="hb">&#9776; Menu</button>
     </div>
   </nav>
@@ -1407,7 +1665,7 @@
       onclick="cm()">Harga</a><a href="#proof" onclick="cm()">Testimoni</a>
     <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px">
       <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bg">Demo Live &#8599;</a>
-      <a href="#pricing" class="btn bp" onclick="cm()">Mulai Gratis</a>
+      <button type="button" class="btn bp" onclick="cm(); openSignupModal()">Mulai Gratis</button>
     </div>
   </div>
   <section id="hero">
@@ -1424,7 +1682,8 @@
           Gratis</a>
         <a href="#features" class="btn bg">Lihat Semua Fitur &rarr;</a>
       </div>
-      <p class="hn fu" style="transition-delay:.4s">Tidak perlu kartu kredit &middot; Setup &lt;30 menit &middot; <a
+      <p class="hn fu" style="transition-delay:.4s">Tidak perlu kartu kredit &middot; <a
+          href="javascript:void(0)" onclick="openSignupModal()" style="color:var(--gr);font-weight:600;text-decoration:underline">Daftar Akun Lembaga</a> &middot; <a
           href="https://nexa-crm-web-xi.vercel.app/login" target="_blank">Demo: admin / admin123</a></p>
       <div class="sr fu" style="transition-delay:.5s">
         <div class="sc">
@@ -1756,7 +2015,7 @@
             <li><span class="cx">&mdash;</span>Auto Nurturing</li>
             <li><span class="cx">&mdash;</span>Broadcast</li>
             <li><span class="cx">&mdash;</span>BYOW</li>
-          </ul><a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bg">Mulai Gratis</a>
+          </ul><button type="button" onclick="openSignupModal()" class="btn bp" style="width:100%;justify-content:center">Mulai Gratis &rarr;</button>
         </div>
         <div class="prc feat fu" style="transition-delay:.1s">
           <div class="pop">&#9889; Paling Populer</div>
@@ -1937,8 +2196,113 @@
     <div class="pdot"></div>
     <span class="dtx"><strong>Demo Live:</strong> admin / admin123</span>
     <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bp bsm">Buka Demo &#8599;</a>
+    <button type="button" onclick="openSignupModal()" class="btn bg bsm" style="border-color:rgba(0,214,143,0.35);color:var(--gr);background:rgba(0,214,143,0.08);cursor:pointer">Mulai Gratis</button>
     <div class="dcl" id="dcl">&#10005;</div>
   </div>
+
+  <!-- Quick Sign-Up Modal -->
+  <div class="modal-overlay" id="signupModal" onclick="handleModalBackdropClick(event)">
+    <div class="modal-card" id="modalCard">
+      <button type="button" class="m-close" onclick="closeSignupModal()" aria-label="Tutup">&times;</button>
+
+      <!-- FORM VIEW -->
+      <div id="modalFormView">
+        <span class="m-badge">&#9889; Free Tier SaaS &middot; Siap Pakai</span>
+        <h3 class="m-title">Daftarkan Lembaga Anda</h3>
+        <p class="m-desc">Dapatkan database mandiri dan akses dashboard Nexa CRM langsung aktif tanpa kartu kredit.</p>
+
+        <div class="m-benefits" style="margin-bottom:16px">
+          <div>&#10003; <strong>50 Siswa Aktif</strong> &middot; &#10003; <strong>5 Sekolah Mitra</strong> &middot; &#10003; <strong>Live Chat WA</strong></div>
+          <div style="font-size:11px;color:var(--tx3);margin-top:3px">Database terisolasi &middot; Keamanan terjamin &middot; Upgrade kapan saja</div>
+        </div>
+
+        <div class="m-alert" id="signupAlert"></div>
+
+        <form class="m-form" id="signupForm" onsubmit="handleSignupSubmit(event)">
+          <div class="m-field">
+            <label for="brand_name">Nama Lembaga / LPK / Bimbel <span style="color:var(--gr)">*</span></label>
+            <input type="text" id="brand_name" name="brand_name" class="m-input" placeholder="Contoh: LPK Cahaya Harapan" required autocomplete="organization">
+          </div>
+
+          <div class="m-field">
+            <label for="admin_name">Nama Lengkap Penanggung Jawab <span style="color:var(--gr)">*</span></label>
+            <input type="text" id="admin_name" name="admin_name" class="m-input" placeholder="Contoh: Budi Santoso" required autocomplete="name">
+          </div>
+
+          <div class="m-field">
+            <label for="admin_email">Email Admin / Operasional <span style="color:var(--gr)">*</span></label>
+            <input type="email" id="admin_email" name="admin_email" class="m-input" placeholder="nama@lembaga.com" required autocomplete="email">
+          </div>
+
+          <div class="m-field">
+            <label for="admin_password">Password Akun <span style="color:var(--gr)">*</span></label>
+            <div class="m-input-wrap">
+              <input type="password" id="admin_password" name="admin_password" class="m-input" placeholder="Minimal 6 karakter" required minlength="6" autocomplete="new-password">
+              <button type="button" class="m-pw-toggle" onclick="toggleSignupPassword()" id="pwToggleBtn" aria-label="Lihat password">&#128065;</button>
+            </div>
+          </div>
+
+          <div class="m-field">
+            <label for="whatsapp_number">Nomor WhatsApp Operasional (Opsional)</label>
+            <input type="tel" id="whatsapp_number" name="whatsapp_number" class="m-input" placeholder="08xxxxxxxxxx" autocomplete="tel">
+          </div>
+
+          <button type="submit" class="btn bp m-btn-submit" id="btnSubmitSignup">
+            <span id="btnSubmitText">&#128640; Buat Akun &amp; Siapkan CRM Saya</span>
+          </button>
+        </form>
+
+        <div class="m-footer-text">
+          Sudah punya akun? <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank">Masuk ke Demo / CRM &#8599;</a>
+        </div>
+      </div>
+
+      <!-- SUCCESS VIEW -->
+      <div id="modalSuccessView" style="display:none;text-align:center">
+        <div style="font-size:44px;margin-bottom:12px;line-height:1">&#127881;</div>
+        <span class="m-badge" style="background:rgba(0,214,143,0.15);border-color:rgba(0,214,143,0.4)">Setup Selesai 100%</span>
+        <h3 class="m-title" style="margin-top:6px">Database CRM Anda Siap!</h3>
+        <p class="m-desc">Akun Super Admin untuk lembaga Anda telah berhasil dibuat di kluster database Nexa OS.</p>
+
+        <div class="m-cred-box">
+          <div class="m-cred-row">
+            <span class="m-cred-label">Lembaga</span>
+            <span class="m-cred-val" id="resBrandName">-</span>
+          </div>
+          <div class="m-cred-row">
+            <span class="m-cred-label">Tenant ID</span>
+            <span class="m-cred-val" id="resTenantId">-</span>
+          </div>
+          <div class="m-cred-row">
+            <span class="m-cred-label">Username Admin</span>
+            <span class="m-cred-val" id="resAdminUsername">-</span>
+          </div>
+          <div class="m-cred-row">
+            <span class="m-cred-label">Email</span>
+            <span class="m-cred-val" id="resAdminEmail">-</span>
+          </div>
+          <div class="m-cred-row">
+            <span class="m-cred-label">Paket</span>
+            <span class="m-cred-val" style="color:var(--gr)">Free Tier (Active)</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
+          <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bp" style="width:100%;justify-content:center;padding:14px">
+            Buka Dashboard CRM Saya &#8599;
+          </a>
+          <button type="button" class="btn bg" onclick="copySignupCredentials()" id="btnCopyCreds" style="width:100%;justify-content:center">
+            &#128203; Salin Kredensial Akun
+          </button>
+        </div>
+
+        <p style="font-size:11.5px;color:var(--tx3);margin-top:14px;line-height:1.4">
+          Detail kredensial di atas juga telah kami kirimkan ke email Anda. Simpan username dan password Anda baik-baik.
+        </p>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.getElementById('hb').addEventListener('click', () => document.getElementById('mm').classList.toggle('open'));
     function cm() { document.getElementById('mm').classList.remove('open') }
@@ -1951,6 +2315,152 @@
       document.getElementById('bx1').style.transform = 'translate(' + x + 'px,' + y + 'px)';
       document.getElementById('bx2').style.transform = 'translate(' + (-x) + 'px,' + (-y) + 'px)';
     });
+
+    // ── Quick Sign-Up Modal Logic ──
+    const signupModal = document.getElementById('signupModal');
+    let lastCreatedCreds = null;
+
+    function openSignupModal() {
+      if (!signupModal) return;
+      signupModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('modalFormView').style.display = 'block';
+      document.getElementById('modalSuccessView').style.display = 'none';
+      const alertBox = document.getElementById('signupAlert');
+      if (alertBox) {
+        alertBox.className = 'm-alert';
+        alertBox.textContent = '';
+      }
+      setTimeout(() => {
+        const brandInput = document.getElementById('brand_name');
+        if (brandInput) brandInput.focus();
+      }, 150);
+    }
+
+    function closeSignupModal() {
+      if (!signupModal) return;
+      signupModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleModalBackdropClick(e) {
+      if (e.target === signupModal) {
+        closeSignupModal();
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && signupModal && signupModal.classList.contains('open')) {
+        closeSignupModal();
+      }
+    });
+
+    function toggleSignupPassword() {
+      const pwInput = document.getElementById('admin_password');
+      const toggleBtn = document.getElementById('pwToggleBtn');
+      if (!pwInput || !toggleBtn) return;
+      if (pwInput.type === 'password') {
+        pwInput.type = 'text';
+        toggleBtn.innerHTML = '&#128064;';
+      } else {
+        pwInput.type = 'password';
+        toggleBtn.innerHTML = '&#128065;';
+      }
+    }
+
+    async function handleSignupSubmit(e) {
+      e.preventDefault();
+      const alertBox = document.getElementById('signupAlert');
+      const submitBtn = document.getElementById('btnSubmitSignup');
+      const submitText = document.getElementById('btnSubmitText');
+
+      const brand_name = document.getElementById('brand_name').value.trim();
+      const admin_name = document.getElementById('admin_name').value.trim();
+      const admin_email = document.getElementById('admin_email').value.trim();
+      const admin_password = document.getElementById('admin_password').value;
+      const whatsapp_number = document.getElementById('whatsapp_number').value.trim();
+
+      if (!brand_name || !admin_name || !admin_email || !admin_password) {
+        alertBox.className = 'm-alert error';
+        alertBox.textContent = 'Semua field bertanda * wajib diisi.';
+        return;
+      }
+
+      if (admin_password.length < 6) {
+        alertBox.className = 'm-alert error';
+        alertBox.textContent = 'Password minimal 6 karakter.';
+        return;
+      }
+
+      alertBox.className = 'm-alert';
+      alertBox.textContent = '';
+      submitBtn.disabled = true;
+      submitText.innerHTML = '&#9203; Menyiapkan Database &amp; Akun CRM...';
+
+      try {
+        const res = await fetch('https://nexa-os-pmr8.onrender.com/api/v1/saas/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            brand_name,
+            admin_name,
+            admin_email,
+            admin_password,
+            whatsapp_number: whatsapp_number || null,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.status === 'ok') {
+          const tenant = data.data;
+          lastCreatedCreds = {
+            brand: tenant.brandName || brand_name,
+            tenantId: tenant.tenantId,
+            username: tenant.user ? tenant.user.username : '-',
+            email: admin_email,
+          };
+
+          document.getElementById('resBrandName').textContent = lastCreatedCreds.brand;
+          document.getElementById('resTenantId').textContent = lastCreatedCreds.tenantId;
+          document.getElementById('resAdminUsername').textContent = lastCreatedCreds.username;
+          document.getElementById('resAdminEmail').textContent = lastCreatedCreds.email;
+
+          document.getElementById('modalFormView').style.display = 'none';
+          document.getElementById('modalSuccessView').style.display = 'block';
+          document.getElementById('signupForm').reset();
+        } else {
+          alertBox.className = 'm-alert error';
+          alertBox.textContent = data.message || 'Pendaftaran gagal. Silakan coba kembali.';
+        }
+      } catch (err) {
+        alertBox.className = 'm-alert error';
+        alertBox.textContent = 'Gagal terhubung ke server Nexa OS. Periksa koneksi internet Anda atau coba beberapa saat lagi.';
+      } finally {
+        submitBtn.disabled = false;
+        submitText.innerHTML = '&#128640; Buat Akun &amp; Siapkan CRM Saya';
+      }
+    }
+
+    function copySignupCredentials() {
+      if (!lastCreatedCreds) return;
+      const text = `Kredensial Nexa CRM:\nLembaga: ${lastCreatedCreds.brand}\nTenant ID: ${lastCreatedCreds.tenantId}\nUsername: ${lastCreatedCreds.username}\nEmail: ${lastCreatedCreds.email}\nLogin: https://nexa-crm-web-xi.vercel.app/login`;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('btnCopyCreds');
+        if (!btn) return;
+        const oldText = btn.innerHTML;
+        btn.innerHTML = '&#10003; Kredensial Berhasil Disalin!';
+        btn.style.borderColor = 'var(--gr)';
+        btn.style.color = 'var(--gr)';
+        setTimeout(() => {
+          btn.innerHTML = oldText;
+          btn.style.borderColor = '';
+          btn.style.color = '';
+        }, 2500);
+      });
+    }
   </script>
 </body>
 
