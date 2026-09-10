@@ -1,364 +1,1957 @@
 ﻿<!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nexa OS - CRM Berbasis Bukti untuk LPK dan Lembaga Pendidikan</title>
-  <meta name="description" content="Platform CRM SaaS Event-Sourcing untuk LPK, Bimbel, dan Sekolah Vokasi. Pipeline B2B+B2C, Smart WhatsApp Routing, Automated Nurturing.">
+  <meta name="description"
+    content="Platform CRM SaaS Event-Sourcing untuk LPK, Bimbel, dan Sekolah Vokasi. Pipeline B2B+B2C, Smart WhatsApp Routing, Automated Nurturing.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--bg:#04080f;--bg2:#080f1c;--bg3:#0c1626;--bg4:#111e33;--bd:rgba(255,255,255,.07);--bdh:rgba(255,255,255,.14);--gr:#00d68f;--grd:rgba(0,214,143,.12);--bl:#4d9fff;--bld:rgba(77,159,255,.12);--pu:#a78bfa;--pud:rgba(167,139,250,.12);--am:#fbbf24;--rd:#f87171;--tx:#e2e8f0;--tx2:#94a3b8;--tx3:#4a5568;--mw:1140px;--r:14px}
-    html{scroll-behavior:smooth}
-    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.6}
-    .w{max-width:var(--mw);margin:0 auto;padding:0 24px}
-    section{padding:96px 0}
-    .blob{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;opacity:.15}
-    .b1{width:700px;height:700px;background:var(--gr);top:-250px;left:-200px}
-    .b2{width:500px;height:500px;background:var(--bl);bottom:5%;right:-150px}
-    .b3{width:350px;height:350px;background:var(--pu);top:50%;left:35%}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .25s;border:none;font-family:inherit}
-    .bp{background:linear-gradient(135deg,var(--gr),#00b87a);color:#04080f;box-shadow:0 0 30px rgba(0,214,143,.25)}
-    .bp:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(0,214,143,.4)}
-    .bg{background:transparent;color:var(--tx2);border:1px solid var(--bdh)}
-    .bg:hover{background:var(--bg4);color:var(--tx)}
-    .bsm{padding:9px 18px;font-size:13px}
-    .tag{display:inline-flex;align-items:center;gap:6px;background:var(--grd);color:var(--gr);border:1px solid rgba(0,214,143,.25);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600}
-    .fu{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
-    .fu.vis{opacity:1;transform:none}
-    nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 0;background:rgba(4,8,15,.75);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--bd);transition:background .3s}
-    .ni{display:flex;align-items:center;justify-content:space-between;max-width:var(--mw);margin:0 auto;padding:0 24px}
-    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .lm{width:34px;height:34px;background:linear-gradient(135deg,var(--gr),var(--bl));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#04080f}
-    .lt{font-size:17px;font-weight:800;color:var(--tx)}
-    .lt span{color:var(--gr)}
-    .nl{display:flex;gap:4px}
-    .nl a{color:var(--tx2);text-decoration:none;padding:7px 13px;border-radius:8px;font-size:14px;font-weight:500;transition:all .2s}
-    .nl a:hover{color:var(--tx);background:var(--bg4)}
-    .ne{display:flex;align-items:center;gap:10px}
-    .hb{display:none;background:none;border:1px solid var(--bdh);border-radius:8px;padding:8px 12px;cursor:pointer;color:var(--tx2);font-size:14px;font-family:inherit}
-    .mm{display:none;position:fixed;inset:0;z-index:999;background:var(--bg);flex-direction:column;padding:80px 24px 24px;gap:4px}
-    .mm.open{display:flex}
-    .mm a{color:var(--tx);text-decoration:none;font-size:18px;font-weight:600;padding:14px 0;border-bottom:1px solid var(--bd)}
-    #hero{padding:170px 0 110px;position:relative;z-index:1;text-align:center}
-    .ht{font-size:clamp(34px,5.5vw,68px);font-weight:900;line-height:1.08;letter-spacing:-1.5px;margin-bottom:22px}
-    .ht .g{color:var(--gr)}.ht .b{color:var(--bl)}
-    .hs{font-size:clamp(15px,1.8vw,18px);color:var(--tx2);max-width:620px;margin:0 auto 34px}
-    .hc{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .hn{margin-top:16px;font-size:12px;color:var(--tx3)}.hn a{color:var(--gr);text-decoration:none}
-    .sr{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:64px}
-    .sc{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--r);padding:22px 26px;transition:transform .3s,border-color .3s}
-    .sc:hover{transform:translateY(-4px);border-color:var(--bdh)}
-    .sn{font-size:32px;font-weight:900;letter-spacing:-1px;background:linear-gradient(135deg,var(--gr),var(--bl));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .sl2{font-size:12px;color:var(--tx2);margin-top:3px}
-    .mk{max-width:880px;margin:68px auto 0}
-    .mf{background:var(--bg2);border:1px solid var(--bdh);border-radius:16px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.6)}
-    .mb{background:var(--bg3);padding:11px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--bd)}
-    .dt{width:10px;height:10px;border-radius:50%}
-    .dr{background:#f87171}.dy{background:#fbbf24}.dg{background:var(--gr)}
-    .mu{flex:1;background:var(--bg4);border-radius:6px;padding:5px 12px;font-size:11px;color:var(--tx3);font-family:monospace;margin:0 12px}
-    .mbd{display:grid;grid-template-columns:190px 1fr;height:400px}
-    .ms{background:var(--bg3);border-right:1px solid var(--bd);padding:14px 10px;display:flex;flex-direction:column;gap:3px}
-    .mn{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:7px;font-size:11px;color:var(--tx2)}
-    .mn.a{background:var(--grd);color:var(--gr)}
-    .mc{padding:18px;overflow:hidden}
-    .mch{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-    .mct{font-size:13px;font-weight:700}
-    .mcb{background:var(--grd);color:var(--gr);padding:3px 10px;border-radius:99px;font-size:10px;font-weight:600}
-    .mcc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-    .mcard{background:var(--bg4);border:1px solid var(--bd);border-radius:8px;padding:12px}
-    .mcard .ml{font-size:10px;color:var(--tx2)}.mcard .mv{font-size:20px;font-weight:800;color:var(--gr);margin-top:2px}
-    .mv2{color:var(--pu)!important}.mv3{color:var(--am)!important}
-    table.t{width:100%;border-collapse:collapse}
-    table.t th{text-align:left;font-size:10px;color:var(--tx3);font-weight:600;text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--bd)}
-    table.t td{padding:7px 8px;font-size:11px;color:var(--tx2)}
-    .p{display:inline-block;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:600}
-    .pl{background:var(--bld);color:var(--bl)}.pp{background:var(--pud);color:var(--pu)}.po{background:var(--grd);color:var(--gr)}.pc2{background:rgba(251,191,36,.12);color:var(--am)}
-    .sh{text-align:center;margin-bottom:60px}
-    .sl3{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tx3);margin-bottom:10px}
-    .st{font-size:clamp(26px,3.5vw,44px);font-weight:900;letter-spacing:-.8px;line-height:1.12;margin-bottom:14px}
-    .ss{font-size:16px;color:var(--tx2);max-width:580px}.sh .ss{margin:0 auto}
-    #problem{background:var(--bg2);position:relative;z-index:1}
-    .pg{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-    .pl2{display:flex;flex-direction:column;gap:14px;margin-top:26px}
-    .pai{display:flex;gap:14px;align-items:flex-start;background:var(--bg3);border:1px solid var(--bd);border-radius:var(--r);padding:18px;transition:border-color .3s}
-    .pai:hover{border-color:rgba(248,113,113,.4)}
-    .pio{width:38px;height:38px;border-radius:9px;flex-shrink:0;background:rgba(248,113,113,.1);display:flex;align-items:center;justify-content:center;font-size:17px}
-    .pai h4{font-size:13px;font-weight:700;margin-bottom:3px}.pai p{font-size:12px;color:var(--tx2);line-height:1.5}
-    .sol{background:linear-gradient(135deg,var(--bg3),var(--bg4));border:1px solid var(--bdh);border-radius:20px;padding:32px}
-    .pipe{display:flex;flex-direction:column;margin-top:14px}
-    .ps{display:flex;align-items:center;gap:12px;padding:10px 0}.ps:not(:last-child){border-bottom:1px dashed var(--bd)}
-    .pb{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
-    .pb.l{background:var(--bld);color:var(--bl)}.pb.p{background:var(--pud);color:var(--pu)}.pb.o{background:var(--grd);color:var(--gr)}.pb.c{background:rgba(251,191,36,.12);color:var(--am)}.pb.d{background:rgba(34,211,238,.12);color:#22d3ee}
-    .pi h5{font-size:13px;font-weight:700}.pi small{font-size:11px;color:var(--tx3)}.pa{color:var(--tx3);font-size:16px;margin-left:auto}
-    #features{position:relative;z-index:1}
-    .fg{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .fc{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--r);padding:26px;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;overflow:hidden}
-    .fc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gr),transparent);opacity:0;transition:opacity .3s}
-    .fc:hover{transform:translateY(-5px);border-color:var(--bdh);box-shadow:0 20px 50px rgba(0,0,0,.4)}.fc:hover::before{opacity:1}
-    .fi{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px}
-    .fi.g{background:var(--grd)}.fi.b{background:var(--bld)}.fi.pu{background:var(--pud)}.fi.a{background:rgba(251,191,36,.1)}.fi.c{background:rgba(34,211,238,.1)}.fi.r{background:rgba(248,113,113,.1)}
-    .ft{font-size:15px;font-weight:700;margin-bottom:7px}.fd{font-size:12px;color:var(--tx2);line-height:1.6}
-    .fb{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
-    .fbg{font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--bg4);border:1px solid var(--bd);color:var(--tx3)}
-    #how{background:var(--bg2);position:relative;z-index:1}
-    .tl{position:relative;max-width:780px;margin:0 auto}
-    .tl::before{content:'';position:absolute;left:38px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gr),var(--bl),var(--pu));opacity:.35}
-    .ts{display:flex;gap:28px;align-items:flex-start;padding:28px 0;position:relative}
-    .tn{width:76px;height:76px;flex-shrink:0;background:var(--bg3);border:2px solid var(--bdh);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;position:relative;z-index:1}
-    .ts:nth-child(1) .tn{border-color:var(--gr);color:var(--gr)}.ts:nth-child(2) .tn{border-color:var(--bl);color:var(--bl)}.ts:nth-child(3) .tn{border-color:var(--pu);color:var(--pu)}.ts:nth-child(4) .tn{border-color:var(--am);color:var(--am)}
-    .tc{padding-top:10px}.tc h3{font-size:19px;font-weight:800;margin-bottom:7px}.tc p{font-size:13px;color:var(--tx2);line-height:1.7}
-    .stg{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.stg span{font-size:11px;font-weight:600;padding:3px 11px;border-radius:99px;background:var(--bg4);color:var(--tx3);border:1px solid var(--bd)}
-    #pricing{position:relative;z-index:1}
-    .prg{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;align-items:start}
-    .prc{background:var(--bg3);border:1px solid var(--bd);border-radius:18px;padding:28px 22px;transition:transform .3s,box-shadow .3s;position:relative}
-    .prc:hover{transform:translateY(-5px);box-shadow:0 28px 70px rgba(0,0,0,.4)}
-    .prc.feat{background:linear-gradient(135deg,rgba(0,214,143,.07),rgba(77,159,255,.07));border-color:rgba(0,214,143,.35);transform:scale(1.02)}.prc.feat:hover{transform:scale(1.02) translateY(-5px)}
-    .pop{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gr),var(--bl));color:#04080f;font-size:10px;font-weight:800;padding:4px 14px;border-radius:99px;white-space:nowrap}
-    .pt{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:7px}
-    .pv{font-size:30px;font-weight:900;line-height:1;margin:10px 0 3px}.pv span{font-size:13px;font-weight:400;color:var(--tx2)}
-    .pd{font-size:12px;color:var(--tx2);margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--bd)}
-    .pf{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:24px}.pf li{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--tx2)}
-    .ck{color:var(--gr);flex-shrink:0}.cx{color:var(--tx3);flex-shrink:0}.prc .btn{width:100%;justify-content:center}
-    #proof{background:var(--bg2);position:relative;z-index:1}
-    .prfg{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .pcard{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--r);padding:26px;transition:transform .3s}
-    .pcard:hover{transform:translateY(-4px);border-color:var(--bdh)}
-    .stars{color:var(--am);font-size:12px;margin-bottom:10px}
-    .pq{font-size:13px;color:var(--tx2);line-height:1.8;margin-bottom:18px;font-style:italic}
-    .pq::before{content:open-quote;color:var(--gr);font-size:26px;line-height:0;vertical-align:-8px;margin-right:3px}
-    .paut{display:flex;align-items:center;gap:10px}
-    .av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#04080f;flex-shrink:0}
-    .pn{font-size:13px;font-weight:700}.pr{font-size:11px;color:var(--tx3)}
-    #cta{position:relative;z-index:1;text-align:center}
-    .cbox{background:linear-gradient(135deg,var(--bg3),var(--bg4));border:1px solid var(--bdh);border-radius:26px;padding:76px 40px;position:relative;overflow:hidden}
-    .cbox::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 0%,rgba(0,214,143,.1),transparent);pointer-events:none}
-    .ct{font-size:clamp(26px,3.5vw,48px);font-weight:900;letter-spacing:-1px;margin-bottom:14px}
-    .cs{font-size:16px;color:var(--tx2);max-width:520px;margin:0 auto 34px}
-    .cb{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.cn{margin-top:16px;font-size:12px;color:var(--tx3)}
-    footer{background:var(--bg2);border-top:1px solid var(--bd);padding:56px 0 28px;position:relative;z-index:1}
-    .fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px}
-    .fbr p{font-size:13px;color:var(--tx2);margin-top:10px;line-height:1.7;max-width:270px}
-    .fcol h5{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--tx3);margin-bottom:14px}
-    .fcol ul{list-style:none;display:flex;flex-direction:column;gap:8px}.fcol a{color:var(--tx2);text-decoration:none;font-size:13px;transition:color .2s}.fcol a:hover{color:var(--gr)}
-    .fbot{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--bd);font-size:12px;color:var(--tx3)}
-    .dbar{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:rgba(12,22,38,.9);border:1px solid var(--bdh);border-radius:999px;padding:9px 9px 9px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);z-index:999;white-space:nowrap;backdrop-filter:blur(20px);animation:sUp .6s ease 1.2s both}
-    @keyframes sUp{from{transform:translateX(-50%) translateY(18px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
-    .dtx{font-size:12px;color:var(--tx2)}.dtx strong{color:var(--tx)}
-    .pdot{width:7px;height:7px;border-radius:50%;background:var(--gr);animation:pls 2s infinite}
-    @keyframes pls{0%,100%{box-shadow:0 0 0 0 rgba(0,214,143,.4)}50%{box-shadow:0 0 0 7px rgba(0,214,143,0)}}
-    .dcl{width:22px;height:22px;cursor:pointer;color:var(--tx3);display:flex;align-items:center;justify-content:center;font-size:14px;border-radius:50%;transition:background .2s}.dcl:hover{background:var(--bg4);color:var(--tx)}
-    @media(max-width:1024px){.fg{grid-template-columns:repeat(2,1fr)}.prg{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr;gap:28px}}
-    @media(max-width:768px){section{padding:64px 0}#hero{padding:120px 0 72px}.pg{grid-template-columns:1fr}.fg{grid-template-columns:1fr}.prg{grid-template-columns:1fr}.prc.feat{transform:none}.prfg{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr}.mbd{grid-template-columns:1fr}.ms{display:none}.nl,.ne{display:none}.hb{display:block}.tl::before{left:28px}.tn{width:56px;height:56px;font-size:18px}.fbot{flex-direction:column;gap:10px;text-align:center}}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #04080f;
+      --bg2: #080f1c;
+      --bg3: #0c1626;
+      --bg4: #111e33;
+      --bd: rgba(255, 255, 255, .07);
+      --bdh: rgba(255, 255, 255, .14);
+      --gr: #00d68f;
+      --grd: rgba(0, 214, 143, .12);
+      --bl: #4d9fff;
+      --bld: rgba(77, 159, 255, .12);
+      --pu: #a78bfa;
+      --pud: rgba(167, 139, 250, .12);
+      --am: #fbbf24;
+      --rd: #f87171;
+      --tx: #e2e8f0;
+      --tx2: #94a3b8;
+      --tx3: #4a5568;
+      --mw: 1140px;
+      --r: 14px
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--tx);
+      overflow-x: hidden;
+      line-height: 1.6
+    }
+
+    .w {
+      max-width: var(--mw);
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    section {
+      padding: 96px 0
+    }
+
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: .15
+    }
+
+    .b1 {
+      width: 700px;
+      height: 700px;
+      background: var(--gr);
+      top: -250px;
+      left: -200px
+    }
+
+    .b2 {
+      width: 500px;
+      height: 500px;
+      background: var(--bl);
+      bottom: 5%;
+      right: -150px
+    }
+
+    .b3 {
+      width: 350px;
+      height: 350px;
+      background: var(--pu);
+      top: 50%;
+      left: 35%
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .25s;
+      border: none;
+      font-family: inherit
+    }
+
+    .bp {
+      background: linear-gradient(135deg, var(--gr), #00b87a);
+      color: #04080f;
+      box-shadow: 0 0 30px rgba(0, 214, 143, .25)
+    }
+
+    .bp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 48px rgba(0, 214, 143, .4)
+    }
+
+    .bg {
+      background: transparent;
+      color: var(--tx2);
+      border: 1px solid var(--bdh)
+    }
+
+    .bg:hover {
+      background: var(--bg4);
+      color: var(--tx)
+    }
+
+    .bsm {
+      padding: 9px 18px;
+      font-size: 13px
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--grd);
+      color: var(--gr);
+      border: 1px solid rgba(0, 214, 143, .25);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600
+    }
+
+    .fu {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .6s, transform .6s
+    }
+
+    .fu.vis {
+      opacity: 1;
+      transform: none
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 14px 0;
+      background: rgba(4, 8, 15, .75);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--bd);
+      transition: background .3s
+    }
+
+    .ni {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--mw);
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none
+    }
+
+    .lm {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--gr), var(--bl));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 900;
+      color: #04080f
+    }
+
+    .lt {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--tx)
+    }
+
+    .lt span {
+      color: var(--gr)
+    }
+
+    .nl {
+      display: flex;
+      gap: 4px
+    }
+
+    .nl a {
+      color: var(--tx2);
+      text-decoration: none;
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all .2s
+    }
+
+    .nl a:hover {
+      color: var(--tx);
+      background: var(--bg4)
+    }
+
+    .ne {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .hb {
+      display: none;
+      background: none;
+      border: 1px solid var(--bdh);
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      color: var(--tx2);
+      font-size: 14px;
+      font-family: inherit
+    }
+
+    .mm {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--bg);
+      flex-direction: column;
+      padding: 80px 24px 24px;
+      gap: 4px
+    }
+
+    .mm.open {
+      display: flex
+    }
+
+    .mm a {
+      color: var(--tx);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--bd)
+    }
+
+    #hero {
+      padding: 170px 0 110px;
+      position: relative;
+      z-index: 1;
+      text-align: center
+    }
+
+    .ht {
+      font-size: clamp(34px, 5.5vw, 68px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 22px
+    }
+
+    .ht .g {
+      color: var(--gr)
+    }
+
+    .ht .b {
+      color: var(--bl)
+    }
+
+    .hs {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--tx2);
+      max-width: 620px;
+      margin: 0 auto 34px
+    }
+
+    .hc {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    .hn {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--tx3)
+    }
+
+    .hn a {
+      color: var(--gr);
+      text-decoration: none
+    }
+
+    .sr {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 64px
+    }
+
+    .sc {
+      background: var(--bg3);
+      border: 1px solid var(--bd);
+      border-radius: var(--r);
+      padding: 22px 26px;
+      transition: transform .3s, border-color .3s
+    }
+
+    .sc:hover {
+      transform: translateY(-4px);
+      border-color: var(--bdh)
+    }
+
+    .sn {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--gr), var(--bl));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .sl2 {
+      font-size: 12px;
+      color: var(--tx2);
+      margin-top: 3px
+    }
+
+    .mk {
+      max-width: 880px;
+      margin: 68px auto 0
+    }
+
+    .mf {
+      background: var(--bg2);
+      border: 1px solid var(--bdh);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 40px 120px rgba(0, 0, 0, .6)
+    }
+
+    .mb {
+      background: var(--bg3);
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border-bottom: 1px solid var(--bd)
+    }
+
+    .dt {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%
+    }
+
+    .dr {
+      background: #f87171
+    }
+
+    .dy {
+      background: #fbbf24
+    }
+
+    .dg {
+      background: var(--gr)
+    }
+
+    .mu {
+      flex: 1;
+      background: var(--bg4);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 11px;
+      color: var(--tx3);
+      font-family: monospace;
+      margin: 0 12px
+    }
+
+    .mbd {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      height: 400px
+    }
+
+    .ms {
+      background: var(--bg3);
+      border-right: 1px solid var(--bd);
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px
+    }
+
+    .mn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 7px;
+      font-size: 11px;
+      color: var(--tx2)
+    }
+
+    .mn.a {
+      background: var(--grd);
+      color: var(--gr)
+    }
+
+    .mc {
+      padding: 18px;
+      overflow: hidden
+    }
+
+    .mch {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px
+    }
+
+    .mct {
+      font-size: 13px;
+      font-weight: 700
+    }
+
+    .mcb {
+      background: var(--grd);
+      color: var(--gr);
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-size: 10px;
+      font-weight: 600
+    }
+
+    .mcc {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px
+    }
+
+    .mcard {
+      background: var(--bg4);
+      border: 1px solid var(--bd);
+      border-radius: 8px;
+      padding: 12px
+    }
+
+    .mcard .ml {
+      font-size: 10px;
+      color: var(--tx2)
+    }
+
+    .mcard .mv {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--gr);
+      margin-top: 2px
+    }
+
+    .mv2 {
+      color: var(--pu) !important
+    }
+
+    .mv3 {
+      color: var(--am) !important
+    }
+
+    table.t {
+      width: 100%;
+      border-collapse: collapse
+    }
+
+    table.t th {
+      text-align: left;
+      font-size: 10px;
+      color: var(--tx3);
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--bd)
+    }
+
+    table.t td {
+      padding: 7px 8px;
+      font-size: 11px;
+      color: var(--tx2)
+    }
+
+    .p {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 99px;
+      font-size: 10px;
+      font-weight: 600
+    }
+
+    .pl {
+      background: var(--bld);
+      color: var(--bl)
+    }
+
+    .pp {
+      background: var(--pud);
+      color: var(--pu)
+    }
+
+    .po {
+      background: var(--grd);
+      color: var(--gr)
+    }
+
+    .pc2 {
+      background: rgba(251, 191, 36, .12);
+      color: var(--am)
+    }
+
+    .sh {
+      text-align: center;
+      margin-bottom: 60px
+    }
+
+    .sl3 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--tx3);
+      margin-bottom: 10px
+    }
+
+    .st {
+      font-size: clamp(26px, 3.5vw, 44px);
+      font-weight: 900;
+      letter-spacing: -.8px;
+      line-height: 1.12;
+      margin-bottom: 14px
+    }
+
+    .ss {
+      font-size: 16px;
+      color: var(--tx2);
+      max-width: 580px
+    }
+
+    .sh .ss {
+      margin: 0 auto
+    }
+
+    #problem {
+      background: var(--bg2);
+      position: relative;
+      z-index: 1
+    }
+
+    .pg {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center
+    }
+
+    .pl2 {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 26px
+    }
+
+    .pai {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--bg3);
+      border: 1px solid var(--bd);
+      border-radius: var(--r);
+      padding: 18px;
+      transition: border-color .3s
+    }
+
+    .pai:hover {
+      border-color: rgba(248, 113, 113, .4)
+    }
+
+    .pio {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      flex-shrink: 0;
+      background: rgba(248, 113, 113, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px
+    }
+
+    .pai h4 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 3px
+    }
+
+    .pai p {
+      font-size: 12px;
+      color: var(--tx2);
+      line-height: 1.5
+    }
+
+    .sol {
+      background: linear-gradient(135deg, var(--bg3), var(--bg4));
+      border: 1px solid var(--bdh);
+      border-radius: 20px;
+      padding: 32px
+    }
+
+    .pipe {
+      display: flex;
+      flex-direction: column;
+      margin-top: 14px
+    }
+
+    .ps {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0
+    }
+
+    .ps:not(:last-child) {
+      border-bottom: 1px dashed var(--bd)
+    }
+
+    .pb {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0
+    }
+
+    .pb.l {
+      background: var(--bld);
+      color: var(--bl)
+    }
+
+    .pb.p {
+      background: var(--pud);
+      color: var(--pu)
+    }
+
+    .pb.o {
+      background: var(--grd);
+      color: var(--gr)
+    }
+
+    .pb.c {
+      background: rgba(251, 191, 36, .12);
+      color: var(--am)
+    }
+
+    .pb.d {
+      background: rgba(34, 211, 238, .12);
+      color: #22d3ee
+    }
+
+    .pi h5 {
+      font-size: 13px;
+      font-weight: 700
+    }
+
+    .pi small {
+      font-size: 11px;
+      color: var(--tx3)
+    }
+
+    .pa {
+      color: var(--tx3);
+      font-size: 16px;
+      margin-left: auto
+    }
+
+    #features {
+      position: relative;
+      z-index: 1
+    }
+
+    .fg {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px
+    }
+
+    .fc {
+      background: var(--bg3);
+      border: 1px solid var(--bd);
+      border-radius: var(--r);
+      padding: 26px;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .fc::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gr), transparent);
+      opacity: 0;
+      transition: opacity .3s
+    }
+
+    .fc:hover {
+      transform: translateY(-5px);
+      border-color: var(--bdh);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .4)
+    }
+
+    .fc:hover::before {
+      opacity: 1
+    }
+
+    .fi {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 14px
+    }
+
+    .fi.g {
+      background: var(--grd)
+    }
+
+    .fi.b {
+      background: var(--bld)
+    }
+
+    .fi.pu {
+      background: var(--pud)
+    }
+
+    .fi.a {
+      background: rgba(251, 191, 36, .1)
+    }
+
+    .fi.c {
+      background: rgba(34, 211, 238, .1)
+    }
+
+    .fi.r {
+      background: rgba(248, 113, 113, .1)
+    }
+
+    .ft {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 7px
+    }
+
+    .fd {
+      font-size: 12px;
+      color: var(--tx2);
+      line-height: 1.6
+    }
+
+    .fb {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 12px
+    }
+
+    .fbg {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 99px;
+      background: var(--bg4);
+      border: 1px solid var(--bd);
+      color: var(--tx3)
+    }
+
+    #how {
+      background: var(--bg2);
+      position: relative;
+      z-index: 1
+    }
+
+    .tl {
+      position: relative;
+      max-width: 780px;
+      margin: 0 auto
+    }
+
+    .tl::before {
+      content: '';
+      position: absolute;
+      left: 38px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gr), var(--bl), var(--pu));
+      opacity: .35
+    }
+
+    .ts {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      padding: 28px 0;
+      position: relative
+    }
+
+    .tn {
+      width: 76px;
+      height: 76px;
+      flex-shrink: 0;
+      background: var(--bg3);
+      border: 2px solid var(--bdh);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      position: relative;
+      z-index: 1
+    }
+
+    .ts:nth-child(1) .tn {
+      border-color: var(--gr);
+      color: var(--gr)
+    }
+
+    .ts:nth-child(2) .tn {
+      border-color: var(--bl);
+      color: var(--bl)
+    }
+
+    .ts:nth-child(3) .tn {
+      border-color: var(--pu);
+      color: var(--pu)
+    }
+
+    .ts:nth-child(4) .tn {
+      border-color: var(--am);
+      color: var(--am)
+    }
+
+    .tc {
+      padding-top: 10px
+    }
+
+    .tc h3 {
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 7px
+    }
+
+    .tc p {
+      font-size: 13px;
+      color: var(--tx2);
+      line-height: 1.7
+    }
+
+    .stg {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 10px
+    }
+
+    .stg span {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 11px;
+      border-radius: 99px;
+      background: var(--bg4);
+      color: var(--tx3);
+      border: 1px solid var(--bd)
+    }
+
+    #pricing {
+      position: relative;
+      z-index: 1
+    }
+
+    .prg {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      align-items: start
+    }
+
+    .prc {
+      background: var(--bg3);
+      border: 1px solid var(--bd);
+      border-radius: 18px;
+      padding: 28px 22px;
+      transition: transform .3s, box-shadow .3s;
+      position: relative
+    }
+
+    .prc:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, .4)
+    }
+
+    .prc.feat {
+      background: linear-gradient(135deg, rgba(0, 214, 143, .07), rgba(77, 159, 255, .07));
+      border-color: rgba(0, 214, 143, .35);
+      transform: scale(1.02)
+    }
+
+    .prc.feat:hover {
+      transform: scale(1.02) translateY(-5px)
+    }
+
+    .pop {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--gr), var(--bl));
+      color: #04080f;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 99px;
+      white-space: nowrap
+    }
+
+    .pt {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--tx3);
+      margin-bottom: 7px
+    }
+
+    .pv {
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 1;
+      margin: 10px 0 3px
+    }
+
+    .pv span {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--tx2)
+    }
+
+    .pd {
+      font-size: 12px;
+      color: var(--tx2);
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--bd)
+    }
+
+    .pf {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-bottom: 24px
+    }
+
+    .pf li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      font-size: 12px;
+      color: var(--tx2)
+    }
+
+    .ck {
+      color: var(--gr);
+      flex-shrink: 0
+    }
+
+    .cx {
+      color: var(--tx3);
+      flex-shrink: 0
+    }
+
+    .prc .btn {
+      width: 100%;
+      justify-content: center
+    }
+
+    #proof {
+      background: var(--bg2);
+      position: relative;
+      z-index: 1
+    }
+
+    .prfg {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px
+    }
+
+    .pcard {
+      background: var(--bg3);
+      border: 1px solid var(--bd);
+      border-radius: var(--r);
+      padding: 26px;
+      transition: transform .3s
+    }
+
+    .pcard:hover {
+      transform: translateY(-4px);
+      border-color: var(--bdh)
+    }
+
+    .stars {
+      color: var(--am);
+      font-size: 12px;
+      margin-bottom: 10px
+    }
+
+    .pq {
+      font-size: 13px;
+      color: var(--tx2);
+      line-height: 1.8;
+      margin-bottom: 18px;
+      font-style: italic
+    }
+
+    .pq::before {
+      content: open-quote;
+      color: var(--gr);
+      font-size: 26px;
+      line-height: 0;
+      vertical-align: -8px;
+      margin-right: 3px
+    }
+
+    .paut {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .av {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 800;
+      color: #04080f;
+      flex-shrink: 0
+    }
+
+    .pn {
+      font-size: 13px;
+      font-weight: 700
+    }
+
+    .pr {
+      font-size: 11px;
+      color: var(--tx3)
+    }
+
+    #cta {
+      position: relative;
+      z-index: 1;
+      text-align: center
+    }
+
+    .cbox {
+      background: linear-gradient(135deg, var(--bg3), var(--bg4));
+      border: 1px solid var(--bdh);
+      border-radius: 26px;
+      padding: 76px 40px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .cbox::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(0, 214, 143, .1), transparent);
+      pointer-events: none
+    }
+
+    .ct {
+      font-size: clamp(26px, 3.5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 14px
+    }
+
+    .cs {
+      font-size: 16px;
+      color: var(--tx2);
+      max-width: 520px;
+      margin: 0 auto 34px
+    }
+
+    .cb {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    .cn {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--tx3)
+    }
+
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--bd);
+      padding: 56px 0 28px;
+      position: relative;
+      z-index: 1
+    }
+
+    .fgrid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 44px;
+      margin-bottom: 44px
+    }
+
+    .fbr p {
+      font-size: 13px;
+      color: var(--tx2);
+      margin-top: 10px;
+      line-height: 1.7;
+      max-width: 270px
+    }
+
+    .fcol h5 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--tx3);
+      margin-bottom: 14px
+    }
+
+    .fcol ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .fcol a {
+      color: var(--tx2);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color .2s
+    }
+
+    .fcol a:hover {
+      color: var(--gr)
+    }
+
+    .fbot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--bd);
+      font-size: 12px;
+      color: var(--tx3)
+    }
+
+    .dbar {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(12, 22, 38, .9);
+      border: 1px solid var(--bdh);
+      border-radius: 999px;
+      padding: 9px 9px 9px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+      z-index: 999;
+      white-space: nowrap;
+      backdrop-filter: blur(20px);
+      animation: sUp .6s ease 1.2s both
+    }
+
+    @keyframes sUp {
+      from {
+        transform: translateX(-50%) translateY(18px);
+        opacity: 0
+      }
+
+      to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1
+      }
+    }
+
+    .dtx {
+      font-size: 12px;
+      color: var(--tx2)
+    }
+
+    .dtx strong {
+      color: var(--tx)
+    }
+
+    .pdot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gr);
+      animation: pls 2s infinite
+    }
+
+    @keyframes pls {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 214, 143, .4)
+      }
+
+      50% {
+        box-shadow: 0 0 0 7px rgba(0, 214, 143, 0)
+      }
+    }
+
+    .dcl {
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+      color: var(--tx3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      border-radius: 50%;
+      transition: background .2s
+    }
+
+    .dcl:hover {
+      background: var(--bg4);
+      color: var(--tx)
+    }
+
+    @media(max-width:1024px) {
+      .fg {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .prg {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .fgrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px
+      }
+    }
+
+    @media(max-width:768px) {
+      section {
+        padding: 64px 0
+      }
+
+      #hero {
+        padding: 120px 0 72px
+      }
+
+      .pg {
+        grid-template-columns: 1fr
+      }
+
+      .fg {
+        grid-template-columns: 1fr
+      }
+
+      .prg {
+        grid-template-columns: 1fr
+      }
+
+      .prc.feat {
+        transform: none
+      }
+
+      .prfg {
+        grid-template-columns: 1fr
+      }
+
+      .fgrid {
+        grid-template-columns: 1fr
+      }
+
+      .mbd {
+        grid-template-columns: 1fr
+      }
+
+      .ms {
+        display: none
+      }
+
+      .nl,
+      .ne {
+        display: none
+      }
+
+      .hb {
+        display: block
+      }
+
+      .tl::before {
+        left: 28px
+      }
+
+      .tn {
+        width: 56px;
+        height: 56px;
+        font-size: 18px
+      }
+
+      .fbot {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center
+      }
+    }
   </style>
 </head>
+
 <body>
-<div class="blob b1" id="bx1"></div>
-<div class="blob b2" id="bx2"></div>
-<div class="blob b3"></div>
-<nav id="nav">
-  <div class="ni">
-    <a href="#" class="logo"><div class="lm">N</div><span class="lt">Nexa<span>OS</span></span></a>
-    <div class="nl"><a href="#features">Fitur</a><a href="#how">Cara Kerja</a><a href="#pricing">Harga</a><a href="#proof">Testimoni</a></div>
-    <div class="ne"><a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bg bsm">Demo &#8599;</a><a href="#pricing" class="btn bp bsm">Mulai Gratis</a></div>
-    <button class="hb" id="hb">&#9776; Menu</button>
-  </div>
-</nav>
-<div class="mm" id="mm">
-  <a href="#features" onclick="cm()">Fitur</a><a href="#how" onclick="cm()">Cara Kerja</a><a href="#pricing" onclick="cm()">Harga</a><a href="#proof" onclick="cm()">Testimoni</a>
-  <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px">
-    <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bg">Demo Live &#8599;</a>
-    <a href="#pricing" class="btn bp" onclick="cm()">Mulai Gratis</a>
-  </div>
-</div>
-<section id="hero">
-  <div class="w">
-    <div class="fu" style="margin-bottom:22px"><span class="tag">&#128994; Live &middot; Battle-Tested oleh Derma Indonesia</span></div>
-    <h1 class="ht fu" style="transition-delay:.1s">CRM yang Tahu<br><span class="g">Kapan Harus Bertindak</span><br><span class="b">Kepada Siapa</span></h1>
-    <p class="hs fu" style="transition-delay:.2s">Stop kelola 500+ prospek pakai grup WA dan Excel yang kacau. Nexa OS hadir dengan <strong>pipeline berbasis bukti</strong>, Smart WhatsApp Routing, dan otomasi nurturing &mdash; khusus untuk LPK, Bimbel &amp; Sekolah Vokasi.</p>
-    <div class="hc fu" style="transition-delay:.3s">
-      <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bp">&#128640; Coba Demo &mdash; Gratis</a>
-      <a href="#features" class="btn bg">Lihat Semua Fitur &rarr;</a>
+  <div class="blob b1" id="bx1"></div>
+  <div class="blob b2" id="bx2"></div>
+  <div class="blob b3"></div>
+  <nav id="nav">
+    <div class="ni">
+      <a href="#" class="logo">
+        <div class="lm">N</div><span class="lt">Nexa<span>OS</span></span>
+      </a>
+      <div class="nl"><a href="#features">Fitur</a><a href="#how">Cara Kerja</a><a href="#pricing">Harga</a><a
+          href="#proof">Testimoni</a></div>
+      <div class="ne"><a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bg bsm">Demo
+          &#8599;</a><a href="#pricing" class="btn bp bsm">Mulai Gratis</a></div>
+      <button class="hb" id="hb">&#9776; Menu</button>
     </div>
-    <p class="hn fu" style="transition-delay:.4s">Tidak perlu kartu kredit &middot; Setup &lt;30 menit &middot; <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank">Demo: admin / admin123</a></p>
-    <div class="sr fu" style="transition-delay:.5s">
-      <div class="sc"><div class="sn">15</div><div class="sl2">Modul Operasional Live</div></div>
-      <div class="sc"><div class="sn">500+</div><div class="sl2">Prospek Dikelola Aktif</div></div>
-      <div class="sc"><div class="sn">~40%</div><div class="sl2">Penurunan Missed Follow-up</div></div>
-      <div class="sc"><div class="sn">100%</div><div class="sl2">State Berbasis Bukti Nyata</div></div>
+  </nav>
+  <div class="mm" id="mm">
+    <a href="#features" onclick="cm()">Fitur</a><a href="#how" onclick="cm()">Cara Kerja</a><a href="#pricing"
+      onclick="cm()">Harga</a><a href="#proof" onclick="cm()">Testimoni</a>
+    <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px">
+      <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bg">Demo Live &#8599;</a>
+      <a href="#pricing" class="btn bp" onclick="cm()">Mulai Gratis</a>
     </div>
-    <div class="mk fu" style="transition-delay:.6s">
-      <div class="mf">
-        <div class="mb"><div class="dt dr"></div><div class="dt dy"></div><div class="dt dg"></div><div class="mu">nexa-crm-web-xi.vercel.app/dashboard</div></div>
-        <div class="mbd">
-          <div class="ms">
-            <div class="mn a">&#128202; Dashboard</div><div class="mn">&#128101; Siswa</div><div class="mn">&#127979; Sekolah</div>
-            <div class="mn">&#9989; Task List</div><div class="mn">&#128172; Live Chat</div><div class="mn">&#128226; Broadcast</div>
-            <div class="mn">&#129302; Nurturing</div><div class="mn">&#128203; Template</div>
+  </div>
+  <section id="hero">
+    <div class="w">
+      <div class="fu" style="margin-bottom:22px"><span class="tag">&#128994; Live &middot; Battle-Tested oleh Derma
+          Indonesia</span></div>
+      <h1 class="ht fu" style="transition-delay:.1s">CRM yang Tahu<br><span class="g">Kapan Harus
+          Bertindak</span><br><span class="b">Kepada Siapa</span></h1>
+      <p class="hs fu" style="transition-delay:.2s">Stop kelola 500+ prospek pakai grup WA dan Excel yang kacau. Nexa OS
+        hadir dengan <strong>pipeline berbasis bukti</strong>, Smart WhatsApp Routing, dan otomasi nurturing &mdash;
+        khusus untuk LPK, Bimbel, Sekolah &amp; Kampus Vokasi.</p>
+      <div class="hc fu" style="transition-delay:.3s">
+        <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bp">&#128640; Coba Demo &mdash;
+          Gratis</a>
+        <a href="#features" class="btn bg">Lihat Semua Fitur &rarr;</a>
+      </div>
+      <p class="hn fu" style="transition-delay:.4s">Tidak perlu kartu kredit &middot; Setup &lt;30 menit &middot; <a
+          href="https://nexa-crm-web-xi.vercel.app/login" target="_blank">Demo: admin / admin123</a></p>
+      <div class="sr fu" style="transition-delay:.5s">
+        <div class="sc">
+          <div class="sn">15</div>
+          <div class="sl2">Modul Operasional Live</div>
+        </div>
+        <div class="sc">
+          <div class="sn">500+</div>
+          <div class="sl2">Prospek Dikelola Aktif</div>
+        </div>
+        <div class="sc">
+          <div class="sn">~40%</div>
+          <div class="sl2">Penurunan Missed Follow-up</div>
+        </div>
+        <div class="sc">
+          <div class="sn">100%</div>
+          <div class="sl2">State Berbasis Bukti Nyata</div>
+        </div>
+      </div>
+      <div class="mk fu" style="transition-delay:.6s">
+        <div class="mf">
+          <div class="mb">
+            <div class="dt dr"></div>
+            <div class="dt dy"></div>
+            <div class="dt dg"></div>
+            <div class="mu">nexa-crm-web-xi.vercel.app/dashboard</div>
           </div>
-          <div class="mc">
-            <div class="mch"><div class="mct">Dashboard &middot; Periode Aktif</div><div class="mcb">&#9679; Live</div></div>
-            <div class="mcc">
-              <div class="mcard"><div class="ml">Total Lead</div><div class="mv">142</div></div>
-              <div class="mcard"><div class="ml">Prospek Aktif</div><div class="mv mv2">58</div></div>
-              <div class="mcard"><div class="ml">Customer</div><div class="mv mv3">23</div></div>
+          <div class="mbd">
+            <div class="ms">
+              <div class="mn a">&#128202; Dashboard</div>
+              <div class="mn">&#128101; Siswa</div>
+              <div class="mn">&#127979; Sekolah</div>
+              <div class="mn">&#9989; Task List</div>
+              <div class="mn">&#128172; Live Chat</div>
+              <div class="mn">&#128226; Broadcast</div>
+              <div class="mn">&#129302; Nurturing</div>
+              <div class="mn">&#128203; Template</div>
             </div>
-            <table class="t">
-              <thead><tr><th>Nama Siswa</th><th>Status</th><th>CRO</th><th>Update</th></tr></thead>
-              <tbody>
-                <tr><td>Rizky Fauzan</td><td><span class="p po">Opportunity</span></td><td>Sarah K.</td><td>2j lalu</td></tr>
-                <tr><td>Putri Amalia</td><td><span class="p pp">Prospect</span></td><td>Budi A.</td><td>4j lalu</td></tr>
-                <tr><td>Dimas Prayoga</td><td><span class="p pl">Lead</span></td><td>Sarah K.</td><td>Kemarin</td></tr>
-                <tr><td>Anisa Rahma</td><td><span class="p pc2">Customer</span></td><td>Budi A.</td><td>2h lalu</td></tr>
-              </tbody>
-            </table>
+            <div class="mc">
+              <div class="mch">
+                <div class="mct">Dashboard &middot; Periode Aktif</div>
+                <div class="mcb">&#9679; Live</div>
+              </div>
+              <div class="mcc">
+                <div class="mcard">
+                  <div class="ml">Total Lead</div>
+                  <div class="mv">142</div>
+                </div>
+                <div class="mcard">
+                  <div class="ml">Prospek Aktif</div>
+                  <div class="mv mv2">58</div>
+                </div>
+                <div class="mcard">
+                  <div class="ml">Customer</div>
+                  <div class="mv mv3">23</div>
+                </div>
+              </div>
+              <table class="t">
+                <thead>
+                  <tr>
+                    <th>Nama Siswa</th>
+                    <th>Status</th>
+                    <th>CRO</th>
+                    <th>Update</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Rizky Fauzan</td>
+                    <td><span class="p po">Opportunity</span></td>
+                    <td>Sarah K.</td>
+                    <td>2j lalu</td>
+                  </tr>
+                  <tr>
+                    <td>Putri Amalia</td>
+                    <td><span class="p pp">Prospect</span></td>
+                    <td>Budi A.</td>
+                    <td>4j lalu</td>
+                  </tr>
+                  <tr>
+                    <td>Dimas Prayoga</td>
+                    <td><span class="p pl">Lead</span></td>
+                    <td>Sarah K.</td>
+                    <td>Kemarin</td>
+                  </tr>
+                  <tr>
+                    <td>Anisa Rahma</td>
+                    <td><span class="p pc2">Customer</span></td>
+                    <td>Budi A.</td>
+                    <td>2h lalu</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<section id="problem">
-  <div class="w">
-    <div class="pg">
-      <div>
-        <div class="sl3">Masalah Yang Kita Selesaikan</div>
-        <h2 class="st fu">CRM Generik Tidak Dirancang untuk <span style="color:var(--rd)">Realitas Lapangan</span> LPK</h2>
-        <p class="ss fu" style="transition-delay:.1s">HubSpot dan Pipedrive tidak paham: keputusan kolektif orang tua, siklus penjualan 6&ndash;12 bulan, dan ketergantungan WhatsApp API Indonesia.</p>
-        <div class="pl2">
-          <div class="pai fu" style="transition-delay:.2s"><div class="pio">&#128241;</div><div><h4>Silo Inbox WhatsApp yang Kacau</h4><p>CRO tidak bisa lihat chat CRO lain, tapi manager tidak bisa monitor semuanya dalam satu tampilan.</p></div></div>
-          <div class="pai fu" style="transition-delay:.3s"><div class="pio">&#128184;</div><div><h4>Tagihan Meta API Membengkak</h4><p>Template WhatsApp dikenakan biaya meski Service Window terbuka &mdash; tidak ada yang mengoptimalkan ini otomatis.</p></div></div>
-          <div class="pai fu" style="transition-delay:.4s"><div class="pio">&#127919;</div><div><h4>Status Pipeline Berdasarkan &ldquo;Perasaan&rdquo;</h4><p>CRO pindahkan status berdasarkan asumsi, bukan bukti. Laporan konversi tidak bisa dipercaya.</p></div></div>
+  </section>
+  <section id="problem">
+    <div class="w">
+      <div class="pg">
+        <div>
+          <div class="sl3">Masalah Yang Kita Selesaikan</div>
+          <h2 class="st fu">CRM Generik Tidak Dirancang untuk <span style="color:var(--rd)">Realitas Lapangan</span> LPK
+          </h2>
+          <p class="ss fu" style="transition-delay:.1s">HubSpot dan Pipedrive tidak paham: keputusan kolektif orang tua,
+            siklus penjualan 6&ndash;12 bulan, dan ketergantungan WhatsApp API Indonesia.</p>
+          <div class="pl2">
+            <div class="pai fu" style="transition-delay:.2s">
+              <div class="pio">&#128241;</div>
+              <div>
+                <h4>Silo Inbox WhatsApp yang Kacau</h4>
+                <p>CRO tidak bisa lihat chat CRO lain, tapi manager tidak bisa monitor semuanya dalam satu tampilan.</p>
+              </div>
+            </div>
+            <div class="pai fu" style="transition-delay:.3s">
+              <div class="pio">&#128184;</div>
+              <div>
+                <h4>Tagihan Meta API Membengkak</h4>
+                <p>Template WhatsApp dikenakan biaya meski Service Window terbuka &mdash; tidak ada yang mengoptimalkan
+                  ini otomatis.</p>
+              </div>
+            </div>
+            <div class="pai fu" style="transition-delay:.4s">
+              <div class="pio">&#127919;</div>
+              <div>
+                <h4>Status Pipeline Berdasarkan &ldquo;Perasaan&rdquo;</h4>
+                <p>CRO pindahkan status berdasarkan asumsi, bukan bukti. Laporan konversi tidak bisa dipercaya.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sol fu" style="transition-delay:.2s">
+          <span class="tag" style="margin-bottom:14px">Pipeline Berbasis Bukti</span>
+          <p style="font-size:13px;color:var(--tx2);margin-bottom:4px">Status hanya berubah jika ada bukti nyata
+            tercatat:</p>
+          <div class="pipe">
+            <div class="ps">
+              <div class="pb l">L</div>
+              <div class="pi">
+                <h5>Lead</h5><small>Kontak valid + minat awal terverifikasi</small>
+              </div>
+              <div class="pa">&#8595;</div>
+            </div>
+            <div class="ps">
+              <div class="pb p">P</div>
+              <div class="pi">
+                <h5>Prospect</h5><small>Lulus FNAR: Fit, Need, Ability, Readiness</small>
+              </div>
+              <div class="pa">&#8595;</div>
+            </div>
+            <div class="ps">
+              <div class="pb o">O</div>
+              <div class="pi">
+                <h5>Opportunity</h5><small>Home Visit / konsultasi orang tua terlaksana</small>
+              </div>
+              <div class="pa">&#8595;</div>
+            </div>
+            <div class="ps">
+              <div class="pb c">C</div>
+              <div class="pi">
+                <h5>Customer</h5><small>DP terverifikasi admin keuangan</small>
+              </div>
+              <div class="pa">&#8595;</div>
+            </div>
+            <div class="ps">
+              <div class="pb d">D</div>
+              <div class="pi">
+                <h5>Delivery State</h5><small>Pre-Core &#8594; Training &#8594; Placement</small>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="sol fu" style="transition-delay:.2s">
-        <span class="tag" style="margin-bottom:14px">Pipeline Berbasis Bukti</span>
-        <p style="font-size:13px;color:var(--tx2);margin-bottom:4px">Status hanya berubah jika ada bukti nyata tercatat:</p>
-        <div class="pipe">
-          <div class="ps"><div class="pb l">L</div><div class="pi"><h5>Lead</h5><small>Kontak valid + minat awal terverifikasi</small></div><div class="pa">&#8595;</div></div>
-          <div class="ps"><div class="pb p">P</div><div class="pi"><h5>Prospect</h5><small>Lulus FNAR: Fit, Need, Ability, Readiness</small></div><div class="pa">&#8595;</div></div>
-          <div class="ps"><div class="pb o">O</div><div class="pi"><h5>Opportunity</h5><small>Home Visit / konsultasi orang tua terlaksana</small></div><div class="pa">&#8595;</div></div>
-          <div class="ps"><div class="pb c">C</div><div class="pi"><h5>Customer</h5><small>DP terverifikasi admin keuangan</small></div><div class="pa">&#8595;</div></div>
-          <div class="ps"><div class="pb d">D</div><div class="pi"><h5>Delivery State</h5><small>Pre-Core &#8594; Training &#8594; Placement</small></div></div>
+    </div>
+  </section>
+  <section id="features">
+    <div class="w">
+      <div class="sh">
+        <div class="sl3">Fitur Platform</div>
+        <h2 class="st fu">Semua yang Dibutuhkan CRO,<br>Dalam Satu Dashboard</h2>
+        <p class="ss fu" style="transition-delay:.1s">15 modul operasional yang tervalidasi langsung di lapangan.</p>
+      </div>
+      <div class="fg">
+        <div class="fc fu">
+          <div class="fi g">&#128202;</div>
+          <div class="ft">Pipeline B2C + B2B</div>
+          <div class="fd">Dua pipeline terpisah namun terhubung: siswa (Lead&#8594;Customer) dan sekolah
+            (Target&#8594;Active Partner). Setiap transisi butuh bukti nyata.</div>
+          <div class="fb"><span class="fbg">Event-Sourcing</span><span class="fbg">State Machine</span><span
+              class="fbg">Audit Trail</span></div>
+        </div>
+        <div class="fc fu" style="transition-delay:.05s">
+          <div class="fi b">&#128172;</div>
+          <div class="ft">Live Chat + Shared Inbox</div>
+          <div class="fd">Silo system: CRO lihat chatnya sendiri, Chief CRO monitor semua. Balas WA langsung dari
+            dashboard.</div>
+          <div class="fb"><span class="fbg">WhatsApp API</span><span class="fbg">Silo System</span><span
+              class="fbg">Real-time</span></div>
+        </div>
+        <div class="fc fu" style="transition-delay:.1s">
+          <div class="fi pu">&#129302;</div>
+          <div class="ft">Smart WhatsApp Routing</div>
+          <div class="fd">Service Window terbuka? Template otomatis dikonversi ke pesan interaktif gratis. Hemat tagihan
+            Meta API.</div>
+          <div class="fb"><span class="fbg">SW Detection</span><span class="fbg">Auto Fallback</span><span
+              class="fbg">Cost Saving</span></div>
+        </div>
+        <div class="fc fu" style="transition-delay:.15s">
+          <div class="fi a">&#128226;</div>
+          <div class="ft">Broadcast + Auto Nurturing</div>
+          <div class="fd">Kirim broadcast ke segment spesifik. Drip campaign otomatis berjalan berdasarkan stage
+            pipeline siswa.</div>
+          <div class="fb"><span class="fbg">Drip Campaign</span><span class="fbg">Segmentasi</span><span
+              class="fbg">Snooze Mode</span></div>
+        </div>
+        <div class="fc fu" style="transition-delay:.2s">
+          <div class="fi c">&#9989;</div>
+          <div class="ft">Task List + Weekly Kanban</div>
+          <div class="fd">SOP harian CRO terstruktur. Weekly Kanban untuk planning target. Manager monitor produktivitas
+            real-time.</div>
+          <div class="fb"><span class="fbg">SOP Harian</span><span class="fbg">Kanban</span><span
+              class="fbg">Leaderboard</span></div>
+        </div>
+        <div class="fc fu" style="transition-delay:.25s">
+          <div class="fi r">&#127979;</div>
+          <div class="ft">Manajemen Sekolah B2B</div>
+          <div class="fd">Kelola hubungan sekolah mitra terpisah. Track PIC, jadwal kunjungan, sosialisasi, dan lead per
+            sekolah.</div>
+          <div class="fb"><span class="fbg">B2B Pipeline</span><span class="fbg">School Analytics</span><span
+              class="fbg">PIC Tracking</span></div>
+        </div>
+        <div class="fc fu" style="transition-delay:.3s">
+          <div class="fi g">&#128276;</div>
+          <div class="ft">Web Push Notification</div>
+          <div class="fd">Notifikasi real-time di browser saat ada pesan masuk atau reminder task. Tidak perlu buka WA
+            manual.</div>
+          <div class="fb"><span class="fbg">Service Worker</span><span class="fbg">VAPID</span><span class="fbg">PWA
+              Ready</span></div>
+        </div>
+        <div class="fc fu" style="transition-delay:.35s">
+          <div class="fi b">&#127760;</div>
+          <div class="ft">Multi-Tenant BYOW</div>
+          <div class="fd">Setiap klien pakai App Meta &amp; nomor WA sendiri. Data terisolasi penuh, rate limit
+            terpisah, privasi 100%.</div>
+          <div class="fb"><span class="fbg">Tenant Isolation</span><span class="fbg">BYOW</span><span
+              class="fbg">Webhook Hybrid</span></div>
+        </div>
+        <div class="fc fu" style="transition-delay:.4s">
+          <div class="fi pu">&#128229;</div>
+          <div class="ft">Intake Audience &amp; Form Publik</div>
+          <div class="fd">URL unik per tenant untuk form pendaftaran publik. Consent Engine WA terintegrasi. Lead masuk
+            langsung.</div>
+          <div class="fb"><span class="fbg">Public URL</span><span class="fbg">Consent Engine</span><span
+              class="fbg">CSV Import</span></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<section id="features">
-  <div class="w">
-    <div class="sh">
-      <div class="sl3">Fitur Platform</div>
-      <h2 class="st fu">Semua yang Dibutuhkan CRO,<br>Dalam Satu Dashboard</h2>
-      <p class="ss fu" style="transition-delay:.1s">15 modul operasional yang tervalidasi langsung di lapangan.</p>
-    </div>
-    <div class="fg">
-      <div class="fc fu"><div class="fi g">&#128202;</div><div class="ft">Pipeline B2C + B2B</div><div class="fd">Dua pipeline terpisah namun terhubung: siswa (Lead&#8594;Customer) dan sekolah (Target&#8594;Active Partner). Setiap transisi butuh bukti nyata.</div><div class="fb"><span class="fbg">Event-Sourcing</span><span class="fbg">State Machine</span><span class="fbg">Audit Trail</span></div></div>
-      <div class="fc fu" style="transition-delay:.05s"><div class="fi b">&#128172;</div><div class="ft">Live Chat + Shared Inbox</div><div class="fd">Silo system: CRO lihat chatnya sendiri, Chief CRO monitor semua. Balas WA langsung dari dashboard.</div><div class="fb"><span class="fbg">WhatsApp API</span><span class="fbg">Silo System</span><span class="fbg">Real-time</span></div></div>
-      <div class="fc fu" style="transition-delay:.1s"><div class="fi pu">&#129302;</div><div class="ft">Smart WhatsApp Routing</div><div class="fd">Service Window terbuka? Template otomatis dikonversi ke pesan interaktif gratis. Hemat tagihan Meta API.</div><div class="fb"><span class="fbg">SW Detection</span><span class="fbg">Auto Fallback</span><span class="fbg">Cost Saving</span></div></div>
-      <div class="fc fu" style="transition-delay:.15s"><div class="fi a">&#128226;</div><div class="ft">Broadcast + Auto Nurturing</div><div class="fd">Kirim broadcast ke segment spesifik. Drip campaign otomatis berjalan berdasarkan stage pipeline siswa.</div><div class="fb"><span class="fbg">Drip Campaign</span><span class="fbg">Segmentasi</span><span class="fbg">Snooze Mode</span></div></div>
-      <div class="fc fu" style="transition-delay:.2s"><div class="fi c">&#9989;</div><div class="ft">Task List + Weekly Kanban</div><div class="fd">SOP harian CRO terstruktur. Weekly Kanban untuk planning target. Manager monitor produktivitas real-time.</div><div class="fb"><span class="fbg">SOP Harian</span><span class="fbg">Kanban</span><span class="fbg">Leaderboard</span></div></div>
-      <div class="fc fu" style="transition-delay:.25s"><div class="fi r">&#127979;</div><div class="ft">Manajemen Sekolah B2B</div><div class="fd">Kelola hubungan sekolah mitra terpisah. Track PIC, jadwal kunjungan, sosialisasi, dan lead per sekolah.</div><div class="fb"><span class="fbg">B2B Pipeline</span><span class="fbg">School Analytics</span><span class="fbg">PIC Tracking</span></div></div>
-      <div class="fc fu" style="transition-delay:.3s"><div class="fi g">&#128276;</div><div class="ft">Web Push Notification</div><div class="fd">Notifikasi real-time di browser saat ada pesan masuk atau reminder task. Tidak perlu buka WA manual.</div><div class="fb"><span class="fbg">Service Worker</span><span class="fbg">VAPID</span><span class="fbg">PWA Ready</span></div></div>
-      <div class="fc fu" style="transition-delay:.35s"><div class="fi b">&#127760;</div><div class="ft">Multi-Tenant BYOW</div><div class="fd">Setiap klien pakai App Meta &amp; nomor WA sendiri. Data terisolasi penuh, rate limit terpisah, privasi 100%.</div><div class="fb"><span class="fbg">Tenant Isolation</span><span class="fbg">BYOW</span><span class="fbg">Webhook Hybrid</span></div></div>
-      <div class="fc fu" style="transition-delay:.4s"><div class="fi pu">&#128229;</div><div class="ft">Intake Audience &amp; Form Publik</div><div class="fd">URL unik per tenant untuk form pendaftaran publik. Consent Engine WA terintegrasi. Lead masuk langsung.</div><div class="fb"><span class="fbg">Public URL</span><span class="fbg">Consent Engine</span><span class="fbg">CSV Import</span></div></div>
-    </div>
-  </div>
-</section>
-<section id="how">
-  <div class="w">
-    <div class="sh">
-      <div class="sl3">Cara Kerja</div>
-      <h2 class="st fu">Dari Setup hingga Closing,<br>Semua Terstruktur</h2>
-      <p class="ss fu" style="transition-delay:.1s">Bukan sekadar software &mdash; ini sistem operasi penjualan yang sudah terbukti di lapangan.</p>
-    </div>
-    <div class="tl">
-      <div class="ts fu"><div class="tn">1</div><div class="tc"><h3>Daftar &amp; Setup Tenant (&#8804;30 menit)</h3><p>Buat akun, sambungkan WhatsApp Business API (BYOW), konfigurasi tim CRO. Tidak perlu IT &mdash; interface setup dipandu step-by-step.</p><div class="stg"><span>Self-Service Onboarding</span><span>BYOW Setup</span><span>Team Config</span></div></div></div>
-      <div class="ts fu" style="transition-delay:.1s"><div class="tn">2</div><div class="tc"><h3>Masukkan &amp; Kualifikasi Lead</h3><p>Import CSV, tambah manual, atau lead masuk via form publik. Setiap lead dikualifikasi dengan framework FNAR &mdash; tidak ada lagi status berdasarkan feeling.</p><div class="stg"><span>CSV Import</span><span>Form Publik</span><span>FNAR Assessment</span></div></div></div>
-      <div class="ts fu" style="transition-delay:.2s"><div class="tn">3</div><div class="tc"><h3>Nurturing Otomatis + Live Chat</h3><p>Drip campaign berjalan otomatis sesuai stage pipeline. CRO fokus pada percakapan berkualitas. Smart Routing memastikan pesan gratis saat Service Window terbuka.</p><div class="stg"><span>Auto Nurturing</span><span>Smart WA Routing</span><span>Task SOP Harian</span></div></div></div>
-      <div class="ts fu" style="transition-delay:.3s"><div class="tn">4</div><div class="tc"><h3>Closing Berbasis Bukti &amp; Analytics</h3><p>Setiap Customer dikonfirmasi dengan bukti pembayaran terverifikasi. Dashboard: conversion rate real, funnel velocity, leaderboard CRO &mdash; semua angka bisa dipercaya.</p><div class="stg"><span>Evidence-Based Closing</span><span>Funnel Analytics</span><span>CRO Leaderboard</span></div></div></div>
-    </div>
-  </div>
-</section>
-<section id="pricing">
-  <div class="w">
-    <div class="sh">
-      <div class="sl3">Paket Harga</div>
-      <h2 class="st fu">Mulai Gratis,<br>Scale Sesuai Kebutuhan</h2>
-      <p class="ss fu" style="transition-delay:.1s">Tidak perlu bayar sampai benar-benar merasakan nilainya. Free tier cukup untuk memulai.</p>
-    </div>
-    <div class="prg">
-      <div class="prc fu"><div class="pt">Free</div><div class="pv">Rp 0<span>/bulan</span></div><div class="pd">Untuk mulai merasakan Nexa OS tanpa komitmen.</div><ul class="pf"><li><span class="ck">&#10003;</span>50 siswa aktif</li><li><span class="ck">&#10003;</span>5 sekolah mitra</li><li><span class="ck">&#10003;</span>1 CRO seat</li><li><span class="ck">&#10003;</span>Live Chat WA</li><li><span class="ck">&#10003;</span>Task List + Dashboard</li><li><span class="cx">&mdash;</span>Auto Nurturing</li><li><span class="cx">&mdash;</span>Broadcast</li><li><span class="cx">&mdash;</span>BYOW</li></ul><a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bg">Mulai Gratis</a></div>
-      <div class="prc feat fu" style="transition-delay:.1s"><div class="pop">&#9889; Paling Populer</div><div class="pt" style="color:var(--gr)">Pro</div><div class="pv" style="color:var(--gr)">Rp 499.000<span>/bulan</span></div><div class="pd">Untuk LPK / Bimbel yang mulai serius scaling.</div><ul class="pf"><li><span class="ck">&#10003;</span>500 siswa aktif</li><li><span class="ck">&#10003;</span>50 sekolah mitra</li><li><span class="ck">&#10003;</span>5 CRO seat</li><li><span class="ck">&#10003;</span>Live Chat + Shared Inbox</li><li><span class="ck">&#10003;</span>Auto Nurturing + Snooze</li><li><span class="ck">&#10003;</span>Broadcast + Template</li><li><span class="ck">&#10003;</span>BYOW (WA sendiri)</li><li><span class="ck">&#10003;</span>Smart WA Routing</li></ul><a href="#" class="btn bp">Mulai Pro &rarr;</a></div>
-      <div class="prc fu" style="transition-delay:.2s"><div class="pt">Business</div><div class="pv">Rp 1.499.000<span>/bulan</span></div><div class="pd">Untuk institusi besar dengan banyak CRO.</div><ul class="pf"><li><span class="ck">&#10003;</span>2.000 siswa aktif</li><li><span class="ck">&#10003;</span>200 sekolah mitra</li><li><span class="ck">&#10003;</span>20 CRO seat</li><li><span class="ck">&#10003;</span>Semua fitur Pro</li><li><span class="ck">&#10003;</span>Manajemen Multi-Periode</li><li><span class="ck">&#10003;</span>Form Intake Audience</li><li><span class="ck">&#10003;</span>Priority Support</li><li><span class="cx">&mdash;</span>Custom Integrations</li></ul><a href="#" class="btn bg">Pilih Business</a></div>
-      <div class="prc fu" style="transition-delay:.3s"><div class="pt">Enterprise</div><div class="pv" style="font-size:22px;padding-top:4px">Custom</div><div class="pd">Unlimited segalanya. Diskusi langsung dengan tim Nexa.</div><ul class="pf"><li><span class="ck">&#10003;</span>Unlimited siswa</li><li><span class="ck">&#10003;</span>Unlimited sekolah</li><li><span class="ck">&#10003;</span>Unlimited CRO seat</li><li><span class="ck">&#10003;</span>Semua fitur Business</li><li><span class="ck">&#10003;</span>Custom Integrations</li><li><span class="ck">&#10003;</span>Dedicated DB Cluster</li><li><span class="ck">&#10003;</span>SLA Guarantee</li><li><span class="ck">&#10003;</span>Onboarding Assisted</li></ul><a href="https://wa.me/6285816270070" target="_blank" class="btn bg">Hubungi Kami</a></div>
-    </div>
-  </div>
-</section>
-<section id="proof">
-  <div class="w">
-    <div class="sh">
-      <div class="sl3">Hasil Nyata</div>
-      <h2 class="st fu">Bukan Klaim &mdash; Ini Bukti dari Lapangan</h2>
-      <p class="ss fu" style="transition-delay:.1s">Derma Indonesia adalah pilot tenant pertama yang memvalidasi semua 15 modul dalam operasional harian.</p>
-    </div>
-    <div class="prfg">
-      <div class="pcard fu"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="pq">Sebelumnya kami pakai 3 grup WA dan 2 file Excel untuk 500+ prospek. Sekarang semua ter-handle dari satu dashboard &mdash; CRO kami tidak ada lagi yang lupa follow-up.</p><div class="paut"><div class="av" style="background:linear-gradient(135deg,var(--gr),var(--bl))">D</div><div><div class="pn">Tim Derma Indonesia</div><div class="pr">LPK Program Kerja Jepang &middot; Sukabumi</div></div></div></div>
-      <div class="pcard fu" style="transition-delay:.1s"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="pq">Smart WA Routing-nya luar biasa. Tagihan Meta API turun drastis karena pesan yang seharusnya kena biaya template, otomatis diubah jadi pesan biasa saat SW sudah terbuka.</p><div class="paut"><div class="av" style="background:linear-gradient(135deg,var(--pu),var(--bl))">S</div><div><div class="pn">Sarah K.</div><div class="pr">Chief CRO &middot; Derma Indonesia</div></div></div></div>
-      <div class="pcard fu" style="transition-delay:.2s"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="pq">Pipeline berbasis buktinya mengubah cara kami berpikir. CRO tidak bisa lagi pindah status asal-asalan &mdash; setiap langkah harus ada bukti. Laporan konversi kami sekarang 100% bisa dipercaya.</p><div class="paut"><div class="av" style="background:linear-gradient(135deg,var(--am),#f87171)">M</div><div><div class="pn">Manager Derma</div><div class="pr">Operations &middot; Derma Indonesia</div></div></div></div>
-    </div>
-    <div class="sr" style="margin-top:52px">
-      <div class="sc fu"><div class="sn">~40%</div><div class="sl2">Penurunan missed follow-up</div></div>
-      <div class="sc fu" style="transition-delay:.1s"><div class="sn">15</div><div class="sl2">Modul live &amp; tervalidasi</div></div>
-      <div class="sc fu" style="transition-delay:.2s"><div class="sn">1</div><div class="sl2">Pilot tenant aktif (Sept 2026)</div></div>
-      <div class="sc fu" style="transition-delay:.3s"><div class="sn">&lt;30m</div><div class="sl2">Target onboarding time</div></div>
-    </div>
-  </div>
-</section>
-<section id="cta">
-  <div class="w">
-    <div class="cbox fu">
-      <div style="display:table;margin:0 auto 22px"><span class="tag">&#128640; Mulai Sekarang &middot; Gratis</span></div>
-      <h2 class="ct">Siap Stop Kelola Prospek<br>Pakai Excel?</h2>
-      <p class="cs">Bergabunglah dengan lembaga pendidikan yang sudah membuktikan Nexa OS di lapangan. Setup selesai dalam 30 menit.</p>
-      <div class="cb">
-        <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bp" style="padding:15px 34px;font-size:15px">&#127919; Coba Demo Sekarang</a>
-        <a href="https://wa.me/6285816270070" target="_blank" class="btn bg" style="padding:15px 34px;font-size:15px">&#128172; Tanya via WhatsApp</a>
+  </section>
+  <section id="how">
+    <div class="w">
+      <div class="sh">
+        <div class="sl3">Cara Kerja</div>
+        <h2 class="st fu">Dari Setup hingga Closing,<br>Semua Terstruktur</h2>
+        <p class="ss fu" style="transition-delay:.1s">Bukan sekadar software &mdash; ini sistem operasi penjualan yang
+          sudah terbukti di lapangan.</p>
       </div>
-      <p class="cn">Tidak perlu kartu kredit &middot; Demo: user <strong>admin</strong> / pass <strong>admin123</strong></p>
+      <div class="tl">
+        <div class="ts fu">
+          <div class="tn">1</div>
+          <div class="tc">
+            <h3>Daftar &amp; Setup Tenant (&#8804;30 menit)</h3>
+            <p>Buat akun, sambungkan WhatsApp Business API (BYOW), konfigurasi tim CRO. Tidak perlu IT &mdash; interface
+              setup dipandu step-by-step.</p>
+            <div class="stg"><span>Self-Service Onboarding</span><span>BYOW Setup</span><span>Team Config</span></div>
+          </div>
+        </div>
+        <div class="ts fu" style="transition-delay:.1s">
+          <div class="tn">2</div>
+          <div class="tc">
+            <h3>Masukkan &amp; Kualifikasi Lead</h3>
+            <p>Import CSV, tambah manual, atau lead masuk via form publik. Setiap lead dikualifikasi dengan framework
+              FNAR &mdash; tidak ada lagi status berdasarkan feeling.</p>
+            <div class="stg"><span>CSV Import</span><span>Form Publik</span><span>FNAR Assessment</span></div>
+          </div>
+        </div>
+        <div class="ts fu" style="transition-delay:.2s">
+          <div class="tn">3</div>
+          <div class="tc">
+            <h3>Nurturing Otomatis + Live Chat</h3>
+            <p>Drip campaign berjalan otomatis sesuai stage pipeline. CRO fokus pada percakapan berkualitas. Smart
+              Routing memastikan pesan gratis saat Service Window terbuka.</p>
+            <div class="stg"><span>Auto Nurturing</span><span>Smart WA Routing</span><span>Task SOP Harian</span></div>
+          </div>
+        </div>
+        <div class="ts fu" style="transition-delay:.3s">
+          <div class="tn">4</div>
+          <div class="tc">
+            <h3>Closing Berbasis Bukti &amp; Analytics</h3>
+            <p>Setiap Customer dikonfirmasi dengan bukti pembayaran terverifikasi. Dashboard: conversion rate real,
+              funnel velocity, leaderboard CRO &mdash; semua angka bisa dipercaya.</p>
+            <div class="stg"><span>Evidence-Based Closing</span><span>Funnel Analytics</span><span>CRO
+                Leaderboard</span></div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
-<footer>
-  <div class="w">
-    <div class="fgrid">
-      <div class="fbr"><a href="#" class="logo"><div class="lm">N</div><span class="lt" style="margin-left:10px">Nexa<span>OS</span></span></a><p>Platform CRM berbasis Event-Sourcing yang dirancang khusus untuk LPK, Bimbel, dan Sekolah Vokasi Indonesia. Setiap status pipeline harus punya buktinya.</p></div>
-      <div class="fcol"><h5>Produk</h5><ul><li><a href="#features">Fitur</a></li><li><a href="#pricing">Harga</a></li><li><a href="#how">Cara Kerja</a></li><li><a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank">Demo Live</a></li></ul></div>
-      <div class="fcol"><h5>Perusahaan</h5><ul><li><a href="#">Tentang Nexa</a></li><li><a href="#">Blog</a></li><li><a href="#">Karir</a></li><li><a href="https://wa.me/6285816270070" target="_blank">Kontak</a></li></ul></div>
-      <div class="fcol"><h5>Legal</h5><ul><li><a href="#">Kebijakan Privasi</a></li><li><a href="#">Syarat &amp; Ketentuan</a></li><li><a href="#">Keamanan Data</a></li><li><a href="#">Status</a></li></ul></div>
+  </section>
+  <section id="pricing">
+    <div class="w">
+      <div class="sh">
+        <div class="sl3">Paket Harga</div>
+        <h2 class="st fu">Mulai Gratis,<br>Scale Sesuai Kebutuhan</h2>
+        <p class="ss fu" style="transition-delay:.1s">Tidak perlu bayar sampai benar-benar merasakan nilainya. Free tier
+          cukup untuk memulai.</p>
+      </div>
+      <div class="prg">
+        <div class="prc fu">
+          <div class="pt">Free</div>
+          <div class="pv">Rp 0<span>/bulan</span></div>
+          <div class="pd">Untuk mulai merasakan Nexa OS tanpa komitmen.</div>
+          <ul class="pf">
+            <li><span class="ck">&#10003;</span>50 siswa aktif</li>
+            <li><span class="ck">&#10003;</span>5 sekolah mitra</li>
+            <li><span class="ck">&#10003;</span>1 CRO seat</li>
+            <li><span class="ck">&#10003;</span>Live Chat WA</li>
+            <li><span class="ck">&#10003;</span>Task List + Dashboard</li>
+            <li><span class="cx">&mdash;</span>Auto Nurturing</li>
+            <li><span class="cx">&mdash;</span>Broadcast</li>
+            <li><span class="cx">&mdash;</span>BYOW</li>
+          </ul><a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bg">Mulai Gratis</a>
+        </div>
+        <div class="prc feat fu" style="transition-delay:.1s">
+          <div class="pop">&#9889; Paling Populer</div>
+          <div class="pt" style="color:var(--gr)">Pro</div>
+          <div class="pv" style="color:var(--gr)">Rp 499.000<span>/bulan</span></div>
+          <div class="pd">Untuk LPK / Bimbel yang mulai serius scaling.</div>
+          <ul class="pf">
+            <li><span class="ck">&#10003;</span>500 siswa aktif</li>
+            <li><span class="ck">&#10003;</span>50 sekolah mitra</li>
+            <li><span class="ck">&#10003;</span>5 CRO seat</li>
+            <li><span class="ck">&#10003;</span>Live Chat + Shared Inbox</li>
+            <li><span class="ck">&#10003;</span>Auto Nurturing + Snooze</li>
+            <li><span class="ck">&#10003;</span>Broadcast + Template</li>
+            <li><span class="ck">&#10003;</span>BYOW (WA sendiri)</li>
+            <li><span class="ck">&#10003;</span>Smart WA Routing</li>
+          </ul><a href="#" class="btn bp">Mulai Pro &rarr;</a>
+        </div>
+        <div class="prc fu" style="transition-delay:.2s">
+          <div class="pt">Business</div>
+          <div class="pv">Rp 1.499.000<span>/bulan</span></div>
+          <div class="pd">Untuk institusi besar dengan banyak CRO.</div>
+          <ul class="pf">
+            <li><span class="ck">&#10003;</span>2.000 siswa aktif</li>
+            <li><span class="ck">&#10003;</span>200 sekolah mitra</li>
+            <li><span class="ck">&#10003;</span>20 CRO seat</li>
+            <li><span class="ck">&#10003;</span>Semua fitur Pro</li>
+            <li><span class="ck">&#10003;</span>Manajemen Multi-Periode</li>
+            <li><span class="ck">&#10003;</span>Form Intake Audience</li>
+            <li><span class="ck">&#10003;</span>Priority Support</li>
+            <li><span class="cx">&mdash;</span>Custom Integrations</li>
+          </ul><a href="#" class="btn bg">Pilih Business</a>
+        </div>
+        <div class="prc fu" style="transition-delay:.3s">
+          <div class="pt">Enterprise</div>
+          <div class="pv" style="font-size:22px;padding-top:4px">Custom</div>
+          <div class="pd">Unlimited segalanya. Diskusi langsung dengan tim Nexa.</div>
+          <ul class="pf">
+            <li><span class="ck">&#10003;</span>Unlimited siswa</li>
+            <li><span class="ck">&#10003;</span>Unlimited sekolah</li>
+            <li><span class="ck">&#10003;</span>Unlimited CRO seat</li>
+            <li><span class="ck">&#10003;</span>Semua fitur Business</li>
+            <li><span class="ck">&#10003;</span>Custom Integrations</li>
+            <li><span class="ck">&#10003;</span>Dedicated DB Cluster</li>
+            <li><span class="ck">&#10003;</span>SLA Guarantee</li>
+            <li><span class="ck">&#10003;</span>Onboarding Assisted</li>
+          </ul><a href="https://wa.me/6285816270070" target="_blank" class="btn bg">Hubungi Kami</a>
+        </div>
+      </div>
     </div>
-    <div class="fbot"><span>&copy; 2026 Nexa OS. All rights reserved.</span><span>Made with &#10084;&#65039; for LPK Indonesia</span></div>
+  </section>
+  <section id="proof">
+    <div class="w">
+      <div class="sh">
+        <div class="sl3">Hasil Nyata</div>
+        <h2 class="st fu">Bukan Klaim &mdash; Ini Bukti dari Lapangan</h2>
+        <p class="ss fu" style="transition-delay:.1s">Derma Indonesia adalah pilot tenant pertama yang memvalidasi semua
+          15 modul dalam operasional harian.</p>
+      </div>
+      <div class="prfg">
+        <div class="pcard fu">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="pq">Sebelumnya kami pakai 3 grup WA dan 2 file Excel untuk 500+ prospek. Sekarang semua ter-handle
+            dari satu dashboard &mdash; CRO kami tidak ada lagi yang lupa follow-up.</p>
+          <div class="paut">
+            <div class="av" style="background:linear-gradient(135deg,var(--gr),var(--bl))">D</div>
+            <div>
+              <div class="pn">Tim Derma Indonesia</div>
+              <div class="pr">LPK Program Kerja Jepang &middot; Sukabumi</div>
+            </div>
+          </div>
+        </div>
+        <div class="pcard fu" style="transition-delay:.1s">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="pq">Smart WA Routing-nya luar biasa. Tagihan Meta API turun drastis karena pesan yang seharusnya
+            kena biaya template, otomatis diubah jadi pesan biasa saat SW sudah terbuka.</p>
+          <div class="paut">
+            <div class="av" style="background:linear-gradient(135deg,var(--pu),var(--bl))">S</div>
+            <div>
+              <div class="pn">Sarah K.</div>
+              <div class="pr">Chief CRO &middot; Derma Indonesia</div>
+            </div>
+          </div>
+        </div>
+        <div class="pcard fu" style="transition-delay:.2s">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="pq">Pipeline berbasis buktinya mengubah cara kami berpikir. CRO tidak bisa lagi pindah status
+            asal-asalan &mdash; setiap langkah harus ada bukti. Laporan konversi kami sekarang 100% bisa dipercaya.</p>
+          <div class="paut">
+            <div class="av" style="background:linear-gradient(135deg,var(--am),#f87171)">M</div>
+            <div>
+              <div class="pn">Manager Derma</div>
+              <div class="pr">Operations &middot; Derma Indonesia</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sr" style="margin-top:52px">
+        <div class="sc fu">
+          <div class="sn">~40%</div>
+          <div class="sl2">Penurunan missed follow-up</div>
+        </div>
+        <div class="sc fu" style="transition-delay:.1s">
+          <div class="sn">15</div>
+          <div class="sl2">Modul live &amp; tervalidasi</div>
+        </div>
+        <div class="sc fu" style="transition-delay:.2s">
+          <div class="sn">1</div>
+          <div class="sl2">Pilot tenant aktif (Sept 2026)</div>
+        </div>
+        <div class="sc fu" style="transition-delay:.3s">
+          <div class="sn">&lt;30m</div>
+          <div class="sl2">Target onboarding time</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="cta">
+    <div class="w">
+      <div class="cbox fu">
+        <div style="display:table;margin:0 auto 22px"><span class="tag">&#128640; Mulai Sekarang &middot; Gratis</span>
+        </div>
+        <h2 class="ct">Siap Stop Kelola Prospek<br>Pakai Excel?</h2>
+        <p class="cs">Bergabunglah dengan lembaga pendidikan yang sudah membuktikan Nexa OS di lapangan. Setup selesai
+          dalam 30 menit.</p>
+        <div class="cb">
+          <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bp"
+            style="padding:15px 34px;font-size:15px">&#127919; Coba Demo Sekarang</a>
+          <a href="https://wa.me/6285816270070" target="_blank" class="btn bg"
+            style="padding:15px 34px;font-size:15px">&#128172; Tanya via WhatsApp</a>
+        </div>
+        <p class="cn">Tidak perlu kartu kredit &middot; Demo: user <strong>admin</strong> / pass
+          <strong>admin123</strong></p>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="w">
+      <div class="fgrid">
+        <div class="fbr"><a href="#" class="logo">
+            <div class="lm">N</div><span class="lt" style="margin-left:10px">Nexa<span>OS</span></span>
+          </a>
+          <p>Platform CRM berbasis Event-Sourcing yang dirancang khusus untuk LPK, Bimbel, dan Sekolah Vokasi Indonesia.
+            Setiap status pipeline harus punya buktinya.</p>
+        </div>
+        <div class="fcol">
+          <h5>Produk</h5>
+          <ul>
+            <li><a href="#features">Fitur</a></li>
+            <li><a href="#pricing">Harga</a></li>
+            <li><a href="#how">Cara Kerja</a></li>
+            <li><a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank">Demo Live</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <h5>Perusahaan</h5>
+          <ul>
+            <li><a href="#">Tentang Nexa</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Karir</a></li>
+            <li><a href="https://wa.me/6285816270070" target="_blank">Kontak</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat &amp; Ketentuan</a></li>
+            <li><a href="#">Keamanan Data</a></li>
+            <li><a href="#">Status</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="fbot"><span>&copy; 2026 Nexa OS. All rights reserved.</span><span>Made with &#10084;&#65039; for LPK
+          Indonesia</span></div>
+    </div>
+  </footer>
+  <div class="dbar" id="dbar">
+    <div class="pdot"></div>
+    <span class="dtx"><strong>Demo Live:</strong> admin / admin123</span>
+    <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bp bsm">Buka Demo &#8599;</a>
+    <div class="dcl" id="dcl">&#10005;</div>
   </div>
-</footer>
-<div class="dbar" id="dbar">
-  <div class="pdot"></div>
-  <span class="dtx"><strong>Demo Live:</strong> admin / admin123</span>
-  <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bp bsm">Buka Demo &#8599;</a>
-  <div class="dcl" id="dcl">&#10005;</div>
-</div>
-<script>
-  document.getElementById('hb').addEventListener('click',()=>document.getElementById('mm').classList.toggle('open'));
-  function cm(){document.getElementById('mm').classList.remove('open')}
-  document.getElementById('dcl').addEventListener('click',()=>document.getElementById('dbar').style.display='none');
-  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:0.1});
-  document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
-  window.addEventListener('scroll',()=>{document.getElementById('nav').style.background=window.scrollY>60?'rgba(4,8,15,.95)':'rgba(4,8,15,.75)'});
-  document.addEventListener('mousemove',e=>{
-    const x=(e.clientX/window.innerWidth-.5)*18,y=(e.clientY/window.innerHeight-.5)*18;
-    document.getElementById('bx1').style.transform='translate('+x+'px,'+y+'px)';
-    document.getElementById('bx2').style.transform='translate('+(-x)+'px,'+(-y)+'px)';
-  });
-</script>
+  <script>
+    document.getElementById('hb').addEventListener('click', () => document.getElementById('mm').classList.toggle('open'));
+    function cm() { document.getElementById('mm').classList.remove('open') }
+    document.getElementById('dcl').addEventListener('click', () => document.getElementById('dbar').style.display = 'none');
+    const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis') }), { threshold: 0.1 });
+    document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+    window.addEventListener('scroll', () => { document.getElementById('nav').style.background = window.scrollY > 60 ? 'rgba(4,8,15,.95)' : 'rgba(4,8,15,.75)' });
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth - .5) * 18, y = (e.clientY / window.innerHeight - .5) * 18;
+      document.getElementById('bx1').style.transform = 'translate(' + x + 'px,' + y + 'px)';
+      document.getElementById('bx2').style.transform = 'translate(' + (-x) + 'px,' + (-y) + 'px)';
+    });
+  </script>
 </body>
+
 </html>
