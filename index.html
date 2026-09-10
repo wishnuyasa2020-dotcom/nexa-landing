@@ -273,13 +273,29 @@
       display: flex
     }
 
-    .mm a {
+    .mm a:not(.btn):not(.logo) {
       color: var(--tx);
       text-decoration: none;
       font-size: 18px;
       font-weight: 600;
       padding: 14px 0;
-      border-bottom: 1px solid var(--bd)
+      border-bottom: 1px solid var(--bd);
+      transition: color .2s;
+    }
+
+    .mm a:not(.btn):not(.logo):hover {
+      color: var(--gr);
+    }
+
+    .mm .btn {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      padding: 13px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 10px;
+      box-sizing: border-box;
     }
 
     #hero {
@@ -1880,9 +1896,18 @@
     </div>
   </nav>
   <div class="mm" id="mm">
-    <a href="#features" onclick="cm()">Fitur</a><a href="#how" onclick="cm()">Cara Kerja</a><a href="#pricing"
-      onclick="cm()">Harga</a><a href="#proof" onclick="cm()">Testimoni</a>
-    <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+      <a href="#" class="logo" onclick="cm()">
+        <div class="lm">N</div><span class="lt">Nexa<span>OS</span></span>
+      </a>
+      <button type="button" onclick="cm()" aria-label="Tutup Menu"
+        style="background:none;border:1px solid var(--bdh);color:var(--tx2);font-size:18px;border-radius:8px;padding:6px 12px;cursor:pointer">&#10005;</button>
+    </div>
+    <a href="#features" onclick="cm()">Fitur</a>
+    <a href="#how" onclick="cm()">Cara Kerja</a>
+    <a href="#pricing" onclick="cm()">Harga</a>
+    <a href="#proof" onclick="cm()">Testimoni</a>
+    <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px">
       <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bg">Demo Live &#8599;</a>
       <button type="button" class="btn bp" onclick="cm(); openSignupModal()">Mulai Gratis</button>
     </div>
