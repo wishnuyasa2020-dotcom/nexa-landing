@@ -941,7 +941,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
-      align-items: start
+      align-items: stretch;
     }
 
     .prc {
@@ -949,23 +949,28 @@
       border: 1px solid var(--bd);
       border-radius: 18px;
       padding: 28px 22px;
-      transition: transform .3s, box-shadow .3s;
-      position: relative
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .prc:hover {
       transform: translateY(-5px);
-      box-shadow: 0 28px 70px rgba(0, 0, 0, .4)
+      box-shadow: 0 28px 70px rgba(0, 0, 0, .4);
     }
 
     .prc.feat {
       background: linear-gradient(135deg, rgba(0, 214, 143, .07), rgba(77, 159, 255, .07));
       border-color: rgba(0, 214, 143, .35);
-      transform: scale(1.02)
+      box-shadow: 0 0 35px rgba(0, 214, 143, .12);
+      transform: none;
     }
 
     .prc.feat:hover {
-      transform: scale(1.02) translateY(-5px)
+      transform: translateY(-5px);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, .4), 0 0 40px rgba(0, 214, 143, .2);
     }
 
     .pop {
@@ -979,7 +984,7 @@
       font-weight: 800;
       padding: 4px 14px;
       border-radius: 99px;
-      white-space: nowrap
+      white-space: nowrap;
     }
 
     .pt {
@@ -988,20 +993,24 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--tx3);
-      margin-bottom: 7px
+      margin-bottom: 7px;
     }
 
     .pv {
       font-size: 30px;
       font-weight: 900;
-      line-height: 1;
-      margin: 10px 0 3px
+      line-height: 1.1;
+      margin: 10px 0 3px;
+      min-height: 42px;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
     }
 
     .pv span {
       font-size: 13px;
       font-weight: 400;
-      color: var(--tx2)
+      color: var(--tx2);
     }
 
     .pd {
@@ -1009,7 +1018,11 @@
       color: var(--tx2);
       margin-bottom: 20px;
       padding-bottom: 20px;
-      border-bottom: 1px solid var(--bd)
+      border-bottom: 1px solid var(--bd);
+      min-height: 52px;
+      display: flex;
+      align-items: flex-start;
+      line-height: 1.5;
     }
 
     .pf {
@@ -1017,7 +1030,8 @@
       display: flex;
       flex-direction: column;
       gap: 9px;
-      margin-bottom: 24px
+      margin-bottom: 24px;
+      flex-grow: 1;
     }
 
     .pf li {
@@ -1025,22 +1039,26 @@
       gap: 8px;
       align-items: flex-start;
       font-size: 12px;
-      color: var(--tx2)
+      color: var(--tx2);
+      line-height: 1.4;
     }
 
     .ck {
       color: var(--gr);
-      flex-shrink: 0
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
     .cx {
       color: var(--tx3);
-      flex-shrink: 0
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
     .prc .btn {
       width: 100%;
-      justify-content: center
+      justify-content: center;
+      margin-top: auto;
     }
 
     #proof {
@@ -2058,7 +2076,7 @@
         </div>
         <div class="prc fu" style="transition-delay:.3s">
           <div class="pt">Enterprise</div>
-          <div class="pv" style="font-size:22px;padding-top:4px">Custom</div>
+          <div class="pv" style="font-size:26px">Custom</div>
           <div class="pd">Unlimited segalanya. Diskusi langsung dengan tim Nexa.</div>
           <ul class="pf">
             <li><span class="ck">&#10003;</span>Unlimited siswa</li>
