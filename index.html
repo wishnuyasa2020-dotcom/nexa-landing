@@ -2257,47 +2257,43 @@
         </div>
       </div>
 
-      <!-- SUCCESS VIEW -->
+      <!-- SUCCESS / EMAIL CONFIRMATION VIEW (Sesuai submodul-email-service.md) -->
       <div id="modalSuccessView" style="display:none;text-align:center">
-        <div style="font-size:44px;margin-bottom:12px;line-height:1">&#127881;</div>
-        <span class="m-badge" style="background:rgba(0,214,143,0.15);border-color:rgba(0,214,143,0.4)">Setup Selesai 100%</span>
-        <h3 class="m-title" style="margin-top:6px">Database CRM Anda Siap!</h3>
-        <p class="m-desc">Akun Super Admin untuk lembaga Anda telah berhasil dibuat di kluster database Nexa OS.</p>
+        <div style="width:68px;height:68px;margin:0 auto 16px;background:rgba(0,214,143,0.12);border:1px solid rgba(0,214,143,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 0 30px rgba(0,214,143,0.2)">
+          &#128236;
+        </div>
+        <span class="m-badge" style="background:rgba(0,214,143,0.15);border-color:rgba(0,214,143,0.4)">Pendaftaran Berhasil</span>
+        <h3 class="m-title" style="margin-top:6px">Periksa Email Konfirmasi Anda</h3>
+        <p class="m-desc" style="margin-bottom:14px">
+          Kredensial login Super Admin &amp; akses CRM untuk lembaga <strong id="resBrandName" style="color:var(--tx)">-</strong> telah kami kirimkan ke:
+        </p>
 
-        <div class="m-cred-box">
-          <div class="m-cred-row">
-            <span class="m-cred-label">Lembaga</span>
-            <span class="m-cred-val" id="resBrandName">-</span>
-          </div>
-          <div class="m-cred-row">
-            <span class="m-cred-label">Tenant ID</span>
-            <span class="m-cred-val" id="resTenantId">-</span>
-          </div>
-          <div class="m-cred-row">
-            <span class="m-cred-label">Username Admin</span>
-            <span class="m-cred-val" id="resAdminUsername">-</span>
-          </div>
-          <div class="m-cred-row">
-            <span class="m-cred-label">Email</span>
-            <span class="m-cred-val" id="resAdminEmail">-</span>
-          </div>
-          <div class="m-cred-row">
-            <span class="m-cred-label">Paket</span>
-            <span class="m-cred-val" style="color:var(--gr)">Free Tier (Active)</span>
-          </div>
+        <!-- Registered Email Highlight -->
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(0,214,143,0.35);border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:10px">
+          <span style="font-size:18px">&#9993;&#65039;</span>
+          <span id="resAdminEmail" style="font-size:14.5px;font-weight:700;color:var(--gr);word-break:break-all">-</span>
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
-          <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bp" style="width:100%;justify-content:center;padding:14px">
-            Buka Dashboard CRM Saya &#8599;
-          </a>
-          <button type="button" class="btn bg" onclick="copySignupCredentials()" id="btnCopyCreds" style="width:100%;justify-content:center">
-            &#128203; Salin Kredensial Akun
+        <!-- Callout Panduan Spam/Junk (Sesuai submodul-email-service.md) -->
+        <div style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.25);border-radius:12px;padding:13px 16px;text-align:left;margin-bottom:20px;font-size:12px;color:var(--tx2);line-height:1.55">
+          <div style="display:flex;align-items:center;gap:6px;font-weight:700;color:var(--am);margin-bottom:4px">
+            <span>&#9888;&#65039;</span> Cek Folder Spam atau Promosi
+          </div>
+          Jika email konfirmasi belum muncul di Inbox dalam 1-2 menit, mohon periksa folder <strong>Spam / Junk</strong> atau tab <strong>Promosi</strong>. Jangan lupa klik <em>"Bukan Spam" (Report not spam)</em> agar notifikasi operasional selanjutnya selalu mendarat di Kotak Masuk utama Anda.
+        </div>
+
+        <!-- Action CTA Buttons -->
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <button type="button" class="btn bp" onclick="openRegisteredWebmail()" id="btnOpenWebmail" style="width:100%;justify-content:center;padding:13px">
+            &#128236; Buka Kotak Masuk Email
           </button>
+          <a href="https://nexa-crm-web-xi.vercel.app/login" target="_blank" class="btn bg" style="width:100%;justify-content:center;padding:12px;font-size:13.5px">
+            Menuju Halaman Login CRM &#8599;
+          </a>
         </div>
 
-        <p style="font-size:11.5px;color:var(--tx3);margin-top:14px;line-height:1.4">
-          Detail kredensial di atas juga telah kami kirimkan ke email Anda. Simpan username dan password Anda baik-baik.
+        <p style="font-size:11.5px;color:var(--tx3);margin-top:16px;line-height:1.4">
+          Tenant ID dan akun Super Admin Anda telah tersimpan aktif di kluster database Nexa OS.
         </p>
       </div>
     </div>
@@ -2318,7 +2314,7 @@
 
     // ── Quick Sign-Up Modal Logic ──
     const signupModal = document.getElementById('signupModal');
-    let lastCreatedCreds = null;
+    let lastRegisteredEmail = '';
 
     function openSignupModal() {
       if (!signupModal) return;
@@ -2416,17 +2412,10 @@
 
         if (res.ok && data.status === 'ok') {
           const tenant = data.data;
-          lastCreatedCreds = {
-            brand: tenant.brandName || brand_name,
-            tenantId: tenant.tenantId,
-            username: tenant.user ? tenant.user.username : '-',
-            email: admin_email,
-          };
+          lastRegisteredEmail = admin_email;
 
-          document.getElementById('resBrandName').textContent = lastCreatedCreds.brand;
-          document.getElementById('resTenantId').textContent = lastCreatedCreds.tenantId;
-          document.getElementById('resAdminUsername').textContent = lastCreatedCreds.username;
-          document.getElementById('resAdminEmail').textContent = lastCreatedCreds.email;
+          document.getElementById('resBrandName').textContent = tenant.brandName || brand_name;
+          document.getElementById('resAdminEmail').textContent = admin_email;
 
           document.getElementById('modalFormView').style.display = 'none';
           document.getElementById('modalSuccessView').style.display = 'block';
@@ -2444,22 +2433,19 @@
       }
     }
 
-    function copySignupCredentials() {
-      if (!lastCreatedCreds) return;
-      const text = `Kredensial Nexa CRM:\nLembaga: ${lastCreatedCreds.brand}\nTenant ID: ${lastCreatedCreds.tenantId}\nUsername: ${lastCreatedCreds.username}\nEmail: ${lastCreatedCreds.email}\nLogin: https://nexa-crm-web-xi.vercel.app/login`;
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.getElementById('btnCopyCreds');
-        if (!btn) return;
-        const oldText = btn.innerHTML;
-        btn.innerHTML = '&#10003; Kredensial Berhasil Disalin!';
-        btn.style.borderColor = 'var(--gr)';
-        btn.style.color = 'var(--gr)';
-        setTimeout(() => {
-          btn.innerHTML = oldText;
-          btn.style.borderColor = '';
-          btn.style.color = '';
-        }, 2500);
-      });
+    function openRegisteredWebmail() {
+      const email = (lastRegisteredEmail || '').toLowerCase();
+      let targetUrl = 'https://mail.google.com';
+      if (email.includes('@yahoo.')) {
+        targetUrl = 'https://mail.yahoo.com';
+      } else if (email.includes('@outlook.') || email.includes('@hotmail.') || email.includes('@live.')) {
+        targetUrl = 'https://outlook.live.com';
+      } else if (email.includes('@icloud.')) {
+        targetUrl = 'https://www.icloud.com/mail';
+      } else if (!email.includes('@gmail.')) {
+        targetUrl = 'mailto:' + email;
+      }
+      window.open(targetUrl, '_blank');
     }
   </script>
 </body>
