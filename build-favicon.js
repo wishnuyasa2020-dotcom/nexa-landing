@@ -2,20 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('c:/Users/wishn/Documents/Codex/nexa-crm-web/node_modules/sharp');
 
-const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <defs>
-    <linearGradient id="nexaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00D68F"/>
-      <stop offset="100%" stop-color="#4D9FFF"/>
-    </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.45"/>
-    </filter>
-  </defs>
-  <rect x="24" y="24" width="464" height="464" rx="112" ry="112" fill="url(#nexaGrad)"/>
-  <path d="M 144 124 L 214 124 L 314 286 L 314 124 L 374 124 L 374 388 L 304 388 L 204 226 L 204 388 L 144 388 Z" fill="#04080F" filter="url(#glow)"/>
-</svg>`;
-
 function createIco(pngBuffers) {
   // pngBuffers: array of { width, height, buffer }
   const count = pngBuffers.length;
@@ -54,20 +40,24 @@ function createIco(pngBuffers) {
 
 async function run() {
   const outDir = __dirname;
+  const logoPath = path.join(outDir, 'logo.png');
+  const logoBuf = fs.readFileSync(logoPath);
+  const logoBase64 = logoBuf.toString('base64');
 
-  // 1. Write SVG
+  // 1. Write SVG embedding the official logo
+  const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <image href="data:image/png;base64,${logoBase64}" width="512" height="512"/>
+</svg>`;
   fs.writeFileSync(path.join(outDir, 'favicon.svg'), svgContent, 'utf8');
   console.log('Written favicon.svg');
 
-  // 2. Generate PNGs
-  const svgBuf = Buffer.from(svgContent);
-
-  const png16 = await sharp(svgBuf).resize(16, 16).png().toBuffer();
-  const png32 = await sharp(svgBuf).resize(32, 32).png().toBuffer();
-  const png48 = await sharp(svgBuf).resize(48, 48).png().toBuffer();
-  const png180 = await sharp(svgBuf).resize(180, 180).png().toBuffer();
-  const png192 = await sharp(svgBuf).resize(192, 192).png().toBuffer();
-  const png512 = await sharp(svgBuf).resize(512, 512).png().toBuffer();
+  // 2. Generate PNGs using sharp
+  const png16 = await sharp(logoBuf).resize(16, 16).png().toBuffer();
+  const png32 = await sharp(logoBuf).resize(32, 32).png().toBuffer();
+  const png48 = await sharp(logoBuf).resize(48, 48).png().toBuffer();
+  const png180 = await sharp(logoBuf).resize(180, 180).png().toBuffer();
+  const png192 = await sharp(logoBuf).resize(192, 192).png().toBuffer();
+  const png512 = await sharp(logoBuf).resize(512, 512).png().toBuffer();
 
   fs.writeFileSync(path.join(outDir, 'favicon-16x16.png'), png16);
   fs.writeFileSync(path.join(outDir, 'favicon-32x32.png'), png32);
@@ -76,7 +66,7 @@ async function run() {
   fs.writeFileSync(path.join(outDir, 'icon-512.png'), png512);
   console.log('Written PNG variants');
 
-  // 3. Generate multi-resolution ICO
+  // 3. Generate multi-resolution ICO (16, 32, 48)
   const icoBuf = createIco([
     { width: 16, height: 16, buffer: png16 },
     { width: 32, height: 32, buffer: png32 },
