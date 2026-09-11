@@ -1679,14 +1679,163 @@
       }
     }
 
+    /* ── Beta Announcement Section Styles ── */
+    .beta-banner-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(13, 24, 43, 0.88) 0%, rgba(8, 15, 28, 0.98) 100%);
+      border: 1px solid rgba(0, 214, 143, 0.35);
+      border-radius: 24px;
+      padding: 44px 36px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55), 0 0 50px rgba(0, 214, 143, 0.12);
+      overflow: hidden;
+    }
+
+    .beta-banner-glow {
+      position: absolute;
+      top: -120px;
+      right: -100px;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 214, 143, 0.22) 0%, rgba(77, 159, 255, 0.1) 60%, transparent 80%);
+      pointer-events: none;
+      filter: blur(50px);
+    }
+
+    .beta-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 214, 143, 0.12);
+      border: 1px solid rgba(0, 214, 143, 0.4);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--gr);
+      letter-spacing: .06em;
+      margin-bottom: 16px;
+    }
+
+    .beta-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gr);
+      box-shadow: 0 0 10px var(--gr);
+      animation: betaPulse 1.8s infinite;
+    }
+
+    @keyframes betaPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(1.35); }
+    }
+
+    .beta-banner-title {
+      font-size: clamp(23px, 3.2vw, 36px);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.8px;
+      color: var(--tx);
+      margin-bottom: 12px;
+      max-width: 840px;
+    }
+
+    .beta-banner-desc {
+      font-size: clamp(14px, 1.4vw, 16px);
+      color: var(--tx2);
+      line-height: 1.6;
+      max-width: 800px;
+      margin-bottom: 30px;
+    }
+
+    .beta-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 860px) {
+      .beta-grid-3 { grid-template-columns: 1fr; }
+      .beta-banner-card { padding: 28px 18px; }
+    }
+
+    .beta-feat-col {
+      background: rgba(17, 30, 51, 0.65);
+      border: 1px solid var(--bd);
+      border-radius: 14px;
+      padding: 22px 20px;
+      transition: all .25s;
+    }
+
+    .beta-feat-col:hover {
+      border-color: rgba(0, 214, 143, 0.35);
+      background: rgba(17, 30, 51, 0.9);
+      transform: translateY(-3px);
+    }
+
+    .beta-feat-icon {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .beta-feat-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--tx);
+      margin-bottom: 6px;
+    }
+
+    .beta-feat-desc {
+      font-size: 12.5px;
+      color: var(--tx2);
+      line-height: 1.55;
+    }
+
+    .beta-banner-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 22px;
+      border-top: 1px solid var(--bd);
+    }
+
+    .beta-status-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--tx2);
+    }
+
+    /* ── Step Wizard Indicator ── */
+    .m-step-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .m-step-pill {
+      flex: 1;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, .1);
+      transition: all .3s ease;
+    }
+
+    .m-step-pill.active {
+      background: var(--gr);
+      box-shadow: 0 0 10px rgba(0, 214, 143, .45);
+    }
+
     /* ── Quick Sign-Up Modal ───────────────────────────────────── */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(4, 8, 15, .86);
+      inset: 0;
+      background: rgba(4, 8, 15, .82);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       z-index: 99999;
@@ -2089,6 +2238,57 @@
       </div>
     </div>
   </section>
+
+  <!-- 🚀 CLOSED BETA ANNOUNCEMENT SECTION (BATCH 1) 🚀 -->
+  <section id="beta-announcement" style="padding: 30px 0 70px; position: relative; z-index: 2;">
+    <div class="w">
+      <div class="beta-banner-card fu">
+        <div class="beta-banner-glow"></div>
+        
+        <div class="beta-banner-header">
+          <div class="beta-badge-pill" id="betaAnnouncementBadge">
+            <span class="beta-pulse-dot"></span>
+            <span>PROGRAM CLOSED BETA &middot; BATCH 1 DIBUKA (KUOTA TERBATAS)</span>
+          </div>
+          <h2 class="beta-banner-title">
+            Akses Terkurasi Versi Beta: Ruang Kerja CRM Privat Khusus Lembaga Pendidikan
+          </h2>
+          <p class="beta-banner-desc">
+            Untuk memastikan performa database mandiri dan pendampingan implementasi intensif, akses pendaftaran Free Tier saat ini dibatasi secara bertahap melalui proses seleksi &amp; kurasi teknis.
+          </p>
+        </div>
+
+        <div class="beta-grid-3">
+          <div class="beta-feat-col">
+            <div class="beta-feat-icon">&#128451;&#65039;</div>
+            <div class="beta-feat-title">Database Privat Terisolasi</div>
+            <div class="beta-feat-desc">Bukan database sharing. Setiap lembaga terpilih mendapatkan database mandiri privat berkecepatan tinggi tanpa bercampur dengan tenant lain.</div>
+          </div>
+          <div class="beta-feat-col">
+            <div class="beta-feat-icon">&#128736;&#65039;</div>
+            <div class="beta-feat-title">Kurasi &amp; Setup 1x24 Jam</div>
+            <div class="beta-feat-desc">Ruang kerja CRM disiapkan dan divalidasi langsung oleh tim teknis kami sebelum akun diserahkan, menjamin kesiapan pipeline sejak hari pertama.</div>
+          </div>
+          <div class="beta-feat-col">
+            <div class="beta-feat-icon">&#127919;</div>
+            <div class="beta-feat-title">Kapasitas Dibatasi</div>
+            <div class="beta-feat-desc">Kuota pendaftaran tahap pertama dibatasi ketat demi menjaga reliabilitas server dan kualitas pendampingan operasional tim kami.</div>
+          </div>
+        </div>
+
+        <div class="beta-banner-footer">
+          <div class="beta-status-note">
+            <span style="color:var(--gr)">&#9889;</span>
+            <span id="betaStatusNotice"><strong>Status:</strong> Kuota Batch 1 Sangat Terbatas &middot; Persiapan Akun Maks 1x24 Jam</span>
+          </div>
+          <button type="button" onclick="openSignupModal()" class="btn bp" id="btnBetaApplyCta" style="padding:14px 28px;font-size:15px;box-shadow:0 0 35px rgba(0,214,143,0.35)">
+            &#128640; Ajukan Akses Beta Sekarang
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="problem">
     <div class="w">
       <div class="sh">
@@ -2523,90 +2723,139 @@
     <div class="dbar-actions">
       <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp bsm">Buka Demo &#8599;</a>
       <button type="button" onclick="openSignupModal()" class="btn bg bsm"
-        style="border-color:rgba(0,214,143,0.35);color:var(--gr);background:rgba(0,214,143,0.08);cursor:pointer">Mulai
-        Gratis</button>
+        style="border-color:rgba(0,214,143,0.35);color:var(--gr);background:rgba(0,214,143,0.08);cursor:pointer">Mulai Gratis &rarr;</button>
+      <button class="dbar-close" id="dcl">&times;</button>
     </div>
-    <div class="dcl" id="dcl">&#10005;</div>
   </div>
 
-  <!-- Quick Sign-Up Modal -->
+  <!-- Quick Sign-Up Modal (Curated 2-Step Onboarding) -->
   <div class="modal-overlay" id="signupModal" onclick="handleModalBackdropClick(event)">
     <div class="modal-card" id="modalCard">
       <button type="button" class="m-close" onclick="closeSignupModal()" aria-label="Tutup">&times;</button>
 
       <!-- FORM VIEW -->
       <div id="modalFormView">
-        <span class="m-badge">&#9889; Free Tier SaaS &middot; Siap Pakai</span>
-        <h3 class="m-title">Daftarkan Lembaga Anda</h3>
-        <p class="m-desc">Dapatkan database mandiri dan akses dashboard Nexa CRM langsung aktif tanpa kartu kredit.</p>
+        <span class="m-badge" id="modalBadgeStatus">&#9889; Closed Beta &middot; Kuota Terbatas</span>
+        <h3 class="m-title" id="modalTitleText">Ajukan Akses Closed Beta</h3>
+        <p class="m-desc" id="modalDescText">Dapatkan database mandiri privat dan pendampingan implementasi CRM tanpa biaya langganan.</p>
 
-        <div class="m-benefits" style="margin-bottom:16px">
-          <div>&#10003; <strong>300 Siswa Aktif</strong> &middot; &#10003; <strong>5 Sekolah Mitra</strong> &middot;
-            &#10003; <strong>Live Chat WA</strong></div>
-          <div style="font-size:11px;color:var(--tx3);margin-top:3px">Database terisolasi &middot; Keamanan terjamin
-            &middot; Upgrade kapan saja</div>
+        <!-- Step Wizard Bar -->
+        <div class="m-step-bar">
+          <div class="m-step-pill active" id="stepPill1" title="Langkah 1: Profil Lembaga"></div>
+          <div class="m-step-pill" id="stepPill2" title="Langkah 2: Data Akun &amp; Kredensial"></div>
         </div>
 
         <div class="m-alert" id="signupAlert"></div>
 
         <form class="m-form" id="signupForm" onsubmit="handleSignupSubmit(event)">
-          <div class="m-field">
-            <label for="brand_name">Nama Lembaga / LPK / Bimbel <span style="color:var(--gr)">*</span></label>
-            <input type="text" id="brand_name" name="brand_name" class="m-input"
-              placeholder="Contoh: LPK Cahaya Harapan" required autocomplete="organization">
+          <!-- STEP 1: PROFIL LEMBAGA (KUESIONER SQL B2B) -->
+          <div id="step1Profil">
+            <div style="font-size:12.5px;font-weight:700;color:var(--gr);margin-bottom:12px;display:flex;align-items:center;gap:6px;">
+              <span>&#128203;</span> Langkah 1 dari 2: Profil &amp; Kualifikasi Lembaga
+            </div>
+
+            <div class="m-field">
+              <label for="institution_type">Jenis / Kategori Lembaga <span style="color:var(--gr)">*</span></label>
+              <select id="institution_type" name="institution_type" class="m-input" style="background:var(--bg3);color:var(--tx);cursor:pointer;" required>
+                <option value="" disabled selected>-- Pilih Kategori Lembaga --</option>
+                <option value="LPK Program Jepang (SSW / Magang)">LPK Program Magang &amp; Kerja Jepang (SSW/Trainee)</option>
+                <option value="LPK Program Jerman, Korea &amp; Australia">LPK Program Jerman (Ausbildung), Korea, atau Australia</option>
+                <option value="Bimbel Kedinasan / Akpol / CPNS">Bimbel Kedinasan / Akpol / Akmil / CPNS</option>
+                <option value="Bimbel UTBK &amp; Masuk PTN">Bimbel UTBK &amp; Masuk PTN</option>
+                <option value="SMK Swasta / Vokasi">SMK Swasta / Lembaga Pendidikan Vokasi</option>
+                <option value="Kursus Bahasa &amp; Sertifikasi">Kursus Bahasa Asing &amp; Sertifikasi Keahlian</option>
+                <option value="Lainnya">Lainnya / Lembaga Pendidikan Terkait</option>
+              </select>
+            </div>
+
+            <div class="m-field" style="margin-top:12px;">
+              <label for="institution_address">Alamat Lengkap Lembaga (Kota/Kabupaten &amp; Provinsi) <span style="color:var(--gr)">*</span></label>
+              <textarea id="institution_address" name="institution_address" class="m-input" rows="2"
+                placeholder="Contoh: Jl. Ahmad Yani No. 45, Kota Sukabumi, Jawa Barat" required style="resize:vertical;font-family:inherit;line-height:1.4;"></textarea>
+            </div>
+
+            <div class="m-field" style="margin-top:12px;">
+              <label for="team_size">Jumlah Karyawan / Tim Operasional Saat Ini <span style="color:var(--gr)">*</span></label>
+              <select id="team_size" name="team_size" class="m-input" style="background:var(--bg3);color:var(--tx);cursor:pointer;" required>
+                <option value="" disabled selected>-- Pilih Skala Tim --</option>
+                <option value="1 - 5 Orang">1 - 5 Orang (Fase Rintisan)</option>
+                <option value="6 - 15 Orang">6 - 15 Orang (Fase Berkembang)</option>
+                <option value="16 - 50 Orang">16 - 50 Orang (Lembaga Menengah)</option>
+                <option value="Lebih dari 50 Orang">Lebih dari 50 Orang (Lembaga Besar / Multi-Cabang)</option>
+              </select>
+            </div>
+
+            <button type="button" class="btn bp m-btn-submit" onclick="goToStep2()" style="margin-top:16px;">
+              Lanjut ke Data Akun &rarr;
+            </button>
           </div>
 
-          <div class="m-field">
-            <label for="admin_name">Nama Lengkap Penanggung Jawab <span style="color:var(--gr)">*</span></label>
-            <input type="text" id="admin_name" name="admin_name" class="m-input" placeholder="Contoh: Budi Santoso"
-              required autocomplete="name">
-          </div>
+          <!-- STEP 2: DATA PIC & KREDENSIAL AKUN (HIDDEN DEFAULT) -->
+          <div id="step2Akun" style="display:none;">
+            <div style="font-size:12.5px;font-weight:700;color:var(--gr);margin-bottom:12px;display:flex;align-items:center;gap:6px;">
+              <span>&#128271;</span> Langkah 2 dari 2: Kredensial Akun &amp; Kontak PIC
+            </div>
 
-          <div class="m-field">
-            <label for="admin_email">Email Admin / Operasional <span style="color:var(--gr)">*</span></label>
-            <input type="email" id="admin_email" name="admin_email" class="m-input" placeholder="nama@lembaga.com"
-              required autocomplete="email">
-          </div>
+            <div class="m-field">
+              <label for="brand_name">Nama Lembaga / LPK / Bimbel <span style="color:var(--gr)">*</span></label>
+              <input type="text" id="brand_name" name="brand_name" class="m-input"
+                placeholder="Contoh: LPK Cahaya Harapan" required autocomplete="organization">
+            </div>
 
-          <div class="m-field">
-            <label for="admin_password">Password Akun <span style="color:var(--gr)">*</span></label>
-            <div class="m-input-wrap">
-              <input type="password" id="admin_password" name="admin_password" class="m-input"
-                placeholder="Minimal 6 karakter" required minlength="6" autocomplete="new-password">
-              <button type="button" class="m-pw-toggle" onclick="toggleSignupPassword()" id="pwToggleBtn"
-                aria-label="Lihat password">&#128065;</button>
+            <div class="m-field" style="margin-top:12px;">
+              <label for="admin_name">Nama Lengkap Penanggung Jawab / PIC <span style="color:var(--gr)">*</span></label>
+              <input type="text" id="admin_name" name="admin_name" class="m-input" placeholder="Contoh: Budi Santoso"
+                required autocomplete="name">
+            </div>
+
+            <div class="m-field" style="margin-top:12px;">
+              <label for="admin_email">Email Resmi Operasional <span style="color:var(--gr)">*</span></label>
+              <input type="email" id="admin_email" name="admin_email" class="m-input" placeholder="nama@lembaga.com"
+                required autocomplete="email">
+            </div>
+
+            <div class="m-field" style="margin-top:12px;">
+              <label for="admin_password">Password Akun Baru <span style="color:var(--gr)">*</span></label>
+              <div class="m-input-wrap">
+                <input type="password" id="admin_password" name="admin_password" class="m-input"
+                  placeholder="Minimal 6 karakter" required minlength="6" autocomplete="new-password">
+                <button type="button" class="m-pw-toggle" onclick="toggleSignupPassword()" id="pwToggleBtn"
+                  aria-label="Lihat password">&#128065;</button>
+              </div>
+            </div>
+
+            <div class="m-field" style="margin-top:12px;">
+              <label for="whatsapp_number">Nomor WhatsApp Operasional PIC (Opsional)</label>
+              <input type="tel" id="whatsapp_number" name="whatsapp_number" class="m-input" placeholder="08xxxxxxxxxx"
+                autocomplete="tel">
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:16px;">
+              <button type="button" class="btn bg" onclick="goToStep1()" style="flex:1;justify-content:center;padding:12px;font-size:13.5px;">
+                &larr; Kembali
+              </button>
+              <button type="submit" class="btn bp m-btn-submit" id="btnSubmitSignup" style="flex:2;margin-top:0;">
+                <span id="btnSubmitText">&#128640; Ajukan Akses Beta</span>
+              </button>
             </div>
           </div>
-
-          <div class="m-field">
-            <label for="whatsapp_number">Nomor WhatsApp Operasional (Opsional)</label>
-            <input type="tel" id="whatsapp_number" name="whatsapp_number" class="m-input" placeholder="08xxxxxxxxxx"
-              autocomplete="tel">
-          </div>
-
-          <button type="submit" class="btn bp m-btn-submit" id="btnSubmitSignup">
-            <span id="btnSubmitText">&#128640; Buat Akun &amp; Siapkan CRM Saya</span>
-          </button>
         </form>
 
         <div class="m-footer-text">
-          Sudah punya akun? <a href="https://crm.nexamos.cloud/login" target="_blank">Masuk ke Demo / CRM
-            &#8599;</a>
+          Sudah punya akun? <a href="https://crm.nexamos.cloud/login" target="_blank">Masuk ke Demo / CRM &#8599;</a>
         </div>
       </div>
 
-      <!-- SUCCESS / EMAIL CONFIRMATION VIEW (Sesuai submodul-email-service.md) -->
+      <!-- SUCCESS / ONBOARDING QUEUE VIEW -->
       <div id="modalSuccessView" style="display:none;text-align:center">
         <div
           style="width:68px;height:68px;margin:0 auto 16px;background:rgba(0,214,143,0.12);border:1px solid rgba(0,214,143,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 0 30px rgba(0,214,143,0.2)">
-          &#128236;
+          &#9203;
         </div>
-        <span class="m-badge" style="background:rgba(0,214,143,0.15);border-color:rgba(0,214,143,0.4)">Pendaftaran
-          Berhasil</span>
-        <h3 class="m-title" style="margin-top:6px">Periksa Email Konfirmasi Anda</h3>
-        <p class="m-desc" style="margin-bottom:14px">
-          Kredensial login Super Admin &amp; akses CRM untuk lembaga <strong id="resBrandName"
-            style="color:var(--tx)">-</strong> telah kami kirimkan ke:
+        <span class="m-badge" id="resBadgeStatus" style="background:rgba(0,214,143,0.15);border-color:rgba(0,214,143,0.4)">Permohonan Diterima</span>
+        <h3 class="m-title" id="resTitleText" style="margin-top:6px">Ruang Kerja Privat Sedang Disiapkan</h3>
+        <p class="m-desc" id="resDescText" style="margin-bottom:14px">
+          Permohonan Closed Beta untuk lembaga <strong id="resBrandName" style="color:var(--tx)">-</strong> telah kami terima. Untuk memastikan performa database mandiri Anda, tim teknis kami sedang memvalidasi konfigurasi CRM privat Anda (Maksimal 1x24 jam).
         </p>
 
         <!-- Registered Email Highlight -->
@@ -2617,15 +2866,13 @@
             style="font-size:14.5px;font-weight:700;color:var(--gr);word-break:break-all">-</span>
         </div>
 
-        <!-- Callout Panduan Spam/Junk (Sesuai submodul-email-service.md) -->
+        <!-- Callout Panduan Spam/Junk -->
         <div
           style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.25);border-radius:12px;padding:13px 16px;text-align:left;margin-bottom:20px;font-size:12px;color:var(--tx2);line-height:1.55">
           <div style="display:flex;align-items:center;gap:6px;font-weight:700;color:var(--am);margin-bottom:4px">
-            <span>&#9888;&#65039;</span> Cek Folder Spam atau Promosi
+            <span>&#9888;&#65039;</span> Notifikasi &amp; Akses Login
           </div>
-          Jika email konfirmasi belum muncul di Inbox dalam 1-2 menit, mohon periksa folder <strong>Spam / Junk</strong>
-          atau tab <strong>Promosi</strong>. Jangan lupa klik <em>"Bukan Spam" (Report not spam)</em> agar notifikasi
-          operasional selanjutnya selalu mendarat di Kotak Masuk utama Anda.
+          Kredensial login akun Super Admin dan tautan ruang kerja privat akan dikirimkan ke email di atas setelah proses kurasi selesai. Jangan lupa periksa folder <strong>Spam / Junk</strong> atau tab <strong>Promosi</strong>.
         </div>
 
         <!-- Action CTA Buttons -->
@@ -2634,14 +2881,14 @@
             style="width:100%;justify-content:center;padding:13px">
             &#128236; Buka Kotak Masuk Email
           </button>
-          <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg"
+          <button type="button" onclick="closeSignupModal()" class="btn bg"
             style="width:100%;justify-content:center;padding:12px;font-size:13.5px">
-            Menuju Halaman Login CRM &#8599;
-          </a>
+            Tutup &amp; Kembali ke Web
+          </button>
         </div>
 
         <p style="font-size:11.5px;color:var(--tx3);margin-top:16px;line-height:1.4">
-          Tenant ID dan akun Super Admin Anda telah tersimpan aktif di kluster database Nexa MOS.
+          Nexa MOS &middot; Platform CRM Berbasis Bukti untuk LPK &amp; Lembaga Pendidikan.
         </p>
       </div>
     </div>
@@ -2660,9 +2907,65 @@
       document.getElementById('bx2').style.transform = 'translate(' + (-x) + 'px,' + (-y) + 'px)';
     });
 
-    // ── Quick Sign-Up Modal Logic ──
+    // ── Quick Sign-Up Modal Logic (Curated Closed Beta 2-Step) ──
     const signupModal = document.getElementById('signupModal');
     let lastRegisteredEmail = '';
+    let isBetaQuotaFull = false;
+
+    // Check Beta Status from backend
+    async function checkBetaStatus() {
+      try {
+        const res = await fetch('https://nexa-os-pmr8.onrender.com/api/v1/saas/beta-status');
+        const json = await res.json();
+        if (json.status === 'ok' && json.data) {
+          isBetaQuotaFull = json.data.isQuotaFull || false;
+          updateBetaUIState(isBetaQuotaFull);
+        }
+      } catch (e) {
+        // Fallback keep default open
+      }
+    }
+
+    function updateBetaUIState(isFull) {
+      const annBadge = document.getElementById('betaAnnouncementBadge');
+      const annNotice = document.getElementById('betaStatusNotice');
+      const ctaBtn = document.getElementById('btnBetaApplyCta');
+      const modalBadge = document.getElementById('modalBadgeStatus');
+      const modalTitle = document.getElementById('modalTitleText');
+      const modalDesc = document.getElementById('modalDescText');
+      const submitBtnText = document.getElementById('btnSubmitText');
+
+      if (isFull) {
+        if (annBadge) annBadge.innerHTML = '<span class="beta-pulse-dot" style="background:var(--am);box-shadow:0 0 10px var(--am)"></span><span style="color:var(--am)">CLOSED BETA BATCH 1 PENUH &middot; WAITING LIST BATCH 2 DIBUKA</span>';
+        if (annNotice) annNotice.innerHTML = '<strong style="color:var(--am)">Status:</strong> Batch 1 Penuh &middot; Daftarkan Lembaga ke Waiting List Prioritas Batch 2 (1–2 Pekan)';
+        if (ctaBtn) ctaBtn.innerHTML = '&#128203; Masuk Waiting List Batch 2';
+        if (modalBadge) {
+          modalBadge.textContent = '⏳ Batch 1 Penuh · Waiting List Batch 2';
+          modalBadge.style.color = 'var(--am)';
+          modalBadge.style.borderColor = 'rgba(251,191,36,0.4)';
+          modalBadge.style.background = 'rgba(251,191,36,0.12)';
+        }
+        if (modalTitle) modalTitle.textContent = 'Daftar Waiting List Batch 2';
+        if (modalDesc) modalDesc.textContent = 'Kuota batch pertama telah penuh. Masukkan profil lembaga Anda untuk diprioritaskan saat batch kedua dibuka.';
+        if (submitBtnText) submitBtnText.innerHTML = '&#128203; Daftar Waiting List Prioritas';
+      } else {
+        if (annBadge) annBadge.innerHTML = '<span class="beta-pulse-dot"></span><span>PROGRAM CLOSED BETA &middot; BATCH 1 DIBUKA (KUOTA TERBATAS)</span>';
+        if (annNotice) annNotice.innerHTML = '<strong>Status:</strong> Kuota Batch 1 Sangat Terbatas &middot; Persiapan Akun Maks 1x24 Jam';
+        if (ctaBtn) ctaBtn.innerHTML = '&#128640; Ajukan Akses Beta Sekarang';
+        if (modalBadge) {
+          modalBadge.textContent = '⚡ Closed Beta · Kuota Terbatas';
+          modalBadge.style.color = 'var(--gr)';
+          modalBadge.style.borderColor = 'rgba(0,214,143,0.3)';
+          modalBadge.style.background = 'var(--grd)';
+        }
+        if (modalTitle) modalTitle.textContent = 'Ajukan Akses Closed Beta';
+        if (modalDesc) modalDesc.textContent = 'Dapatkan database mandiri privat dan pendampingan implementasi CRM tanpa biaya langganan.';
+        if (submitBtnText) submitBtnText.innerHTML = '&#128640; Ajukan Akses Beta';
+      }
+    }
+
+    // Call on load
+    checkBetaStatus();
 
     function openSignupModal() {
       if (!signupModal) return;
@@ -2670,15 +2973,13 @@
       document.body.style.overflow = 'hidden';
       document.getElementById('modalFormView').style.display = 'block';
       document.getElementById('modalSuccessView').style.display = 'none';
+      goToStep1();
       const alertBox = document.getElementById('signupAlert');
       if (alertBox) {
         alertBox.className = 'm-alert';
         alertBox.textContent = '';
       }
-      setTimeout(() => {
-        const brandInput = document.getElementById('brand_name');
-        if (brandInput) brandInput.focus();
-      }, 150);
+      checkBetaStatus();
     }
 
     function closeSignupModal() {
@@ -2699,6 +3000,52 @@
       }
     });
 
+    function goToStep1() {
+      document.getElementById('step1Profil').style.display = 'block';
+      document.getElementById('step2Akun').style.display = 'none';
+      document.getElementById('stepPill1').classList.add('active');
+      document.getElementById('stepPill2').classList.remove('active');
+      const alertBox = document.getElementById('signupAlert');
+      if (alertBox) { alertBox.className = 'm-alert'; alertBox.textContent = ''; }
+    }
+
+    function goToStep2() {
+      const alertBox = document.getElementById('signupAlert');
+      const instType = document.getElementById('institution_type').value;
+      const instAddr = document.getElementById('institution_address').value.trim();
+      const teamSize = document.getElementById('team_size').value;
+
+      if (!instType) {
+        alertBox.className = 'm-alert error';
+        alertBox.textContent = 'Mohon pilih kategori/bidang lembaga Anda.';
+        document.getElementById('institution_type').focus();
+        return;
+      }
+      if (!instAddr) {
+        alertBox.className = 'm-alert error';
+        alertBox.textContent = 'Mohon isi alamat lengkap lembaga Anda.';
+        document.getElementById('institution_address').focus();
+        return;
+      }
+      if (!teamSize) {
+        alertBox.className = 'm-alert error';
+        alertBox.textContent = 'Mohon pilih skala jumlah karyawan/tim operasional Anda.';
+        document.getElementById('team_size').focus();
+        return;
+      }
+
+      alertBox.className = 'm-alert';
+      alertBox.textContent = '';
+      document.getElementById('step1Profil').style.display = 'none';
+      document.getElementById('step2Akun').style.display = 'block';
+      document.getElementById('stepPill2').classList.add('active');
+
+      setTimeout(() => {
+        const brandInput = document.getElementById('brand_name');
+        if (brandInput) brandInput.focus();
+      }, 100);
+    }
+
     function toggleSignupPassword() {
       const pwInput = document.getElementById('admin_password');
       const toggleBtn = document.getElementById('pwToggleBtn');
@@ -2717,6 +3064,10 @@
       const alertBox = document.getElementById('signupAlert');
       const submitBtn = document.getElementById('btnSubmitSignup');
       const submitText = document.getElementById('btnSubmitText');
+
+      const institution_type = document.getElementById('institution_type').value;
+      const institution_address = document.getElementById('institution_address').value.trim();
+      const team_size = document.getElementById('team_size').value;
 
       const brand_name = document.getElementById('brand_name').value.trim();
       const admin_name = document.getElementById('admin_name').value.trim();
@@ -2739,16 +3090,19 @@
       alertBox.className = 'm-alert';
       alertBox.textContent = '';
       submitBtn.disabled = true;
-      submitText.innerHTML = '&#9203; Menyiapkan Database &amp; Akun CRM...';
+      submitText.innerHTML = '&#9203; Mengirim Pengajuan Beta...';
 
       try {
-        const res = await fetch('https://nexa-os-pmr8.onrender.com/api/v1/saas/register', {
+        const res = await fetch('https://nexa-os-pmr8.onrender.com/api/v1/saas/apply-beta', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             brand_name,
+            institution_type,
+            institution_address,
+            team_size,
             admin_name,
             admin_email,
             admin_password,
@@ -2759,15 +3113,40 @@
         const data = await res.json();
 
         if (res.ok && data.status === 'ok') {
-          const tenant = data.data;
+          const appData = data.data;
           lastRegisteredEmail = admin_email;
 
-          document.getElementById('resBrandName').textContent = tenant.brandName || brand_name;
+          document.getElementById('resBrandName').textContent = appData.brandName || brand_name;
           document.getElementById('resAdminEmail').textContent = admin_email;
+
+          const resBadge = document.getElementById('resBadgeStatus');
+          const resTitle = document.getElementById('resTitleText');
+          const resDesc = document.getElementById('resDescText');
+
+          if (appData.isWaitlist) {
+            if (resBadge) {
+              resBadge.textContent = 'Waiting List Batch 2';
+              resBadge.style.background = 'rgba(251,191,36,0.15)';
+              resBadge.style.color = 'var(--am)';
+              resBadge.style.borderColor = 'rgba(251,191,36,0.4)';
+            }
+            if (resTitle) resTitle.textContent = 'Lembaga Anda Telah Masuk Antrean Waiting List';
+            if (resDesc) resDesc.textContent = `Permohonan untuk lembaga ${brand_name} telah kami catat sebagai prioritas di batch pembukaan berikutnya (diperkirakan 1–2 pekan ke depan).`;
+          } else {
+            if (resBadge) {
+              resBadge.textContent = 'Permohonan Diterima & Sedang Dikurasi';
+              resBadge.style.background = 'rgba(0,214,143,0.15)';
+              resBadge.style.color = 'var(--gr)';
+              resBadge.style.borderColor = 'rgba(0,214,143,0.4)';
+            }
+            if (resTitle) resTitle.textContent = 'Ruang Kerja Privat Sedang Disiapkan';
+            if (resDesc) resDesc.textContent = `Permohonan untuk lembaga ${brand_name} telah kami terima. Tim teknis kami sedang memvalidasi konfigurasi dan menyiapkan ruang kerja privat Anda (Maksimal 1x24 jam).`;
+          }
 
           document.getElementById('modalFormView').style.display = 'none';
           document.getElementById('modalSuccessView').style.display = 'block';
           document.getElementById('signupForm').reset();
+          goToStep1();
         } else {
           alertBox.className = 'm-alert error';
           alertBox.textContent = data.message || 'Pendaftaran gagal. Silakan coba kembali.';
@@ -2777,7 +3156,7 @@
         alertBox.textContent = 'Gagal terhubung ke server Nexa MOS. Periksa koneksi internet Anda atau coba beberapa saat lagi.';
       } finally {
         submitBtn.disabled = false;
-        submitText.innerHTML = '&#128640; Buat Akun &amp; Siapkan CRM Saya';
+        submitText.innerHTML = '&#128640; Ajukan Akses Beta';
       }
     }
 
