@@ -1,0 +1,10 @@
+# robots.txt for https://nexamos.cloud
+User-agent: *
+Allow: /
+
+# Disallow build or sensitive configs if any
+Disallow: /api/
+Disallow: /.vercel/
+
+# Sitemap location
+Sitemap: https://nexamos.cloud/sitemap.xml
