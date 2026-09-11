@@ -1,4 +1,4 @@
-﻿# Nexa OS — Landing Page
+# Nexa OS — Landing Page
 
 Landing page statis profesional untuk Nexa OS CRM Platform.
 
@@ -34,5 +34,5 @@ nexa-landing/
 ```
 
 ## Link Demo
-- Demo CRM: https://nexa-crm-web-xi.vercel.app/login
+- Demo CRM: https://crm.nexamos.cloud/login
 - Login: admin / admin123
