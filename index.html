@@ -1497,22 +1497,31 @@
       }
     }
 
-    .dcl {
-      width: 22px;
-      height: 22px;
-      cursor: pointer;
+    .dbar-close,
+    #dcl {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       color: var(--tx3);
-      display: flex;
+      cursor: pointer;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      border-radius: 50%;
-      transition: background .2s
+      padding: 0;
+      margin-left: 2px;
+      transition: all .2s ease;
+      flex-shrink: 0;
+      outline: none;
     }
 
-    .dcl:hover {
-      background: var(--bg4);
-      color: var(--tx)
+    .dbar-close:hover,
+    #dcl:hover {
+      background: rgba(248, 113, 113, 0.18);
+      border-color: rgba(248, 113, 113, 0.4);
+      color: #fca5a5;
+      transform: scale(1.08);
     }
 
     @media(max-width:1024px) {
@@ -1526,6 +1535,10 @@
       }
 
       .inno-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .unfair-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -1563,6 +1576,19 @@
 
       .inno-grid {
         grid-template-columns: 1fr
+      }
+
+      .unfair-grid {
+        grid-template-columns: 1fr
+      }
+
+      .unfair-box {
+        padding: 24px 18px;
+      }
+
+      .unfair-foot {
+        flex-direction: column;
+        text-align: center;
       }
 
       .inno-banner {
@@ -2317,6 +2343,134 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
+
+    /* ================================================================
+       THE UNFAIR ADVANTAGE (GROUND TRUTH VS GENERIC AI)
+       ================================================================ */
+    .unfair-box {
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.08), rgba(77, 159, 255, 0.05), var(--bg3));
+      border: 1px solid rgba(167, 139, 250, 0.28);
+      border-radius: 20px;
+      padding: 36px 32px;
+      margin-bottom: 36px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .unfair-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--pu), var(--bl), transparent);
+    }
+
+    .unfair-head {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 28px;
+    }
+
+    .unfair-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      background: rgba(167, 139, 250, 0.14);
+      border: 1px solid rgba(167, 139, 250, 0.35);
+      color: #c4b5fd;
+      margin-bottom: 12px;
+    }
+
+    .unfair-title {
+      font-size: clamp(22px, 2.8vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+
+    .unfair-lead {
+      font-size: 15px;
+      color: #f1f5f9;
+      line-height: 1.7;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+
+    .unfair-subtitle {
+      font-size: 14px;
+      color: var(--tx2);
+      line-height: 1.65;
+    }
+
+    .unfair-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .unfair-card {
+      background: rgba(4, 8, 15, 0.65);
+      border: 1px solid var(--bd);
+      border-radius: 12px;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+
+    .unfair-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(167, 139, 250, 0.45);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .unfair-card-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .unfair-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .unfair-card-desc {
+      font-size: 12px;
+      color: var(--tx2);
+      line-height: 1.6;
+    }
+
+    .unfair-foot {
+      background: rgba(0, 214, 143, 0.06);
+      border: 1px dashed rgba(0, 214, 143, 0.3);
+      border-radius: 10px;
+      padding: 14px 20px;
+      font-size: 12.5px;
+      color: var(--tx);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      line-height: 1.55;
+    }
+
+    .unfair-foot strong {
+      color: var(--gr);
+      white-space: nowrap;
+    }
   </style>
 </head>
 
@@ -2735,24 +2889,24 @@
           </div>
         </div>
 
-        <!-- Card 2: Nexa MOS Computational Decision Engine -->
+        <!-- Card 2: Nexa MOS Computational Decision Engine & Virtual CSO -->
         <div class="inno-card purple fu" style="transition-delay:.2s">
           <div class="inno-top">
             <div class="fi pu" style="margin-bottom:0">&#129504;</div>
-            <span class="inno-badge purple">&#128640; Riset &amp; Komputasi AI</span>
+            <span class="inno-badge purple">&#128104;&#8205;&#128188; Virtual CSO &amp; Riset AI</span>
           </div>
-          <div class="inno-title">Computational Decision Engine (Prescriptive AI)</div>
+          <div class="inno-title">Market Intelligence &amp; Strategic Choice Engine</div>
           <div class="inno-desc">
-            Bukan sekadar chatbot generatif biasa, melainkan model probabilitas matematis berbasis jutaan event log. Menganalisis <em>Decision Environment</em> siswa (veto orang tua, validasi guru BK) untuk memprediksi risiko drop-off dan menyajikan <em>Next-Best-Action</em> preskriptif ke CRO.
+            Bukan chatbot teks generatif biasa. AI membaca jutaan log keberatan siswa di roomchat (<em>Unscripted Objections</em>) dan radar kompetitor untuk mendiagnosis komoditisasi pasar. Memberikan rekomendasi strategis langsung ke Pemilik Bisnis: kapan harus <strong>Reposisi ke ceruk baru</strong>, bagaimana <strong>Merombak diferensiasi penawaran (Offer)</strong>, dan kapan harus <strong>Rebranding narasi</strong> agar menembus veto orang tua.
           </div>
           <div class="inno-tags">
-            <span class="inno-tag">Decision Network Graph</span>
-            <span class="inno-tag">Veto Risk Probability</span>
-            <span class="inno-tag">Prescriptive Action Guidance</span>
-            <span class="inno-tag">Cohort Velocity Modeling</span>
+            <span class="inno-tag">Radar Kompetitor</span>
+            <span class="inno-tag">Strategic Choice Engine</span>
+            <span class="inno-tag">Reposisi &amp; Diferensiasi</span>
+            <span class="inno-tag">Virtual CSO</span>
           </div>
           <div class="inno-status">
-            <span>&#128995;</span> <span>Status: <strong>Pengujian Algoritma Engine 04 &amp; 09</strong></span>
+            <span>&#128995;</span> <span>Status: <strong>Riset Algoritma Strategic Choice (Engine 01, 03, 05, 08)</strong></span>
           </div>
         </div>
 
@@ -2774,6 +2928,61 @@
           </div>
           <div class="inno-status">
             <span>&#128994;</span> <span>Status: <strong>Draf Template Masuk Pipeline Rilis Dashboard</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Unfair Advantage Block -->
+      <div class="unfair-box fu" style="transition-delay:.15s">
+        <div class="unfair-head">
+          <div class="unfair-pill">&#129354; The Unfair Advantage</div>
+          <h3 class="unfair-title">Mengapa AI Nexa MOS Tidak Pernah Berhalusinasi?</h3>
+          <p class="unfair-lead">
+            Bukan chatbot teks generatif biasa. AI membaca jutaan log keberatan siswa di roomchat (<em>Unscripted Objections</em>) dan radar kompetitor untuk mendiagnosis komoditisasi pasar. Memberikan rekomendasi strategis langsung ke Pemilik Bisnis: kapan harus <strong>Reposisi ke ceruk baru</strong>, bagaimana <strong>Merombak diferensiasi penawaran (Offer)</strong>, dan kapan harus <strong>Rebranding narasi</strong> agar menembus veto orang tua.
+          </p>
+          <p class="unfair-subtitle">
+            AI bisnis biasa (ChatGPT wrapper) sering memberi saran klise (<em>"Tingkatkan postingan medsos"</em>) karena buta kondisi lapangan. Nexa MOS mengevaluasi strategi bisnis dari <strong>4 Fakta Empiris Lapangan</strong>:
+          </p>
+        </div>
+
+        <div class="unfair-grid">
+          <div class="unfair-card">
+            <div class="unfair-card-icon">&#128172;</div>
+            <div class="unfair-card-title">Unscripted Objection Logs</div>
+            <div class="unfair-card-desc">
+              Mendeteksi alasan penolakan jujur calon siswa &amp; orang tua di WhatsApp (<em>"LPK sebelah bisa cicil setelah kerja"</em> atau <em>"Kata guru BK mending politeknik"</em>).
+            </div>
+          </div>
+
+          <div class="unfair-card">
+            <div class="unfair-card-icon">&#127919;</div>
+            <div class="unfair-card-title">Competitor Mention Tracker</div>
+            <div class="unfair-card-desc">
+              Melacak seberapa sering nama brand kompetitor disebut dan perbandingan penawaran spesifik apa yang mereka bawa ke calon siswa &amp; sekolah Anda.
+            </div>
+          </div>
+
+          <div class="unfair-card">
+            <div class="unfair-card-icon">&#128201;</div>
+            <div class="unfair-card-title">Funnel Drop-off by Cohort</div>
+            <div class="unfair-card-desc">
+              Mengidentifikasi di titik mana uang macet (misal: 100% lulus tes fisik, tetapi 60% prospek rontok di tahap persetujuan &amp; veto orang tua).
+            </div>
+          </div>
+
+          <div class="unfair-card">
+            <div class="unfair-card-icon">&#128176;</div>
+            <div class="unfair-card-title">Offline Conversion Truth</div>
+            <div class="unfair-card-desc">
+              Mengenali profil siswa yang terbukti bayar DP Rp1,5 juta tunai vs profil yang hanya berjanji manis tetapi <em>ghosting</em> di hari penentuan.
+            </div>
+          </div>
+        </div>
+
+        <div class="unfair-foot">
+          <span>&#128161;</span>
+          <div>
+            <strong>Output untuk Pemilik Bisnis:</strong> Rekomendasi Reposisi Pasar (Hindari Perang Harga) &middot; Rekayasa Penawaran &amp; Garansi Nilai Baru &middot; Perombakan Sudut Pandang Narasi (Rebranding).
           </div>
         </div>
       </div>
@@ -2853,62 +3062,62 @@
           <div class="pv">Rp 0<span>/bulan</span></div>
           <div class="pd">Untuk mulai merasakan Nexa MOS tanpa komitmen.</div>
           <ul class="pf">
-            <li><span class="ck">&#10003;</span>300 siswa aktif/3 bulan</li>
-            <li><span class="ck">&#10003;</span>5 sekolah mitra</li>
-            <li><span class="ck">&#10003;</span>1 CRO seat</li>
-            <li><span class="ck">&#10003;</span>Live Chat WA</li>
-            <li><span class="ck">&#10003;</span>Task List + Dashboard</li>
-            <li><span class="cx">&mdash;</span>Auto Nurturing</li>
-            <li><span class="cx">&mdash;</span>Broadcast</li>
-            <li><span class="cx">&mdash;</span>BYOW</li>
+            <li><span class="ck">&#10003;</span>300 siswa baru/3 bulan (100/bln)</li>
+            <li><span class="ck">&#10003;</span>10 sekolah mitra/3 bulan</li>
+            <li><span class="ck">&#10003;</span>4 User Team (1 Adm, 1 Mgr, 1 Chief, 1 CRO)</li>
+            <li><span class="ck">&#10003;</span>Live Chat WA + Task List</li>
+            <li><span class="ck">&#10003;</span>Dashboard Metrik &amp; Kualifikasi FNAR</li>
+            <li><span class="cx">&mdash;</span>Auto Nurturing &amp; Broadcast</li>
+            <li><span class="cx">&mdash;</span>BYOW WhatsApp API</li>
+            <li><span class="cx">&mdash;</span>Dedicated Database</li>
           </ul><button type="button" onclick="openSignupModal()" class="btn bp"
             style="width:100%;justify-content:center">Mulai Gratis &rarr;</button>
         </div>
         <div class="prc feat fu" style="transition-delay:.1s">
           <div class="pop">&#9889; Paling Populer</div>
           <div class="pt" style="color:var(--gr)">Pro</div>
-          <div class="pv" style="color:var(--gr)">Rp 499.000<span>/bulan</span></div>
-          <div class="pd">Untuk LPK / Bimbel yang mulai serius scaling.</div>
+          <div class="pv" style="color:var(--gr)">Rp 500.000<span>/bulan</span></div>
+          <div class="pd">Untuk LPK / Bimbel yang mulai serius scaling. (Rp 5 Jt/tahun)</div>
           <ul class="pf">
-            <li><span class="ck">&#10003;</span>1000 siswa aktif/bulan</li>
-            <li><span class="ck">&#10003;</span>50 sekolah mitra</li>
-            <li><span class="ck">&#10003;</span>5 CRO seat</li>
-            <li><span class="ck">&#10003;</span>Live Chat + Shared Inbox</li>
-            <li><span class="ck">&#10003;</span>Auto Nurturing + Snooze</li>
-            <li><span class="ck">&#10003;</span>Broadcast + Template</li>
-            <li><span class="ck">&#10003;</span>BYOW (WA sendiri)</li>
-            <li><span class="ck">&#10003;</span>Smart WA Routing</li>
-          </ul><a href="#" class="btn bp">Mulai Pro &rarr;</a>
+            <li><span class="ck">&#10003;</span>1.000 siswa aktif/bulan (12.000/thn)</li>
+            <li><span class="ck">&#10003;</span>20 sekolah mitra/bulan (240/thn)</li>
+            <li><span class="ck">&#10003;</span>5 User Team (1 Adm, 1 Mgr, 1 Chief, 2 CRO)</li>
+            <li><span class="ck">&#10003;</span>Live Chat + Shared Team Inbox</li>
+            <li><span class="ck">&#10003;</span>Auto Nurturing + Snooze Campaign</li>
+            <li><span class="ck">&#10003;</span>Broadcast WhatsApp + Template Dinamis</li>
+            <li><span class="ck">&#10003;</span>BYOW (App Meta &amp; No WA Sendiri)</li>
+            <li><span class="ck">&#10003;</span>Add-on Seat CRO Rp 100rb/bln</li>
+          </ul><a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp">Mulai Pro &rarr;</a>
         </div>
         <div class="prc fu" style="transition-delay:.2s">
           <div class="pt">Business</div>
-          <div class="pv">Rp 1.499.000<span>/bulan</span></div>
-          <div class="pd">Untuk institusi besar dengan banyak CRO.</div>
+          <div class="pv">Rp 1.500.000<span>/bulan</span></div>
+          <div class="pd">Untuk institusi besar dengan banyak cabang/CRO. (Rp 15 Jt/tahun)</div>
           <ul class="pf">
-            <li><span class="ck">&#10003;</span>2.500 siswa aktif/bulan</li>
-            <li><span class="ck">&#10003;</span>200 sekolah mitra</li>
-            <li><span class="ck">&#10003;</span>20 CRO seat</li>
+            <li><span class="ck">&#10003;</span>2.500 siswa aktif/bulan (30.000/thn)</li>
+            <li><span class="ck">&#10003;</span>41 sekolah mitra/bulan (500/thn)</li>
+            <li><span class="ck">&#10003;</span>15 User Team (1 Adm, 1 Mgr, 3 Chief, 10 CRO)</li>
             <li><span class="ck">&#10003;</span>Semua fitur Pro</li>
-            <li><span class="ck">&#10003;</span>Manajemen Multi-Periode</li>
-            <li><span class="ck">&#10003;</span>Form Intake Audience</li>
-            <li><span class="ck">&#10003;</span>Priority Support</li>
-            <li><span class="cx">&mdash;</span>Custom Integrations</li>
-          </ul><a href="#" class="btn bg">Pilih Business</a>
+            <li><span class="ck">&#10003;</span>Manajemen Multi-Periode &amp; Form Publik</li>
+            <li><span class="ck">&#10003;</span>Smart WA Routing (Gratis SW Terbuka)</li>
+            <li><span class="ck">&#10003;</span>Priority Support Teknis</li>
+            <li><span class="ck">&#10003;</span>Add-on Seat CRO Rp 100rb/bln</li>
+          </ul><a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg">Pilih Business</a>
         </div>
         <div class="prc fu" style="transition-delay:.3s">
           <div class="pt">Enterprise</div>
-          <div class="pv" style="font-size:26px">Custom</div>
-          <div class="pd">Unlimited segalanya. Diskusi langsung dengan tim Nexa.</div>
+          <div class="pv" style="font-size:25px">Rp 4.000.000<span>/bulan</span></div>
+          <div class="pd">Kontrak 3 Tahun (Rp 40 Jt/thn) atau Lifetime Rp 100 Jt.</div>
           <ul class="pf">
-            <li><span class="ck">&#10003;</span>Unlimited siswa</li>
-            <li><span class="ck">&#10003;</span>Unlimited sekolah</li>
-            <li><span class="ck">&#10003;</span>Unlimited CRO seat</li>
+            <li><span class="ck">&#10003;</span>8.333 siswa aktif/bulan (100.000/thn)</li>
+            <li><span class="ck">&#10003;</span>166 sekolah mitra/bulan (2.000/thn)</li>
+            <li><span class="ck">&#10003;</span>39 User Team (1 Adm, 3 Mgr, 5 Chief, 30 CRO)</li>
             <li><span class="ck">&#10003;</span>Semua fitur Business</li>
-            <li><span class="ck">&#10003;</span>Custom Integrations</li>
-            <li><span class="ck">&#10003;</span>Dedicated DB Cluster</li>
-            <li><span class="ck">&#10003;</span>SLA Guarantee</li>
-            <li><span class="ck">&#10003;</span>Onboarding Assisted</li>
-          </ul><a href="https://wa.me/6285659024775" target="_blank" class="btn bg">Hubungi Kami</a>
+            <li><span class="ck">&#10003;</span>Tersedia Opsi White Label 100%</li>
+            <li><span class="ck">&#10003;</span>Dedicated DB Cluster Privat</li>
+            <li><span class="ck">&#10003;</span>SLA Guarantee 99.9% &amp; Assisted Onboarding</li>
+            <li><span class="ck">&#10003;</span>Perjanjian Kontrak Kerjasama B2B Resmi</li>
+          </ul><a href="https://wa.me/6285659024775?text=Halo%20Nexa,%20saya%20tertarik%20dengan%20paket%20Enterprise" target="_blank" class="btn bg">Konsultasi Enterprise &rarr;</a>
         </div>
       </div>
     </div>
@@ -3050,14 +3259,24 @@
       <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp bsm">Buka Demo &#8599;</a>
       <button type="button" onclick="openSignupModal()" class="btn bg bsm"
         style="border-color:rgba(0,214,143,0.35);color:var(--gr);background:rgba(0,214,143,0.08);cursor:pointer">Mulai Gratis &rarr;</button>
-      <button class="dbar-close" id="dcl">&times;</button>
+      <button type="button" class="dbar-close" id="dcl" aria-label="Tutup bar demo">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="1" y1="1" x2="11" y2="11"></line>
+          <line x1="11" y1="1" x2="1" y2="11"></line>
+        </svg>
+      </button>
     </div>
   </div>
 
   <!-- Quick Sign-Up Modal (Curated 2-Step Onboarding) -->
   <div class="modal-overlay" id="signupModal" onclick="handleModalBackdropClick(event)">
     <div class="modal-card" id="modalCard">
-      <button type="button" class="m-close" onclick="closeSignupModal()" aria-label="Tutup">&times;</button>
+      <button type="button" class="m-close" onclick="closeSignupModal()" aria-label="Tutup modal">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="2" y1="2" x2="12" y2="12"></line>
+          <line x1="12" y1="2" x2="2" y2="12"></line>
+        </svg>
+      </button>
 
       <!-- FORM VIEW -->
       <div id="modalFormView">
