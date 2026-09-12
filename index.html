@@ -1001,6 +1001,227 @@
       color: var(--tx3)
     }
 
+    /* ================================================================
+       ENTERPRISE SECURITY & AUDIT GUARDIAN BANNER (#features)
+       ================================================================ */
+    .feat-security-banner {
+      margin-top: 32px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(16, 185, 129, 0.06) 50%, var(--bg3) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.28);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feat-security-banner::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .fsb-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 99px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: #60a5fa;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .fsb-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #3b82f6;
+      box-shadow: 0 0 10px #3b82f6;
+      animation: pulse-beacon 2s infinite;
+    }
+
+    @keyframes pulse-beacon {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .fsb-main {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .fsb-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    .fsb-desc {
+      font-size: 13.5px;
+      color: var(--tx2);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .fsb-desc strong {
+      color: #f1f5f9;
+    }
+
+    .fsb-desc code {
+      font-family: monospace;
+      font-size: 12px;
+      color: #93c5fd;
+      background: rgba(59, 130, 246, 0.15);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .fsb-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .fsb-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 99px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+    }
+
+    .fsb-check {
+      color: #10b981;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .fsb-card-mock {
+      background: #0f172a;
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    .fsb-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+
+    .fsb-alert-badge {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      background: rgba(239, 68, 68, 0.18);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .fsb-time {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .fsb-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .fsb-card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .fsb-clabel {
+      color: #94a3b8;
+      font-size: 11.5px;
+    }
+
+    .fsb-cval {
+      font-weight: 600;
+      color: #f1f5f9;
+      text-align: right;
+    }
+
+    .fsb-cval.highlight {
+      color: #38bdf8;
+      font-family: monospace;
+    }
+
+    .fsb-cval.warn {
+      color: #fbbf24;
+      font-weight: 700;
+    }
+
+    .fsb-cval.success {
+      color: #34d399;
+    }
+
+    .fsb-card-foot {
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .fsb-live-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #10b981;
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    .fsb-live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+
     #how {
       background: var(--bg2);
       position: relative;
@@ -2628,6 +2849,32 @@
         width: 100%;
         justify-content: center;
       }
+
+      /* Feature Security Banner Mobile */
+      .feat-security-banner {
+        padding: 22px 18px;
+        margin-top: 24px;
+        border-radius: 16px;
+      }
+
+      .fsb-main {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .fsb-title {
+        font-size: 17px;
+        line-height: 1.4;
+      }
+
+      .fsb-desc {
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .fsb-card-mock {
+        padding: 16px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -3045,6 +3292,61 @@
               class="fbg">CSV Import</span></div>
         </div>
       </div>
+
+      <!-- Enterprise Security & Audit Guardian Banner -->
+      <div class="feat-security-banner fu" style="transition-delay:.45s">
+        <div class="fsb-badge">
+          <span class="fsb-dot"></span>
+          <span>&#128737; ENTERPRISE SECURITY &amp; AUDIT GUARDIAN</span>
+        </div>
+        <div class="fsb-main">
+          <div class="fsb-left">
+            <h3 class="fsb-title">Deteksi Mutasi Kredensial Real-Time &amp; Email Security Alert ke Admin CRM</h3>
+            <p class="fsb-desc">
+              Melindungi privasi dan integritas data institusi secara proaktif. Setiap pembaruan <strong>Username</strong> atau <strong>Password</strong> akun staf (baik mandiri maupun aksi admin) langsung terdeteksi seketika. Sistem otomatis melayangkan <strong>email peringatan audit forensik</strong> (Nama Staf, IP Address, Waktu WIB, Perangkat) ke Administrator CRM serta mencatat jejak audit imutabel di <code>events_log</code>.
+            </p>
+            <div class="fsb-tags">
+              <span class="fsb-tag"><span class="fsb-check">&#10003;</span> Real-Time Credential Alert</span>
+              <span class="fsb-tag"><span class="fsb-check">&#10003;</span> Anti-Takeover Protection</span>
+              <span class="fsb-tag"><span class="fsb-check">&#10003;</span> Forensic IP &amp; User-Agent Log</span>
+              <span class="fsb-tag"><span class="fsb-check">&#10003;</span> Multi-Tenant Data Isolation</span>
+            </div>
+          </div>
+          <div class="fsb-right">
+            <div class="fsb-card-mock">
+              <div class="fsb-card-head">
+                <span class="fsb-alert-badge">&#128737; SECURITY ALERT</span>
+                <span class="fsb-time">Baru Saja &bull; WIB</span>
+              </div>
+              <div class="fsb-card-body">
+                <div class="fsb-card-row">
+                  <span class="fsb-clabel">Target Akun:</span>
+                  <span class="fsb-cval highlight">@cro_faisal</span>
+                </div>
+                <div class="fsb-card-row">
+                  <span class="fsb-clabel">Jenis Mutasi:</span>
+                  <span class="fsb-cval warn">&#128274; Password Diperbarui</span>
+                </div>
+                <div class="fsb-card-row">
+                  <span class="fsb-clabel">Email Notifikasi:</span>
+                  <span class="fsb-cval success">Admin CRM Terkirim (100%)</span>
+                </div>
+                <div class="fsb-card-row">
+                  <span class="fsb-clabel">Audit Event Log:</span>
+                  <span class="fsb-cval" style="font-family:monospace;font-size:11px;color:#94a3b8;">EVT-SEC-StaffAlert [Saved]</span>
+                </div>
+              </div>
+              <div class="fsb-card-foot">
+                <span>Status Pemantauan:</span>
+                <span class="fsb-live-indicator">
+                  <span class="fsb-live-dot"></span> Aktif 24/7
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
   <section id="innovations">
