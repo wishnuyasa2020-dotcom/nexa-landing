@@ -1574,29 +1574,6 @@
         grid-template-columns: 1fr
       }
 
-      .inno-grid {
-        grid-template-columns: 1fr
-      }
-
-      .unfair-grid {
-        grid-template-columns: 1fr
-      }
-
-      .unfair-box {
-        padding: 24px 18px;
-      }
-
-      .unfair-foot {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .inno-banner {
-        flex-direction: column;
-        text-align: center;
-        gap: 16px;
-      }
-
       .prg {
         grid-template-columns: 1fr
       }
@@ -2471,6 +2448,224 @@
       color: var(--gr);
       white-space: nowrap;
     }
+
+    /* ================================================================
+       RESPONSIVE: ROADMAP & RISET INOVASI + THE UNFAIR ADVANTAGE
+       ================================================================ */
+    @media (max-width: 1024px) {
+      .inno-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .unfair-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .unfair-box {
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #innovations {
+        padding: 60px 0;
+      }
+
+      .inno-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .inno-card {
+        padding: 22px 18px;
+        border-radius: 14px;
+      }
+
+      .inno-top {
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .inno-badge {
+        font-size: 10.5px;
+        padding: 4px 10px;
+      }
+
+      .inno-title {
+        font-size: 16px;
+        line-height: 1.35;
+        margin-bottom: 10px;
+      }
+
+      .inno-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+
+      .inno-tags {
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+
+      .inno-tag {
+        font-size: 10.5px;
+        padding: 3px 8px;
+      }
+
+      .inno-status {
+        padding-top: 12px;
+        font-size: 11.5px;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      /* The Unfair Advantage Block */
+      .unfair-box {
+        padding: 24px 16px;
+        border-radius: 16px;
+        margin-bottom: 28px;
+      }
+
+      .unfair-head {
+        margin-bottom: 20px;
+      }
+
+      .unfair-title {
+        font-size: 20px;
+        line-height: 1.3;
+        letter-spacing: -0.4px;
+        margin-bottom: 12px;
+      }
+
+      .unfair-lead {
+        font-size: 13.5px;
+        line-height: 1.65;
+        margin-bottom: 12px;
+        text-align: left;
+      }
+
+      .unfair-subtitle {
+        font-size: 13px;
+        line-height: 1.6;
+        text-align: left;
+      }
+
+      .unfair-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .unfair-card {
+        padding: 16px 14px;
+        border-radius: 10px;
+      }
+
+      .unfair-card-icon {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+
+      .unfair-card-title {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .unfair-card-desc {
+        font-size: 12.5px;
+        line-height: 1.55;
+      }
+
+      .unfair-foot {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: 10px;
+        padding: 14px 16px;
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      .unfair-foot strong {
+        color: var(--gr);
+        white-space: normal;
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      /* Innovations Bottom Banner */
+      .inno-banner {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding: 22px 18px;
+        gap: 16px;
+        border-radius: 14px;
+      }
+
+      .inno-banner-text h4 {
+        justify-content: center;
+        text-align: center;
+        font-size: 15px;
+        line-height: 1.35;
+      }
+
+      .inno-banner-text p {
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .inno-banner-btn {
+        width: 100%;
+      }
+
+      .inno-banner-btn .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .inno-pill,
+      .unfair-pill {
+        font-size: 10px;
+        padding: 4px 10px;
+        letter-spacing: 0.8px;
+      }
+
+      .inno-card {
+        padding: 18px 14px;
+      }
+
+      .inno-title {
+        font-size: 15px;
+      }
+
+      .unfair-box {
+        padding: 20px 12px;
+      }
+
+      .unfair-title {
+        font-size: 18px;
+      }
+
+      .unfair-lead {
+        font-size: 13px;
+      }
+
+      .unfair-subtitle {
+        font-size: 12px;
+      }
+
+      .unfair-card {
+        padding: 14px 12px;
+      }
+    }
   </style>
 </head>
 
@@ -2938,7 +3133,7 @@
           <div class="unfair-pill">&#129354; The Unfair Advantage</div>
           <h3 class="unfair-title">Mengapa AI Nexa MOS Tidak Pernah Berhalusinasi?</h3>
           <p class="unfair-lead">
-            Bukan chatbot teks generatif biasa. AI membaca jutaan log keberatan siswa di roomchat (<em>Unscripted Objections</em>) dan radar kompetitor untuk mendiagnosis komoditisasi pasar. Memberikan rekomendasi strategis langsung ke Pemilik Bisnis: kapan harus <strong>Reposisi ke ceruk baru</strong>, bagaimana <strong>Merombak diferensiasi penawaran (Offer)</strong>, dan kapan harus <strong>Rebranding narasi</strong> agar menembus veto orang tua.
+            Kekuatan analitik AI Nexa MOS tidak bertumpu pada prompt teks klise, melainkan ditenagai oleh aliran data mentah objektif langsung dari lantai operasional harian (<em>Ground Truth</em>) yang tidak pernah bisa diakses oleh software CRM biasa.
           </p>
           <p class="unfair-subtitle">
             AI bisnis biasa (ChatGPT wrapper) sering memberi saran klise (<em>"Tingkatkan postingan medsos"</em>) karena buta kondisi lapangan. Nexa MOS mengevaluasi strategi bisnis dari <strong>4 Fakta Empiris Lapangan</strong>:
@@ -3203,7 +3398,7 @@
             style="padding:15px 34px;font-size:15px">&#128172; Tanya via WhatsApp</a>
         </div>
         <p class="cn">Tidak perlu kartu kredit &middot; Demo: user <strong>admin</strong> / pass
-          <strong>admin123</strong>
+          <strong>admin123</strong> &middot; <span style="opacity:0.85">&#128260; Sandbox direset otomatis tiap Minggu 21:00 WIB</span>
         </p>
       </div>
     </div>
@@ -3253,7 +3448,7 @@
   <div class="dbar" id="dbar">
     <div class="dbar-info">
       <div class="pdot"></div>
-      <span class="dtx"><strong>Demo Live:</strong> admin / admin123</span>
+      <span class="dtx"><strong>Demo Live:</strong> admin / admin123 <span style="opacity:0.75;font-size:11px;margin-left:6px;display:inline-block">&#128260; Reset tiap Minggu 21:00 WIB</span></span>
     </div>
     <div class="dbar-actions">
       <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp bsm">Buka Demo &#8599;</a>
