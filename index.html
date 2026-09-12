@@ -1525,6 +1525,10 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .inno-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       .prg {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1555,6 +1559,16 @@
 
       .fg {
         grid-template-columns: 1fr
+      }
+
+      .inno-grid {
+        grid-template-columns: 1fr
+      }
+
+      .inno-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
       }
 
       .prg {
@@ -2085,6 +2099,224 @@
       font-family: monospace;
       font-size: 13px;
     }
+
+    /* ================================================================
+       ROADMAP & RISET INOVASI (SECTION INNOVATIONS)
+       ================================================================ */
+    #innovations {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(180deg, var(--bg) 0%, rgba(12, 22, 38, 0.45) 50%, var(--bg) 100%);
+      border-top: 1px solid var(--bd);
+      border-bottom: 1px solid var(--bd);
+    }
+
+    .inno-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 16px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      background: rgba(167, 139, 250, 0.1);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      color: var(--pu);
+    }
+
+    .inno-gradient-text {
+      background: linear-gradient(135deg, var(--pu), var(--bl));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .inno-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 40px;
+    }
+
+    .inno-card {
+      background: linear-gradient(135deg, rgba(17, 30, 51, 0.75), var(--bg3));
+      border: 1px solid var(--bd);
+      border-radius: var(--r);
+      padding: 30px;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .inno-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      opacity: 0.6;
+      transition: opacity .3s, height .3s;
+    }
+
+    .inno-card.blue::before {
+      background: linear-gradient(90deg, transparent, var(--bl), transparent);
+    }
+
+    .inno-card.purple::before {
+      background: linear-gradient(90deg, transparent, var(--pu), transparent);
+    }
+
+    .inno-card.green::before {
+      background: linear-gradient(90deg, transparent, var(--gr), transparent);
+    }
+
+    .inno-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    .inno-card.blue:hover {
+      border-color: rgba(77, 159, 255, 0.4);
+    }
+
+    .inno-card.purple:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+    }
+
+    .inno-card.green:hover {
+      border-color: rgba(0, 214, 143, 0.4);
+    }
+
+    .inno-card:hover::before {
+      opacity: 1;
+      height: 3px;
+    }
+
+    .inno-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .inno-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 99px;
+      letter-spacing: 0.2px;
+    }
+
+    .inno-badge.blue {
+      background: rgba(77, 159, 255, 0.12);
+      border: 1px solid rgba(77, 159, 255, 0.35);
+      color: #70b4ff;
+    }
+
+    .inno-badge.purple {
+      background: rgba(167, 139, 250, 0.12);
+      border: 1px solid rgba(167, 139, 250, 0.35);
+      color: #c4b5fd;
+    }
+
+    .inno-badge.green {
+      background: rgba(0, 214, 143, 0.12);
+      border: 1px solid rgba(0, 214, 143, 0.35);
+      color: #86efac;
+    }
+
+    .inno-title {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .inno-desc {
+      font-size: 13px;
+      color: var(--tx2);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .inno-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .inno-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(4, 8, 15, 0.65);
+      border: 1px solid var(--bd);
+      color: var(--tx);
+    }
+
+    .inno-status {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px dashed var(--bd);
+      font-size: 11.5px;
+      color: var(--tx2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .inno-status strong {
+      color: var(--tx);
+    }
+
+    .inno-banner {
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.09), rgba(0, 214, 143, 0.06), var(--bg3));
+      border: 1px solid rgba(167, 139, 250, 0.28);
+      border-radius: 16px;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .inno-banner-text h4 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .inno-banner-text p {
+      font-size: 13px;
+      color: var(--tx2);
+      line-height: 1.5;
+    }
+
+    .inno-banner-btn {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 
@@ -2097,7 +2329,7 @@
       <a href="#" class="logo">
         <img src="/logo.png" alt="Nexa MOS Logo" class="lm" width="34" height="34"><span class="lt">Nexa<span>MOS</span></span>
       </a>
-      <div class="nl"><a href="#features">Fitur</a><a href="#how">Cara Kerja</a><a href="#pricing">Harga</a><a
+      <div class="nl"><a href="#features">Fitur</a><a href="#innovations">Inovasi</a><a href="#how">Cara Kerja</a><a href="#pricing">Harga</a><a
           href="#proof">Testimoni</a></div>
       <div class="ne"><a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg bsm">Demo
           &#8599;</a><button type="button" onclick="openSignupModal()" class="btn bp bsm">Mulai Gratis</button></div>
@@ -2113,6 +2345,7 @@
         style="background:none;border:1px solid var(--bdh);color:var(--tx2);font-size:18px;border-radius:8px;padding:6px 12px;cursor:pointer">&#10005;</button>
     </div>
     <a href="#features" onclick="cm()">Fitur</a>
+    <a href="#innovations" onclick="cm()">Inovasi</a>
     <a href="#how" onclick="cm()">Cara Kerja</a>
     <a href="#pricing" onclick="cm()">Harga</a>
     <a href="#proof" onclick="cm()">Testimoni</a>
@@ -2465,6 +2698,98 @@
       </div>
     </div>
   </section>
+  <section id="innovations">
+    <div class="w">
+      <div class="sh">
+        <div class="inno-pill fu">
+          <span>&#9889;</span> Roadmap &amp; Riset Inovasi
+        </div>
+        <h2 class="st fu">
+          Masa Depan Pengambilan Keputusan<br>
+          <span class="inno-gradient-text">Didukung AI Komputasional &amp; Attribution</span>
+        </h2>
+        <p class="ss fu" style="transition-delay:.1s">
+          Di luar 9 modul operasional yang sudah aktif, teknologi mutakhir ini sedang kami integrasikan secara bertahap bersama mitra terpilih di program Closed Beta.
+        </p>
+      </div>
+
+      <div class="inno-grid">
+        <!-- Card 1: Meta CAPI & Google OCT -->
+        <div class="inno-card blue fu" style="transition-delay:.1s">
+          <div class="inno-top">
+            <div class="fi b" style="margin-bottom:0">&#128225;</div>
+            <span class="inno-badge blue">&#128274; Eksklusif Batch Beta</span>
+          </div>
+          <div class="inno-title">Meta CAPI &amp; Google Offline Conversion Tracking</div>
+          <div class="inno-desc">
+            Menghubungkan event konversi offline di lapangan (seperti DP terverifikasi Rp1,5 jt) kembali ke Meta Ads &amp; Google Ads secara otomatis via Server-to-Server API. Algoritma iklan belajar mandiri mencari audiens dengan daya beli riil, bukan sekadar klik murah atau lead bodong.
+          </div>
+          <div class="inno-tags">
+            <span class="inno-tag">Meta Conversions API</span>
+            <span class="inno-tag">Google Ads OCT (GCLID)</span>
+            <span class="inno-tag">Offline ROAS Tracking</span>
+            <span class="inno-tag">Event-Triggered Postback</span>
+          </div>
+          <div class="inno-status">
+            <span>&#128309;</span> <span>Status: <strong>Tahap Integrasi Server API Mitra Pilot</strong></span>
+          </div>
+        </div>
+
+        <!-- Card 2: Nexa MOS Computational Decision Engine -->
+        <div class="inno-card purple fu" style="transition-delay:.2s">
+          <div class="inno-top">
+            <div class="fi pu" style="margin-bottom:0">&#129504;</div>
+            <span class="inno-badge purple">&#128640; Riset &amp; Komputasi AI</span>
+          </div>
+          <div class="inno-title">Computational Decision Engine (Prescriptive AI)</div>
+          <div class="inno-desc">
+            Bukan sekadar chatbot generatif biasa, melainkan model probabilitas matematis berbasis jutaan event log. Menganalisis <em>Decision Environment</em> siswa (veto orang tua, validasi guru BK) untuk memprediksi risiko drop-off dan menyajikan <em>Next-Best-Action</em> preskriptif ke CRO.
+          </div>
+          <div class="inno-tags">
+            <span class="inno-tag">Decision Network Graph</span>
+            <span class="inno-tag">Veto Risk Probability</span>
+            <span class="inno-tag">Prescriptive Action Guidance</span>
+            <span class="inno-tag">Cohort Velocity Modeling</span>
+          </div>
+          <div class="inno-status">
+            <span>&#128995;</span> <span>Status: <strong>Pengujian Algoritma Engine 04 &amp; 09</strong></span>
+          </div>
+        </div>
+
+        <!-- Card 3: Dynamic Legal Asset Engine -->
+        <div class="inno-card green fu" style="transition-delay:.3s">
+          <div class="inno-top">
+            <div class="fi g" style="margin-bottom:0">&#128220;</div>
+            <span class="inno-badge green">&#9889; Segera Hadir di Dashboard</span>
+          </div>
+          <div class="inno-title">Dynamic Legal &amp; Institutional Asset Engine</div>
+          <div class="inno-desc">
+            Draf instan perjanjian kerjasama berkekuatan hukum yang terisi otomatis dari metadata sistem. Hasilkan draf MoU Kemitraan Sekolah Vokasi (B2B) dan Perjanjian Kerahasiaan &amp; Kinerja CRO (B2I) dengan klausul proteksi data siswa, siap cetak dan download dalam hitungan detik.
+          </div>
+          <div class="inno-tags">
+            <span class="inno-tag">Auto-Fill Draf MoU Sekolah</span>
+            <span class="inno-tag">Perjanjian CRO &amp; NDA</span>
+            <span class="inno-tag">Export PDF / DOCX</span>
+            <span class="inno-tag">Standardisasi Klausul B2B</span>
+          </div>
+          <div class="inno-status">
+            <span>&#128994;</span> <span>Status: <strong>Draf Template Masuk Pipeline Rilis Dashboard</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banner Ajakan Bergabung Closed Beta -->
+      <div class="inno-banner fu" style="transition-delay:.2s">
+        <div class="inno-banner-text">
+          <h4>&#128640; Ingin Menerapkan Inovasi Ini Lebih Awal di Institusi Anda?</h4>
+          <p>Mitra Closed Beta mendapatkan prioritas akses ke modul atribusi iklan, asistensi AI, dan draf legal otomatis sebelum dirilis ke publik.</p>
+        </div>
+        <div class="inno-banner-btn">
+          <button type="button" onclick="openSignupModal()" class="btn bp bsm">Daftar Batch Beta Sekarang &#8599;</button>
+        </div>
+      </div>
+    </div>
+  </section>
   <section id="how">
     <div class="w">
       <div class="sh">
@@ -2687,6 +3012,7 @@
           <h5>Produk</h5>
           <ul>
             <li><a href="#features">Fitur</a></li>
+            <li><a href="#innovations">Roadmap Inovasi</a></li>
             <li><a href="#pricing">Harga</a></li>
             <li><a href="#how">Cara Kerja</a></li>
             <li><a href="https://crm.nexamos.cloud/login" target="_blank">Demo Live</a></li>
