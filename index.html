@@ -4334,26 +4334,25 @@
     }
 
     // Analytics: Track Demo Link Clicks (Meta ViewContent & GA4 click_demo)
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('a[href*="crm.nexamos.cloud"]').forEach(link => {
-        link.addEventListener('click', () => {
-          if (typeof fbq === 'function') {
-            fbq('track', 'ViewContent', {
-              content_name: 'Live Demo CRM',
-              content_category: 'Demo Link',
-              destination: link.href
-            });
-          }
-          if (typeof gtag === 'function') {
-            gtag('event', 'click_demo', {
-              event_category: 'engagement',
-              event_label: 'Live Demo CRM',
-              destination: link.href
-            });
-          }
-        });
-      });
-    });
+    document.addEventListener('click', (e) => {
+      const demoLink = e.target && e.target.closest ? e.target.closest('a[href*="crm.nexamos.cloud"]') : null;
+      if (demoLink) {
+        if (typeof fbq === 'function') {
+          fbq('track', 'ViewContent', {
+            content_name: 'Live Demo CRM',
+            content_category: 'Demo Link',
+            destination: demoLink.href
+          });
+        }
+        if (typeof gtag === 'function') {
+          gtag('event', 'click_demo', {
+            event_category: 'engagement',
+            event_label: 'Live Demo CRM',
+            destination: demoLink.href
+          });
+        }
+      }
+    }, true);
   </script>
 </body>
 
