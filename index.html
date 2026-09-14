@@ -10,6 +10,15 @@
   <meta name="google-site-verification" content="A-EryTbH2u1vRzmEea4cbLf-_1AOm5fGinmEzZIhnTc" />
   <meta name="facebook-domain-verification" content="5u2fvtyk620m6e285f0yt0g1n8ne6b" />
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7BKT098RDB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-7BKT098RDB');
+  </script>
+
   <!-- Meta Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
@@ -4087,6 +4096,12 @@
       if (typeof fbq === 'function') {
         fbq('track', 'Contact', { content_name: 'Open Signup Modal' });
       }
+      if (typeof gtag === 'function') {
+        gtag('event', 'open_signup_modal', {
+          event_category: 'engagement',
+          event_label: 'Open Signup Modal'
+        });
+      }
       signupModal.classList.add('open');
       document.body.style.overflow = 'hidden';
       document.getElementById('modalFormView').style.display = 'block';
@@ -4247,6 +4262,18 @@
             });
           }
 
+          // Google Analytics 4 Event Tracking: generate_lead & sign_up
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', {
+              institution_type: institution_type,
+              brand_name: brand_name,
+              status: appData.isWaitlist ? 'waitlist' : 'registered'
+            });
+            gtag('event', 'sign_up', {
+              method: 'Closed Beta Form'
+            });
+          }
+
           document.getElementById('resBrandName').textContent = appData.brandName || brand_name;
           document.getElementById('resAdminEmail').textContent = admin_email;
 
@@ -4306,7 +4333,7 @@
       window.open(targetUrl, '_blank');
     }
 
-    // Meta Pixel: Track Demo Link Clicks (ViewContent)
+    // Analytics: Track Demo Link Clicks (Meta ViewContent & GA4 click_demo)
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('a[href*="crm.nexamos.cloud"]').forEach(link => {
         link.addEventListener('click', () => {
@@ -4314,6 +4341,13 @@
             fbq('track', 'ViewContent', {
               content_name: 'Live Demo CRM',
               content_category: 'Demo Link',
+              destination: link.href
+            });
+          }
+          if (typeof gtag === 'function') {
+            gtag('event', 'click_demo', {
+              event_category: 'engagement',
+              event_label: 'Live Demo CRM',
               destination: link.href
             });
           }
