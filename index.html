@@ -10,6 +10,24 @@
   <meta name="google-site-verification" content="A-EryTbH2u1vRzmEea4cbLf-_1AOm5fGinmEzZIhnTc" />
   <meta name="facebook-domain-verification" content="5u2fvtyk620m6e285f0yt0g1n8ne6b" />
 
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2912344269150341');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2912344269150341&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nexamos.cloud/">
@@ -4066,6 +4084,9 @@
 
     function openSignupModal() {
       if (!signupModal) return;
+      if (typeof fbq === 'function') {
+        fbq('track', 'Contact', { content_name: 'Open Signup Modal' });
+      }
       signupModal.classList.add('open');
       document.body.style.overflow = 'hidden';
       document.getElementById('modalFormView').style.display = 'block';
@@ -4213,6 +4234,19 @@
           const appData = data.data;
           lastRegisteredEmail = admin_email;
 
+          // Meta Pixel Event Tracking: Lead & CompleteRegistration
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', {
+              content_name: brand_name,
+              content_category: institution_type,
+              status: appData.isWaitlist ? 'waitlist' : 'registered'
+            });
+            fbq('track', 'CompleteRegistration', {
+              content_name: 'Closed Beta Application',
+              status: appData.isWaitlist ? 'waitlist' : 'registered'
+            });
+          }
+
           document.getElementById('resBrandName').textContent = appData.brandName || brand_name;
           document.getElementById('resAdminEmail').textContent = admin_email;
 
@@ -4271,6 +4305,21 @@
       }
       window.open(targetUrl, '_blank');
     }
+
+    // Meta Pixel: Track Demo Link Clicks (ViewContent)
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[href*="crm.nexamos.cloud"]').forEach(link => {
+        link.addEventListener('click', () => {
+          if (typeof fbq === 'function') {
+            fbq('track', 'ViewContent', {
+              content_name: 'Live Demo CRM',
+              content_category: 'Demo Link',
+              destination: link.href
+            });
+          }
+        });
+      });
+    });
   </script>
 </body>
 
