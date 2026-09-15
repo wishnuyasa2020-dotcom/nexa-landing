@@ -6,6 +6,16 @@
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/blog",
+      "destination": "https://nexamos-blog.vercel.app/"
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "https://nexamos-blog.vercel.app/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -14,6 +24,13 @@
         { "key": "X-Frame-Options", "value": "DENY" },
         { "key": "X-XSS-Protection", "value": "1; mode=block" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/blog/:path*",
+      "headers": [
+        { "key": "X-Forwarded-Host", "value": "nexamos.cloud" },
+        { "key": "X-Robots-Tag", "value": "index, follow, max-image-preview:large, max-snippet:-1" }
       ]
     }
   ]
