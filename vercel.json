@@ -24,6 +24,14 @@
       "destination": "/status.html"
     },
     {
+      "source": "/tentang-nexa",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/tentang-kami",
+      "destination": "/about.html"
+    },
+    {
       "source": "/blog",
       "destination": "https://nexamos-blog.vercel.app/"
     },

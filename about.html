@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tentang NexaMOS — CRM Berbasis Bukti untuk Pendidikan Vokasi &amp; LPK</title>
+  <meta name="description"
+    content="Mengenal filosofi, misi, dan arsitektur di balik NexaMOS: Platform CRM SaaS Event-Sourcing yang dibangun dari realitas lapangan LPK dan lembaga pendidikan vokasi di Indonesia.">
+  <link rel="canonical" href="https://nexamos.cloud/about">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nexamos.cloud/about">
+  <meta property="og:title" content="Tentang NexaMOS — CRM Berbasis Bukti untuk Pendidikan Vokasi &amp; LPK">
+  <meta property="og:description"
+    content="Mengakhiri era asumsi. Menghubungkan strategi komersial, kualifikasi objektif, dan kedaulatan database terisolasi untuk LPK Indonesia.">
+  <meta property="og:image" content="https://nexamos.cloud/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="theme-color" content="#04080F">
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #04080f;
+      --bg2: #080f1c;
+      --bg3: #0c1626;
+      --bg4: #111e33;
+      --bd: rgba(255, 255, 255, .07);
+      --bdh: rgba(255, 255, 255, .14);
+      --gr: #00d68f;
+      --grd: rgba(0, 214, 143, .12);
+      --bl: #4d9fff;
+      --bld: rgba(77, 159, 255, .12);
+      --pu: #a78bfa;
+      --pud: rgba(167, 139, 250, .12);
+      --am: #fbbf24;
+      --rd: #f87171;
+      --tx: #e2e8f0;
+      --tx2: #94a3b8;
+      --tx3: #4a5568;
+      --mw: 1100px;
+      --r: 16px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--tx);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    .w {
+      max-width: var(--mw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Ambient Glow */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: .14;
+    }
+
+    .b1 {
+      width: 650px;
+      height: 650px;
+      background: var(--gr);
+      top: -200px;
+      left: -150px;
+    }
+
+    .b2 {
+      width: 550px;
+      height: 550px;
+      background: var(--bl);
+      top: 40%;
+      right: -180px;
+    }
+
+    .b3 {
+      width: 450px;
+      height: 450px;
+      background: var(--pu);
+      bottom: 5%;
+      left: 10%;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 14px 0;
+      background: rgba(4, 8, 15, .82);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--bd);
+    }
+
+    .ni {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--mw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .lm {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .lt {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--tx);
+      letter-spacing: -0.3px;
+    }
+
+    .lt span {
+      color: var(--gr);
+    }
+
+    .nl {
+      display: flex;
+      gap: 4px;
+    }
+
+    .nl a {
+      color: var(--tx2);
+      text-decoration: none;
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all .2s;
+    }
+
+    .nl a:hover {
+      color: var(--tx);
+      background: var(--bg4);
+    }
+
+    .ne {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .25s;
+      border: none;
+      font-family: inherit;
+    }
+
+    .bp {
+      background: linear-gradient(135deg, var(--gr), #00b87a);
+      color: #04080f;
+      box-shadow: 0 0 24px rgba(0, 214, 143, .25);
+    }
+
+    .bp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(0, 214, 143, .38);
+    }
+
+    .bg {
+      background: transparent;
+      color: var(--tx2);
+      border: 1px solid var(--bdh);
+    }
+
+    .bg:hover {
+      background: var(--bg4);
+      color: var(--tx);
+    }
+
+    .hb {
+      display: none;
+      background: none;
+      border: 1px solid var(--bdh);
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      color: var(--tx2);
+      font-size: 14px;
+    }
+
+    .mm {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(4, 8, 15, .97);
+      backdrop-filter: blur(25px);
+      z-index: 1001;
+      padding: 24px;
+      flex-direction: column;
+    }
+
+    .mm.active {
+      display: flex;
+    }
+
+    .mm a {
+      color: var(--tx);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--bd);
+    }
+
+    /* Hero Section */
+    .about-hero {
+      padding: 140px 0 60px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--tx3);
+      margin-bottom: 16px;
+    }
+
+    .breadcrumb a {
+      color: var(--tx2);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--gr);
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--grd);
+      color: var(--gr);
+      border: 1px solid rgba(0, 214, 143, .25);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      color: #fff;
+      max-width: 860px;
+      margin: 0 auto 20px;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(135deg, var(--gr), #4d9fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-lead {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--tx2);
+      max-width: 760px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    /* Stats Ribbon */
+    .stats-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 70px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, rgba(17, 30, 51, 0.7), var(--bg2));
+      border: 1px solid var(--bd);
+      border-radius: var(--r);
+      padding: 24px 20px;
+      text-align: center;
+      transition: all .25s;
+    }
+
+    .stat-card:hover {
+      border-color: rgba(0, 214, 143, 0.35);
+      transform: translateY(-3px);
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-number.green {
+      color: var(--gr);
+    }
+
+    .stat-number.blue {
+      color: var(--bl);
+    }
+
+    .stat-label {
+      font-size: 12.5px;
+      color: var(--tx2);
+      line-height: 1.4;
+    }
+
+    /* Narrative Section: The Origin Story */
+    .narrative-box {
+      background: var(--bg2);
+      border: 1px solid var(--bd);
+      border-radius: 20px;
+      padding: 48px;
+      margin-bottom: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--gr);
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-size: clamp(24px, 3.5vw, 34px);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .narrative-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      color: var(--tx2);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .narrative-content p {
+      margin-bottom: 16px;
+    }
+
+    .narrative-content strong {
+      color: var(--tx);
+    }
+
+    /* Bento Grid: Core Values */
+    .bento-section {
+      margin-bottom: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .bento-card {
+      background: linear-gradient(135deg, rgba(12, 22, 38, 0.9), var(--bg2));
+      border: 1px solid var(--bd);
+      border-radius: var(--r);
+      padding: 36px;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bento-card:hover {
+      border-color: var(--bdh);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .4);
+    }
+
+    .bento-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .bento-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+      letter-spacing: -0.2px;
+    }
+
+    .bento-desc {
+      font-size: 14px;
+      color: var(--tx2);
+      line-height: 1.7;
+    }
+
+    /* Founder's Note Section */
+    .founder-section {
+      margin-bottom: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .founder-card {
+      background: linear-gradient(135deg, rgba(17, 30, 51, 0.85), var(--bg3));
+      border: 1px solid rgba(0, 214, 143, 0.25);
+      border-radius: 24px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 48px;
+      align-items: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 35px rgba(0, 214, 143, 0.08);
+    }
+
+    .founder-photo-wrap {
+      text-align: center;
+    }
+
+    .founder-img-frame {
+      width: 240px;
+      height: 240px;
+      border-radius: 20px;
+      margin: 0 auto 20px;
+      position: relative;
+      padding: 4px;
+      background: linear-gradient(135deg, var(--gr), var(--bl));
+      box-shadow: 0 10px 30px rgba(0, 214, 143, 0.25);
+    }
+
+    .founder-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      background: var(--bg4);
+    }
+
+    .founder-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+      letter-spacing: -0.2px;
+    }
+
+    .founder-role {
+      font-size: 13px;
+      color: var(--gr);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .founder-social {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--tx2);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 7px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--bd);
+      border-radius: 99px;
+      transition: all .2s;
+    }
+
+    .founder-social:hover {
+      color: #fff;
+      border-color: rgba(225, 48, 108, 0.45);
+      background: rgba(225, 48, 108, 0.12);
+    }
+
+    .founder-quote-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--am);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .founder-quote {
+      font-size: clamp(16px, 2vw, 18px);
+      font-style: italic;
+      color: var(--tx);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .founder-bio-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .founder-bio-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--tx2);
+      line-height: 1.6;
+    }
+
+    .founder-bio-points li span.icon {
+      color: var(--gr);
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .founder-mission-box {
+      background: rgba(0, 214, 143, 0.06);
+      border-left: 3px solid var(--gr);
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--tx);
+      line-height: 1.65;
+    }
+
+    .founder-mission-box strong {
+      color: var(--gr);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* Dual Engine Section */
+    .dual-engine-section {
+      background: var(--bg2);
+      border: 1px solid var(--bd);
+      border-radius: 20px;
+      padding: 48px;
+      margin-bottom: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .dual-col {
+      background: var(--bg3);
+      border: 1px solid var(--bd);
+      border-radius: 14px;
+      padding: 28px;
+    }
+
+    .dual-col.os {
+      border-top: 3px solid var(--gr);
+    }
+
+    .dual-col.mos {
+      border-top: 3px solid var(--bl);
+    }
+
+    .dual-col-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dual-col-sub {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .dual-col.os .dual-col-sub {
+      color: var(--gr);
+    }
+
+    .dual-col.mos .dual-col-sub {
+      color: var(--bl);
+    }
+
+    .dual-col-desc {
+      font-size: 13.5px;
+      color: var(--tx2);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .dual-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--tx);
+    }
+
+    .dual-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Timeline Section */
+    .timeline-section {
+      margin-bottom: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .t-card {
+      background: var(--bg2);
+      border: 1px solid var(--bd);
+      border-radius: var(--r);
+      padding: 24px;
+      position: relative;
+      transition: all .25s;
+    }
+
+    .t-card:hover {
+      border-color: rgba(0, 214, 143, 0.35);
+      transform: translateY(-3px);
+    }
+
+    .t-year {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--gr);
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .t-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+
+    .t-desc {
+      font-size: 12.5px;
+      color: var(--tx2);
+      line-height: 1.6;
+    }
+
+    /* CTA Box */
+    .about-cta-box {
+      background: linear-gradient(135deg, rgba(0, 214, 143, 0.12), rgba(77, 159, 255, 0.08));
+      border: 1px solid rgba(0, 214, 143, 0.35);
+      border-radius: 24px;
+      padding: 56px 36px;
+      text-align: center;
+      margin-bottom: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-title {
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-sub {
+      font-size: 15px;
+      color: var(--tx2);
+      max-width: 620px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--bd);
+      padding: 60px 0 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fg {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .fbrand p {
+      font-size: 13px;
+      color: var(--tx2);
+      margin: 14px 0 20px;
+      max-width: 320px;
+      line-height: 1.6;
+    }
+
+    .fcol h5 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--tx3);
+      margin-bottom: 14px;
+    }
+
+    .fcol ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .fcol a {
+      color: var(--tx2);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color .2s;
+    }
+
+    .fcol a:hover {
+      color: var(--gr);
+    }
+
+    .fbot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--bd);
+      font-size: 12px;
+      color: var(--tx3);
+    }
+
+    @media (max-width: 1024px) {
+      .stats-ribbon {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .timeline-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .founder-card {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+      }
+
+      .founder-bio-points li {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .narrative-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dual-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nl,
+      .ne {
+        display: none;
+      }
+
+      .hb {
+        display: block;
+      }
+
+      .fg {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .stats-ribbon {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .narrative-box,
+      .dual-engine-section,
+      .founder-card {
+        padding: 28px 20px;
+      }
+
+      .fg {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .fbot {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="ni">
+      <a href="/" class="logo">
+        <img src="/logo.png" alt="Nexa MOS Logo" class="lm" width="34" height="34">
+        <span class="lt">Nexa<span>MOS</span></span>
+      </a>
+      <div class="nl">
+        <a href="/#features">Fitur</a>
+        <a href="/#innovations">Inovasi</a>
+        <a href="/#how">Cara Kerja</a>
+        <a href="/#pricing">Harga</a>
+        <a href="/blog">Blog</a>
+      </div>
+      <div class="ne">
+        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg">Demo &#8599;</a>
+        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp">Masuk CRM</a>
+      </div>
+      <button class="hb" id="hb" aria-label="Menu Mobile">&#9776; Menu</button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mm" id="mm">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+      <a href="/" class="logo" onclick="toggleMenu()">
+        <img src="/logo.png" alt="Nexa MOS Logo" class="lm" width="34" height="34">
+        <span class="lt">Nexa<span>MOS</span></span>
+      </a>
+      <button type="button" onclick="toggleMenu()" aria-label="Tutup Menu"
+        style="background:none;border:1px solid var(--bdh);color:var(--tx2);font-size:18px;border-radius:8px;padding:6px 12px;cursor:pointer">&#10005;</button>
+    </div>
+    <a href="/" onclick="toggleMenu()">Beranda</a>
+    <a href="/#features" onclick="toggleMenu()">Fitur</a>
+    <a href="/#innovations" onclick="toggleMenu()">Inovasi</a>
+    <a href="/#pricing" onclick="toggleMenu()">Harga</a>
+    <a href="/blog" onclick="toggleMenu()">Blog</a>
+    <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px">
+      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg" style="justify-content:center">Demo Live &#8599;</a>
+      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp" style="justify-content:center">Masuk CRM</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="about-hero">
+    <div class="w">
+      <div class="breadcrumb">
+        <a href="/">Beranda</a>
+        <span>&rsaquo;</span>
+        <a href="/about">Perusahaan</a>
+        <span>&rsaquo;</span>
+        <span>Tentang NexaMOS</span>
+      </div>
+      <br>
+      <div class="pill-badge">&#9889; Manifesto &amp; Rekayasa Sistem</div>
+      <h1 class="hero-title">
+        Mengakhiri Era Asumsi.<br>
+        <span class="highlight">Membangun CRM Berbasis Bukti Nyata.</span>
+      </h1>
+      <p class="hero-lead">
+        NexaMOS lahir dari rasa frustrasi melihat ribuan calon siswa vokasi dan miliaran rupiah anggaran LPK lenyap di spreadsheet yang rapuh dan grup WhatsApp yang kacau. Kami membangun sistem saraf digital yang memadukan disiplin penjualan lapangan dengan ketelitian data enterprise.
+      </p>
+    </div>
+  </header>
+
+  <main class="w">
+    <!-- Stats Ribbon -->
+    <div class="stats-ribbon">
+      <div class="stat-card">
+        <div class="stat-number green">100%</div>
+        <div class="stat-label">Database Mandiri Terisolasi per-Lembaga (Zero Data Leak)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number blue">99.98%</div>
+        <div class="stat-label">Uptime SLA Infrastruktur Server Produksi</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">25+ Thn</div>
+        <div class="stat-label">Fondasi Praktik Sales &amp; Marketing Founder</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number green">Batch 1</div>
+        <div class="stat-label">Kurasi Khusus 10 Tenant Pertama di Closed Beta</div>
+      </div>
+    </div>
+
+    <!-- Narrative Section: The Origin Story -->
+    <section class="narrative-box">
+      <div class="section-eyebrow">&#128269; Kisah Asal Mula</div>
+      <h2 class="section-heading">Mengapa CRM Asing Gagal Memahami Realitas Lapangan LPK Indonesia?</h2>
+      <div class="narrative-content">
+        <div>
+          <p>
+            Di atas kertas, industri SaaS dunia dibanjiri nama-nama raksasa seperti Salesforce, HubSpot, atau Pipedrive. Namun ketika perangkat lunak tersebut dipaksakan masuk ke Lembaga Pelatihan Kerja (LPK), Lembaga Kursus dan Pelatihan (LKP), dan sekolah vokasi di Indonesia, sistem itu langsung <strong>runtuh menghadapi kenyataan lapangan</strong>.
+          </p>
+          <p>
+            CRM konvensional dibangun dengan asumsi dunia Barat: calon pembeli adalah individu otonom yang bisa langsung gesek kartu kredit dalam hitungan hari. Mereka tidak paham bahwa anak SMA/SMK yang mendaftar program magang luar negeri (Jepang, Jerman, Korea) membutuhkan <strong>siklus pendampingan 6 hingga 12 bulan</strong>.
+          </p>
+        </div>
+        <div>
+          <p>
+            Keputusan biaya belasan hingga puluhan juta rupiah tidak diputuskan sendirian oleh anak. Ada <strong>Jaring Keputusan Kolektif (B2B2C Buying Unit)</strong>: orang tua pemegang veto finansial, guru BK sekolah asal sebagai validator, dan teman sebaya sebagai pembukti sosial (*social proof*).
+          </p>
+          <p>
+            NexaMOS tidak dirancang di ruang rapat yang sejuk. Sistem ini dirumuskan dan diuji langsung melalui laboratorium operasional bersama <strong>Derma Indonesia</strong> sebagai pilot tenant—memastikan setiap fitur menjawab jerit payah CRO dan pimpinan lembaga di lapangan.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Grid: Core Values -->
+    <section class="bento-section">
+      <div style="text-align:center">
+        <div class="section-eyebrow">&#128737;&#65039; Konstitusi Kami</div>
+        <h2 class="section-heading">4 Prinsip Fondasi NexaMOS</h2>
+        <p style="color:var(--tx2);max-width:600px;margin:0 auto">Hukum absolut yang mendasari setiap baris kode dan logika bisnis di dalam platform ini.</p>
+      </div>
+
+      <div class="bento-grid">
+        <div class="bento-card">
+          <span class="bento-icon">&#9878;&#65039;</span>
+          <div class="bento-title">1. Bukti Mengalahkan Asumsi (Evidence Over Intuition)</div>
+          <div class="bento-desc">
+            CRM tradisional sering hancur karena staf menggeser status prospek hanya berdasarkan "perasaan". Di NexaMOS, status siswa terkunci mati. Status hanya bisa berpindah jika ada bukti objektif: kualifikasi FNAR (*Fit, Need, Ability, Readiness*) atau verifikasi kas sah uang muka (DP).
+          </div>
+        </div>
+
+        <div class="bento-card">
+          <span class="bento-icon">&#128451;&#65039;</span>
+          <div class="bento-title">2. Kedaulatan &amp; Database Privat Mandiri</div>
+          <div class="bento-desc">
+            Kami menolak keras konsep *shared multi-tenant pool* di mana data ribuan lembaga bercampur dalam satu tabel. Di NexaMOS, setiap lembaga memiliki skema database MySQL terpisah secara fisik/logis. Data siswa Anda tidak akan pernah bocor ke kompetitor.
+          </div>
+        </div>
+
+        <div class="bento-card">
+          <span class="bento-icon">&#128106;</span>
+          <div class="bento-title">3. Menghargai Realitas Ekosistem Keluarga (B2B2C)</div>
+          <div class="bento-desc">
+            Siswa mengetik *"Kak, saya fix mau daftar"* di WhatsApp hanyalah sebuah minat (*intent*), bukan komitmen. Status Opportunity baru sah terbuka jika CRO mencatat hasil kehadiran *Home Visit* atau konsultasi keputusan nyata yang melibatkan orang tua selaku pembayar sah.
+          </div>
+        </div>
+
+        <div class="bento-card">
+          <span class="bento-icon">&#128101;</span>
+          <div class="bento-title">4. Memberdayakan Manusia, Bukan Menggantikannya</div>
+          <div class="bento-desc">
+            Pendidikan vokasi adalah bisnis kepercayaan antar-manusia. NexaMOS tidak menggantikan CRO dengan chatbot AI kaku, melainkan menjadi *copilot preskriptif* yang memberi panduan *Next-Best-Action* harian di Task List agar tidak ada satupun prospek potensial yang terabaikan.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dual Engine Section: Nexa OS x Nexa MOS -->
+    <section class="dual-engine-section">
+      <div style="text-align:center">
+        <div class="section-eyebrow">&#9881;&#65039; Paradigma Dua Lapisan</div>
+        <h2 class="section-heading">Nexa OS &times; Nexa MOS: Harmoni Otot &amp; Otak</h2>
+        <p style="color:var(--tx2);max-width:680px;margin:0 auto">Pemisahan tegas antara sistem saraf pencatat bukti operasional dan mesin komputasi keputusan cerdas.</p>
+      </div>
+
+      <div class="dual-grid">
+        <div class="dual-col os">
+          <div class="dual-col-title">&#128736;&#65039; NEXA OS</div>
+          <div class="dual-col-sub">The Execution &amp; Evidence Layer (Otot Eksekusi)</div>
+          <div class="dual-col-desc">
+            Mencatat apa yang benar-benar terjadi di lapangan secara objektif dengan arsitektur <em>Event-Sourcing CQRS</em> tanpa manipulasi asumsi manusia.
+          </div>
+          <ul class="dual-list">
+            <li>&#10003; 1 Lembaga = 1 Basis Data Privat Terisolasi</li>
+            <li>&#10003; Penilaian Kualifikasi Fisik &amp; Administrasi FNAR</li>
+            <li>&#10003; Smart WhatsApp Routing (SW 24 Jam &amp; Fallback)</li>
+            <li>&#10003; Pemisahan Saluran B2B Sekolah vs B2C Siswa</li>
+          </ul>
+        </div>
+
+        <div class="dual-col mos">
+          <div class="dual-col-title">&#129504; NEXA MOS</div>
+          <div class="dual-col-sub">The Brain &amp; Decision Layer (Otak Keputusan)</div>
+          <div class="dual-col-desc">
+            Menganalisis tumpukan data objektif dari Nexa OS untuk menghasilkan panduan manuver bisnis bagi pimpinan LPK layaknya memiliki <em>Virtual Chief Strategy Officer</em>.
+          </div>
+          <ul class="dual-list">
+            <li>&#10003; Unscripted Objection Logs &amp; Competitor Tracker</li>
+            <li>&#10003; Omnichannel Closed-Loop (Meta CAPI &amp; Google OCT)</li>
+            <li>&#10003; Rekomendasi Reposisi Pasar &amp; Kurva Nilai Penawaran</li>
+            <li>&#10003; Unified Metrics: Biaya Nyata per Siswa Bayar Kas (True CAC)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder's Note Section -->
+    <section class="founder-section">
+      <div class="founder-card">
+        <div class="founder-photo-wrap">
+          <div class="founder-img-frame">
+            <img src="/wishnu-yasa.jpg" alt="Wishnu Yasa Akhmad - Founder &amp; Lead Architect NexaMOS" class="founder-img" width="240" height="240">
+          </div>
+          <div class="founder-name">Wishnu Yasa Akhmad</div>
+          <div class="founder-role">Founder &amp; Lead Architect</div>
+          <a href="https://instagram.com/wishnuyasa.id" target="_blank" rel="noopener noreferrer" class="founder-social">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @wishnuyasa.id
+          </a>
+        </div>
+
+        <div>
+          <div class="founder-quote-badge">&#128172; Surat Terbuka dari Pendiri</div>
+          <blockquote class="founder-quote">
+            &ldquo;Kami tidak membangun NexaMOS dari menara gading. Kami turun ke lapangan, melihat CRO lembur merekap spreadsheet hingga larut malam, dan menyaksikan ratusan calon siswa gugur hanya karena pesan WhatsApp yang terlewat. NexaMOS adalah janji kami untuk membawa martabat dan efisiensi teknologi tingkat enterprise ke dalam ekosistem pendidikan vokasi Indonesia.&rdquo;
+          </blockquote>
+
+          <ul class="founder-bio-points">
+            <li>
+              <span class="icon">&#9670;</span>
+              <span><strong>Praktisi Pemasaran &amp; Penjualan Sejak 2001 (25+ Tahun):</strong> Pengalaman lapangan lintas industri (Kesehatan, Crafting, Consumer Goods, serta Edukasi Formal &amp; Nonformal) memahami denyut psikologi konsumen Indonesia.</span>
+            </li>
+            <li>
+              <span class="icon">&#9670;</span>
+              <span><strong>Rekayasa Komputer &amp; Pemrograman Sejak 2019:</strong> Mendalami desain grafis, periklanan digital, dan arsitektur pengembangan web application berstandar modern.</span>
+            </li>
+            <li>
+              <span class="icon">&#9670;</span>
+              <span><strong>Certified Digital Marketer:</strong> Pemegang sertifikasi profesi resmi Digital Marketing dari MarkPlus Institute Tahun 2020.</span>
+            </li>
+          </ul>
+
+          <div class="founder-mission-box">
+            <strong>Misi Personal Pendiri</strong>
+            &ldquo;Teknologi seharusnya tidak membuat bisnis menjadi dingin dan kaku, melainkan membebaskan para pejuang di lapangan dari kekacauan administrasi. Misi saya adalah membangun sistem saraf yang bermartabat bagi LPK, agar setiap ikhtiar anak bangsa menjemput masa depan vokasinya dapat terkawal dengan kepastian bukti nyata.&rdquo;
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Milestone Timeline -->
+    <section class="timeline-section">
+      <div style="text-align:center">
+        <div class="section-eyebrow">&#128640; Lintasan Waktu</div>
+        <h2 class="section-heading">Perjalanan Membangun Ekosistem</h2>
+        <p style="color:var(--tx2);max-width:600px;margin:0 auto">Dari perumusan masalah di lapangan hingga rilis sistem produksi modern.</p>
+      </div>
+
+      <div class="timeline-cards">
+        <div class="t-card">
+          <span class="t-year">2024</span>
+          <div class="t-title">Problem Discovery Lapangan</div>
+          <div class="t-desc">Riset intensif mengidentifikasi kebocoran prospek dan pemborosan iklan di puluhan lembaga vokasi yang terjebak di spreadsheet manual.</div>
+        </div>
+
+        <div class="t-card">
+          <span class="t-year">2025</span>
+          <div class="t-title">Laboratorium Pilot Derma</div>
+          <div class="t-desc">Merumuskan Master Ontologi 9 Domain bersama Derma Indonesia, mengunci Framework Kualifikasi FNAR dan arsitektur Event-Sourcing.</div>
+        </div>
+
+        <div class="t-card">
+          <span class="t-year">2026</span>
+          <div class="t-title">Peluncuran Nexa OS (Fase 1)</div>
+          <div class="t-desc">Live deployment multi-tenant database privat, WhatsApp Smart Routing hibrida, Quota Safeguard Closed Beta, dan auto-billing Midtrans.</div>
+        </div>
+
+        <div class="t-card">
+          <span class="t-year">2026+</span>
+          <div class="t-title">Nexa MOS Decision Engine</div>
+          <div class="t-desc">Aktivasi kecerdasan komputasional, pelacakan atribusi Meta CAPI &amp; Google OCT, serta modul kokpit Virtual CSO pimpinan lembaga.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Box -->
+    <section class="about-cta-box">
+      <h2 class="cta-title">Siap Membawa Ekosistem LPK Anda ke Standar Baru?</h2>
+      <p class="cta-sub">
+        Kuota pendaftaran Batch 1 Closed Beta dibuka terbatas maksimal 10 lembaga terpilih guna menjamin pendampingan teknis intensif dan keandalan server privat.
+      </p>
+      <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap">
+        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp" style="padding:14px 28px;font-size:15px">
+          &#128640; Coba Demo Live &mdash; Gratis
+        </a>
+        <a href="https://wa.me/6285659024775?text=Halo%20Wishnu,%20saya%20tertarik%20konsultasi%20mengenai%20NexaMOS" target="_blank" class="btn bg" style="padding:14px 28px;font-size:15px">
+          &#128172; Diskusi Langsung via WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div class="fg">
+        <div class="fbrand">
+          <div class="logo">
+            <img src="/logo.png" alt="Nexa MOS Logo" class="lm" width="34" height="34">
+            <span class="lt">Nexa<span>MOS</span></span>
+          </div>
+          <p>Platform CRM SaaS Event-Sourcing dengan Pipeline Berbasis Bukti untuk LPK dan Lembaga Pendidikan.</p>
+        </div>
+        <div class="fcol">
+          <h5>Produk</h5>
+          <ul>
+            <li><a href="/#features">Fitur</a></li>
+            <li><a href="/#innovations">Roadmap Inovasi</a></li>
+            <li><a href="/#pricing">Harga</a></li>
+            <li><a href="/#how">Cara Kerja</a></li>
+            <li><a href="https://crm.nexamos.cloud/login" target="_blank">Demo Live</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <h5>Perusahaan</h5>
+          <ul>
+            <li><a href="/about" style="color:var(--gr);font-weight:600">Tentang Nexa</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="https://wa.me/6285659024775" target="_blank">Kontak</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="/privacy">Kebijakan Privasi</a></li>
+            <li><a href="/terms">Syarat &amp; Ketentuan</a></li>
+            <li><a href="/security">Keamanan Data</a></li>
+            <li><a href="/status">Status Sistem</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="fbot">
+        <span>&copy; 2026 Nexa MOS. All rights reserved.</span>
+        <span>Made with &#10084;&#65039; for LPK Indonesia</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hb = document.getElementById('hb');
+    const mm = document.getElementById('mm');
+    function toggleMenu() {
+      if (mm) mm.classList.toggle('active');
+    }
+    if (hb) hb.addEventListener('click', toggleMenu);
+  </script>
+</body>
+
+</html>
