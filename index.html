@@ -3814,6 +3814,46 @@
       </div>
     </div>
   </section>
+  <!-- Container Highlight Artikel Blog Dinamis -->
+  <section class="section-articles">
+    <h2>Wawasan & Riset Terbaru NexaMOS</h2>
+    <div id="blog-highlight-grid" class="articles-grid">
+      <!-- Card artikel akan masuk ke sini secara dinamis -->
+    </div>
+  </section>
+
+  <script>
+    async function loadLatestArticles() {
+      try {
+        // Ambil data artikel dari blog
+        const res = await fetch('/blog/articles.json');
+        const articles = await res.json();
+
+        // Ambil 3 artikel teratas (paling baru)
+        const latest = articles.slice(0, 3);
+        const container = document.getElementById('blog-highlight-grid');
+
+        container.innerHTML = latest.map(item => `
+          <article class="article-card">
+            <a href="${item.url}" style="text-decoration: none; color: inherit;">
+              <div class="card-meta">
+                <span class="territory-tag">${item.territory}</span>
+                <span class="type-tag">${item.articleType}</span>
+              </div>
+              <h3>${item.title}</h3>
+              <p>${item.dek || ''}</p>
+              <span class="read-more">Baca Selengkapnya →</span>
+            </a>
+          </article>
+        `).join('');
+      } catch (err) {
+        console.warn('Gagal memuat highlight artikel:', err);
+      }
+    }
+    // Panggil saat halaman dibuka
+    document.addEventListener('DOMContentLoaded', loadLatestArticles);
+  </script>
+
   <section id="cta">
     <div class="w">
       <div class="cbox fu">
