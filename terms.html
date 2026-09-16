@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syarat &amp; Ketentuan — NexaMOS CRM</title>
+  <meta name="description"
+    content="Syarat &amp; Ketentuan Layanan NexaMOS CRM untuk Lembaga Pelatihan Kerja (LPK) dan Institusi Pendidikan Vokasi. Ketentuan lisensi SaaS, SLA, dan batasan operasional.">
+  <link rel="canonical" href="https://nexamos.cloud/terms">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nexamos.cloud/terms">
+  <meta property="og:title" content="Syarat &amp; Ketentuan — NexaMOS CRM">
+  <meta property="og:description"
+    content="Ketentuan resmi penggunaan platform SaaS NexaMOS CRM untuk LPK dan Lembaga Vokasi Indonesia.">
+  <meta property="og:image" content="https://nexamos.cloud/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="theme-color" content="#04080F">
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #04080f;
+      --bg2: #080f1c;
+      --bg3: #0c1626;
+      --bg4: #111e33;
+      --bd: rgba(255, 255, 255, .07);
+      --bdh: rgba(255, 255, 255, .14);
+      --gr: #00d68f;
+      --grd: rgba(0, 214, 143, .12);
+      --bl: #4d9fff;
+      --bld: rgba(77, 159, 255, .12);
+      --pu: #a78bfa;
+      --pud: rgba(167, 139, 250, .12);
+      --am: #fbbf24;
+      --rd: #f87171;
+      --tx: #e2e8f0;
+      --tx2: #94a3b8;
+      --tx3: #4a5568;
+      --mw: 1140px;
+      --r: 14px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--tx);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    .w {
+      max-width: var(--mw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Ambient Glow */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: .14;
+    }
+
+    .b1 {
+      width: 600px;
+      height: 600px;
+      background: var(--bl);
+      top: -200px;
+      right: -150px;
+    }
+
+    .b2 {
+      width: 500px;
+      height: 500px;
+      background: var(--gr);
+      bottom: 10%;
+      left: -100px;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 14px 0;
+      background: rgba(4, 8, 15, .82);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--bd);
+    }
+
+    .ni {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--mw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .lm {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .lt {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--tx);
+      letter-spacing: -0.3px;
+    }
+
+    .lt span {
+      color: var(--gr);
+    }
+
+    .nl {
+      display: flex;
+      gap: 4px;
+    }
+
+    .nl a {
+      color: var(--tx2);
+      text-decoration: none;
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all .2s;
+    }
+
+    .nl a:hover {
+      color: var(--tx);
+      background: var(--bg4);
+    }
+
+    .ne {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .25s;
+      border: none;
+      font-family: inherit;
+    }
+
+    .bp {
+      background: linear-gradient(135deg, var(--gr), #00b87a);
+      color: #04080f;
+      box-shadow: 0 0 24px rgba(0, 214, 143, .25);
+    }
+
+    .bp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(0, 214, 143, .38);
+    }
+
+    .bg {
+      background: transparent;
+      color: var(--tx2);
+      border: 1px solid var(--bdh);
+    }
+
+    .bg:hover {
+      background: var(--bg4);
+      color: var(--tx);
+    }
+
+    .hb {
+      display: none;
+      background: none;
+      border: 1px solid var(--bdh);
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      color: var(--tx2);
+      font-size: 14px;
+    }
+
+    .mm {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(4, 8, 15, .97);
+      backdrop-filter: blur(25px);
+      z-index: 1001;
+      padding: 24px;
+      flex-direction: column;
+    }
+
+    .mm.active {
+      display: flex;
+    }
+
+    .mm a {
+      color: var(--tx);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--bd);
+    }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 140px 0 50px;
+      position: relative;
+      z-index: 1;
+      border-bottom: 1px solid var(--bd);
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--tx3);
+      margin-bottom: 16px;
+    }
+
+    .breadcrumb a {
+      color: var(--tx2);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--gr);
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bld);
+      color: var(--bl);
+      border: 1px solid rgba(77, 159, 255, .25);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+      color: var(--tx2);
+      flex-wrap: wrap;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Main Layout */
+    .doc-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+      padding: 50px 0 100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Sticky Sidebar */
+    .doc-sidebar {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      padding-right: 12px;
+    }
+
+    .doc-sidebar h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--tx3);
+      margin-bottom: 16px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .toc-list a {
+      color: var(--tx2);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: all .2s;
+      display: block;
+      border-left: 2px solid transparent;
+    }
+
+    .toc-list a:hover {
+      color: var(--tx);
+      background: var(--bg3);
+      border-left-color: var(--bl);
+    }
+
+    /* Content Area */
+    .doc-content {
+      max-width: 800px;
+    }
+
+    .doc-lead {
+      font-size: 16px;
+      color: var(--tx);
+      line-height: 1.75;
+      margin-bottom: 36px;
+      background: var(--bg2);
+      border: 1px solid var(--bd);
+      border-left: 4px solid var(--bl);
+      padding: 22px 24px;
+      border-radius: 12px;
+    }
+
+    .doc-section {
+      margin-bottom: 48px;
+      scroll-margin-top: 100px;
+    }
+
+    .doc-section h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .doc-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--tx);
+      margin: 24px 0 10px;
+    }
+
+    .doc-section p {
+      color: var(--tx2);
+      font-size: 14.5px;
+      margin-bottom: 14px;
+      line-height: 1.75;
+    }
+
+    .doc-section ul,
+    .doc-section ol {
+      margin: 12px 0 18px 24px;
+      color: var(--tx2);
+      font-size: 14.5px;
+    }
+
+    .doc-section li {
+      margin-bottom: 8px;
+      line-height: 1.7;
+    }
+
+    .doc-card {
+      background: var(--bg2);
+      border: 1px solid var(--bd);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin: 16px 0 20px;
+    }
+
+    .doc-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout-box {
+      background: rgba(77, 159, 255, .08);
+      border: 1px solid rgba(77, 159, 255, .25);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin: 20px 0;
+    }
+
+    .callout-box.amber {
+      background: rgba(251, 191, 36, .08);
+      border-color: rgba(251, 191, 36, .25);
+    }
+
+    .callout-box.red {
+      background: rgba(248, 113, 113, .08);
+      border-color: rgba(248, 113, 113, .25);
+    }
+
+    .callout-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, var(--bg3), var(--bg2));
+      border: 1px solid var(--bdh);
+      border-radius: var(--r);
+      padding: 32px;
+      margin-top: 48px;
+      text-align: center;
+    }
+
+    .contact-box h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .contact-box p {
+      color: var(--tx2);
+      font-size: 14px;
+      max-width: 500px;
+      margin: 0 auto 20px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--bd);
+      padding: 60px 0 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fg {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .fbrand p {
+      font-size: 13px;
+      color: var(--tx2);
+      margin: 14px 0 20px;
+      max-width: 320px;
+      line-height: 1.6;
+    }
+
+    .fcol h5 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--tx3);
+      margin-bottom: 14px;
+    }
+
+    .fcol ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .fcol a {
+      color: var(--tx2);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color .2s;
+    }
+
+    .fcol a:hover {
+      color: var(--gr);
+    }
+
+    .fbot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--bd);
+      font-size: 12px;
+      color: var(--tx3);
+    }
+
+    @media (max-width: 860px) {
+      .doc-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .doc-sidebar {
+        position: static;
+        max-height: none;
+        background: var(--bg2);
+        border: 1px solid var(--bd);
+        border-radius: 12px;
+        padding: 20px;
+      }
+
+      .nl,
+      .ne {
+        display: none;
+      }
+
+      .hb {
+        display: block;
+      }
+
+      .fg {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .fg {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .fbot {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="ni">
+      <a href="/" class="logo">
+        <img src="/logo.png" alt="Nexa MOS Logo" class="lm" width="34" height="34">
+        <span class="lt">Nexa<span>MOS</span></span>
+      </a>
+      <div class="nl">
+        <a href="/#features">Fitur</a>
+        <a href="/#innovations">Inovasi</a>
+        <a href="/#how">Cara Kerja</a>
+        <a href="/#pricing">Harga</a>
+        <a href="/blog">Blog</a>
+      </div>
+      <div class="ne">
+        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg">Demo &#8599;</a>
+        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp">Masuk CRM</a>
+      </div>
+      <button class="hb" id="hb" aria-label="Menu Mobile">&#9776; Menu</button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mm" id="mm">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+      <a href="/" class="logo" onclick="toggleMenu()">
+        <img src="/logo.png" alt="Nexa MOS Logo" class="lm" width="34" height="34">
+        <span class="lt">Nexa<span>MOS</span></span>
+      </a>
+      <button type="button" onclick="toggleMenu()" aria-label="Tutup Menu"
+        style="background:none;border:1px solid var(--bdh);color:var(--tx2);font-size:18px;border-radius:8px;padding:6px 12px;cursor:pointer">&#10005;</button>
+    </div>
+    <a href="/" onclick="toggleMenu()">Beranda</a>
+    <a href="/#features" onclick="toggleMenu()">Fitur</a>
+    <a href="/#innovations" onclick="toggleMenu()">Inovasi</a>
+    <a href="/#pricing" onclick="toggleMenu()">Harga</a>
+    <a href="/blog" onclick="toggleMenu()">Blog</a>
+    <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px">
+      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg" style="justify-content:center">Demo Live &#8599;</a>
+      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp" style="justify-content:center">Masuk CRM</a>
+    </div>
+  </div>
+
+  <!-- Page Hero -->
+  <header class="page-hero">
+    <div class="w">
+      <div class="breadcrumb">
+        <a href="/">Beranda</a>
+        <span>&rsaquo;</span>
+        <a href="/terms">Legal</a>
+        <span>&rsaquo;</span>
+        <span>Syarat &amp; Ketentuan</span>
+      </div>
+      <div class="pill-badge">&#9878;&#65039; Perjanjian Layanan SaaS</div>
+      <h1 class="hero-title">Syarat &amp; Ketentuan Layanan NexaMOS</h1>
+      <div class="hero-meta">
+        <span>&#128197; Terakhir Diperbarui: 16 September 2026</span>
+        <span>&bull;</span>
+        <span>&#128220; Kontrak Penggunaan Platform CRM</span>
+        <span>&bull;</span>
+        <span>&#127970; LPK &amp; Pendidikan Vokasi</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Document Body -->
+  <div class="w">
+    <div class="doc-layout">
+      <!-- Sticky Sidebar TOC -->
+      <aside class="doc-sidebar">
+        <h4>Daftar Isi</h4>
+        <ul class="toc-list">
+          <li><a href="#definisi">1. Definisi &amp; Ketentuan Umum</a></li>
+          <li><a href="#ruang-kerja">2. Akun &amp; Ruang Kerja Tenant</a></li>
+          <li><a href="#acceptable-use">3. Batasan Penggunaan &amp; Anti-Spam</a></li>
+          <li><a href="#biaya-billing">4. Biaya, Langganan &amp; Billing</a></li>
+          <li><a href="#sla-uptime">5. Tingkat Layanan (SLA) &amp; Uptime</a></li>
+          <li><a href="#kekayaan-intelektual">6. Hak Kekayaan Intelektual</a></li>
+          <li><a href="#batasan-tanggungjawab">7. Batasan Tanggung Jawab</a></li>
+          <li><a href="#pengakhiran">8. Penangguhan &amp; Pengakhiran</a></li>
+          <li><a href="#hukum-berlaku">9. Hukum yang Berlaku &amp; Sengketa</a></li>
+          <li><a href="#bantuan-kontak">10. Kontak Resmi</a></li>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="doc-content">
+        <div class="doc-lead">
+          Perjanjian ini mengatur syarat, hak, dan kewajiban antara <strong>NexaMOS</strong> (sebagai penyedia platform CRM SaaS) dengan <strong>Lembaga Pelatihan Kerja (LPK), Lembaga Kursus dan Pelatihan (LKP), dan Satuan Pendidikan Vokasi</strong> (sebagai Pelanggan/Tenant) dalam memanfaatkan ekosistem manajemen siswa dan integrasi WhatsApp.
+        </div>
+
+        <!-- Section 1 -->
+        <section id="definisi" class="doc-section">
+          <h2>1. Definisi &amp; Ketentuan Umum</h2>
+          <p>Kecuali secara tegas ditentukan lain, istilah-istilah berikut memiliki arti:</p>
+          <ul>
+            <li><strong>NexaMOS:</strong> Platform perangkat lunak sebagai layanan (SaaS) manajemen hubungan pelanggan (*Customer Relationship Management*) berbasis bukti (*Evidence-Based*) dan *Event-Sourcing*.</li>
+            <li><strong>Tenant / Pelanggan:</strong> Lembaga, organisasi, atau entitas hukum berizin resmi yang mendaftar dan berlangganan layanan NexaMOS.</li>
+            <li><strong>Pengguna Akhir:</strong> Staf, CRO (*Customer Relationship Officer*), konselor, atau administrator yang ditunjuk oleh Tenant untuk mengoperasikan CRM.</li>
+            <li><strong>Event-Sourcing:</strong> Arsitektur sistem di mana seluruh transisi status siswa, log WhatsApp, penilaian kualifikasi, dan pembayaran formulir disimpan sebagai rekaman data yang tidak dapat diubah (*immutable event*).</li>
+          </ul>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="ruang-kerja" class="doc-section">
+          <h2>2. Akun &amp; Ruang Kerja Tenant</h2>
+          <p>
+            Setiap pendaftaran lembaga akan melalui proses verifikasi dan penyediaan ruang kerja (*workspace*) privat berkecepatan tinggi:
+          </p>
+          <div class="doc-card">
+            <div class="doc-card-title">&#128272; Kewajiban Keamanan Akun</div>
+            <p>
+              Tenant bertanggung jawab penuh atas kerahasiaan kredensial login (email, kata sandi, dan token akses) milik seluruh stafnya. Segala tindakan operasional yang dilakukan melalui akun Pengguna dianggap sah sebagai instruksi dari Tenant yang bersangkutan.
+            </p>
+          </div>
+          <p>
+            Tenant wajib segera memberitahukan tim teknis NexaMOS apabila menemukan indikasi penyusupan akun atau penggunaan tidak sah pada ruang kerja CRM miliknya.
+          </p>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="acceptable-use" class="doc-section">
+          <h2>3. Batasan Penggunaan yang Bertanggung Jawab &amp; Kebijakan Anti-Spam</h2>
+          <p>
+            Platform NexaMOS dirancang untuk membina hubungan edukatif yang kredibel dengan calon siswa. Pengguna dilarang keras menyalahgunakan sistem untuk:
+          </p>
+          <ul>
+            <li><strong>Spam WhatsApp Massal:</strong> Mengirimkan pesan promosi tanpa izin (*unsolicited messages*) ke nomor kontak yang tidak pernah memberikan minat awal (*Verified Initial Interest*).</li>
+            <li><strong>Pelanggaran Meta Commerce Policy:</strong> Menggunakan integrasi WhatsApp Business API untuk mempromosikan penipuan, lowongan kerja palsu, atau produk terlarang yang melanggar ketentuan resmi Meta.</li>
+            <li><strong>Manipulasi Data Kualifikasi:</strong> Memalsukan bukti verifikasi (FNAR) untuk meloloskan calon peserta ke program magang secara ilegal.</li>
+          </ul>
+
+          <div class="callout-box red">
+            <div class="callout-title">&#9888;&#65039; Perlindungan Kualitas Nomor (Meta Quality Rating)</div>
+            <p>
+              Jika nomor WhatsApp lembaga Anda mendapatkan teguran keras atau pemblokiran dari Meta akibat laporan spam oleh penerima pesan, NexaMOS tidak bertanggung jawab atas kerugian operasional yang timbul dari nomor yang diblokir oleh pihak Meta.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="biaya-billing" class="doc-section">
+          <h2>4. Biaya, Langganan &amp; Kebijakan Billing</h2>
+          <p>
+            Layanan NexaMOS disediakan dalam beberapa paket langganan (Free Tier, Starter, Growth, hingga Enterprise) dengan rincian:
+          </p>
+          <ul>
+            <li><strong>Siklus Penagihan:</strong> Biaya langganan dibayarkan secara berkala (bulanan atau tahunan) di muka (*in-advance*) melalui transfer bank, virtual account, atau saluran pembayaran resmi yang disediakan.</li>
+            <li><strong>Pajak &amp; Biaya WhatsApp API:</strong> Biaya langganan SaaS mencakup pemakaian platform CRM. Biaya percakapan WhatsApp Business API resmi Meta (*Utility*, *Marketing*, atau *Service conversations*) ditagihkan sesuai tarif resmi Meta atau saldo BYOW lembaga.</li>
+            <li><strong>Kebijakan Pengembalian Dana (Refund):</strong> Pembayaran langganan yang telah terkonfirmasi bersifat non-refundable (tidak dapat dikembalikan), kecuali terjadi kegagalan sistem permanen dari pihak NexaMOS yang tidak dapat diselesaikan dalam batas wajar.</li>
+          </ul>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="sla-uptime" class="doc-section">
+          <h2>5. Tingkat Layanan (SLA) &amp; Uptime Sistem</h2>
+          <p>
+            NexaMOS berupaya menjaga ketersediaan infrastruktur platform dengan target ketersediaan layanan minimal <strong>99.8% setiap bulan</strong>.
+          </p>
+          <div class="doc-card">
+            <div class="doc-card-title">&#9881;&#65039; Pemeliharaan Terjadwal (Scheduled Maintenance)</div>
+            <p>
+              Pembaruan sistem berkala dilakukan pada jam beban rendah (antara pukul 23:00 hingga 04:00 WIB). Informasi pemeliharaan akan diumumkan minimal 24 jam sebelumnya melalui dasbor pengumuman atau kanal komunikasi resmi.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="kekayaan-intelektual" class="doc-section">
+          <h2>6. Hak Kekayaan Intelektual &amp; Kepemilikan Data</h2>
+          <ul>
+            <li><strong>Kepemilikan Data Pelanggan:</strong> Seluruh data calon siswa, riwayat percakapan, dokumen pendaftaran, dan data keuangan yang dimasukkan oleh Tenant adalah milik sah dan eksklusif Tenant. NexaMOS tidak memiliki klaim kepemilikan atas data tersebut.</li>
+            <li><strong>Hak Cipta Platform NexaMOS:</strong> Seluruh kode sumber, arsitektur *event-sourcing*, antarmuka pengguna (UI/UX), algoritma *smart routing*, logo, dan merek dagang NexaMOS adalah kekayaan intelektual milik NexaMOS yang dilindungi undang-undang.</li>
+          </ul>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="batasan-tanggungjawab" class="doc-section">
+          <h2>7. Batasan Tanggung Jawab &amp; Force Majeure</h2>
+          <p>
+            Sejauh diizinkan oleh hukum yang berlaku, NexaMOS tidak bertanggung jawab atas:
+          </p>
+          <ol>
+            <li>Gangguan konektivitas atau pemadaman jaringan telekomunikasi pihak ketiga (Telkom, Indosat, AWS, Render, Meta API).</li>
+            <li>Keputusan sepihak Meta dalam menonaktifkan atau membatasi batas pesan (*messaging limits*) pada nomor WhatsApp Tenant.</li>
+            <li>Kelalaian staf internal Tenant dalam menjaga kerahasiaan kata sandi atau salah input data kualifikasi siswa.</li>
+          </ol>
+        </section>
+
+        <!-- Section 8 -->
+        <section id="pengakhiran" class="doc-section">
+          <h2>8. Penangguhan &amp; Pengakhiran Akun</h2>
+          <p>
+            NexaMOS berhak menangguhkan sementara atau mengakhiri akun Tenant secara sepihak apabila:
+          </p>
+          <ul>
+            <li>Tenant terbukti menggunakan sistem untuk kegiatan melawan hukum atau penipuan ketenagakerjaan luar negeri.</li>
+            <li>Keterlambatan pembayaran tagihan langganan melebihi 14 hari kalender sejak jatuh tempo.</li>
+          </ul>
+          <p>
+            Dalam hal pengakhiran wajar (pembatalan sukarela), Tenant berhak meminta ekspor seluruh data master siswa dan riwayat pendaftaran dalam format CSV/Excel dalam jangka waktu 30 hari kalender.
+          </p>
+        </section>
+
+        <!-- Section 9 -->
+        <section id="hukum-berlaku" class="doc-section">
+          <h2>9. Hukum yang Berlaku &amp; Penyelesaian Sengketa</h2>
+          <p>
+            Syarat dan Ketentuan ini diatur dan ditafsirkan sesuai dengan <strong>Hukum Negara Kesatuan Republik Indonesia</strong>. Segala perselisihan yang timbul akan diselesaikan secara musyawarah untuk mufakat dalam waktu 30 hari kalender sebelum diajukan ke yurisdiksi Pengadilan Negeri yang berwenang.
+          </p>
+        </section>
+
+        <!-- Section 10 -->
+        <section id="bantuan-kontak" class="doc-section">
+          <h2>10. Hubungi Tim Legal NexaMOS</h2>
+          <p>
+            Untuk pertanyaan seputar klausul perjanjian lisensi, penyesuaian Service Agreement Enterprise, atau faktur pajak lembaga, silakan hubungi tim kami:
+          </p>
+
+          <div class="contact-box">
+            <h3>Konsultasi Kontrak &amp; Legalitas</h3>
+            <p>Tim perwakilan legal NexaMOS siap membantu menjawab kebutuhan formalitas lembaga pelatihan Anda.</p>
+            <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+              <a href="mailto:legal@nexamos.cloud" class="btn bg">&#9993;&#65039; legal@nexamos.cloud</a>
+              <a href="https://wa.me/6285659024775?text=Halo%20Tim%20NexaMOS,%20saya%20ingin%20tanya%20mengenai%20Syarat%20Ketentuan" target="_blank" class="btn bp">&#128172; WhatsApp Tim Legal</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div class="fg">
+        <div class="fbrand">
+          <div class="logo">
+            <img src="/logo.png" alt="Nexa MOS Logo" class="lm" width="34" height="34">
+            <span class="lt">Nexa<span>MOS</span></span>
+          </div>
+          <p>Platform CRM SaaS Event-Sourcing dengan Pipeline Berbasis Bukti untuk LPK dan Lembaga Pendidikan.</p>
+        </div>
+        <div class="fcol">
+          <h5>Produk</h5>
+          <ul>
+            <li><a href="/#features">Fitur</a></li>
+            <li><a href="/#innovations">Roadmap Inovasi</a></li>
+            <li><a href="/#pricing">Harga</a></li>
+            <li><a href="/#how">Cara Kerja</a></li>
+            <li><a href="https://crm.nexamos.cloud/login" target="_blank">Demo Live</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <h5>Perusahaan</h5>
+          <ul>
+            <li><a href="/#problem">Tentang Nexa</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="https://wa.me/6285659024775" target="_blank">Kontak</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="/privacy">Kebijakan Privasi</a></li>
+            <li><a href="/terms" style="color:var(--gr);font-weight:600">Syarat &amp; Ketentuan</a></li>
+            <li><a href="/security">Keamanan Data</a></li>
+            <li><a href="/status">Status Sistem</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="fbot">
+        <span>&copy; 2026 Nexa MOS. All rights reserved.</span>
+        <span>Made with &#10084;&#65039; for LPK Indonesia</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hb = document.getElementById('hb');
+    const mm = document.getElementById('mm');
+    function toggleMenu() {
+      if (mm) mm.classList.toggle('active');
+    }
+    if (hb) hb.addEventListener('click', toggleMenu);
+  </script>
+</body>
+
+</html>

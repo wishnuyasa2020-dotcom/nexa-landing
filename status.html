@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status Sistem &amp; Layanan — NexaMOS CRM</title>
+  <meta name="description"
+    content="Status operasional real-time platform NexaMOS CRM. Pemantauan uptime backend API, Webhook WhatsApp Meta, antrean broadcast, dan database tenant.">
+  <link rel="canonical" href="https://nexamos.cloud/status">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nexamos.cloud/status">
+  <meta property="og:title" content="Status Sistem &amp; Layanan — NexaMOS CRM">
+  <meta property="og:description"
+    content="Pantau ketersediaan real-time seluruh layanan dan infrastruktur cloud NexaMOS CRM.">
+  <meta property="og:image" content="https://nexamos.cloud/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="theme-color" content="#04080F">
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #04080f;
+      --bg2: #080f1c;
+      --bg3: #0c1626;
+      --bg4: #111e33;
+      --bd: rgba(255, 255, 255, .07);
+      --bdh: rgba(255, 255, 255, .14);
+      --gr: #00d68f;
+      --grd: rgba(0, 214, 143, .12);
+      --bl: #4d9fff;
+      --bld: rgba(77, 159, 255, .12);
+      --pu: #a78bfa;
+      --pud: rgba(167, 139, 250, .12);
+      --am: #fbbf24;
+      --rd: #f87171;
+      --tx: #e2e8f0;
+      --tx2: #94a3b8;
+      --tx3: #4a5568;
+      --mw: 1040px;
+      --r: 14px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--tx);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .w {
+      max-width: var(--mw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Ambient Glow */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: .15;
+    }
+
+    .b1 {
+      width: 600px;
+      height: 600px;
+      background: var(--gr);
+      top: -200px;
+      left: 10%;
+    }
+
+    .b2 {
+      width: 450px;
+      height: 450px;
+      background: var(--bl);
+      bottom: 5%;
+      right: 5%;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 14px 0;
+      background: rgba(4, 8, 15, .82);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--bd);
+    }
+
+    .ni {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--mw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .lm {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .lt {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--tx);
+      letter-spacing: -0.3px;
+    }
+
+    .lt span {
+      color: var(--gr);
+    }
+
+    .nl {
+      display: flex;
+      gap: 4px;
+    }
+
+    .nl a {
+      color: var(--tx2);
+      text-decoration: none;
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all .2s;
+    }
+
+    .nl a:hover {
+      color: var(--tx);
+      background: var(--bg4);
+    }
+
+    .ne {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .25s;
+      border: none;
+      font-family: inherit;
+    }
+
+    .bp {
+      background: linear-gradient(135deg, var(--gr), #00b87a);
+      color: #04080f;
+      box-shadow: 0 0 24px rgba(0, 214, 143, .25);
+    }
+
+    .bp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(0, 214, 143, .38);
+    }
+
+    .bg {
+      background: transparent;
+      color: var(--tx2);
+      border: 1px solid var(--bdh);
+    }
+
+    .bg:hover {
+      background: var(--bg4);
+      color: var(--tx);
+    }
+
+    .hb {
+      display: none;
+      background: none;
+      border: 1px solid var(--bdh);
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      color: var(--tx2);
+      font-size: 14px;
+    }
+
+    .mm {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(4, 8, 15, .97);
+      backdrop-filter: blur(25px);
+      z-index: 1001;
+      padding: 24px;
+      flex-direction: column;
+    }
+
+    .mm.active {
+      display: flex;
+    }
+
+    .mm a {
+      color: var(--tx);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--bd);
+    }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 130px 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--tx3);
+      margin-bottom: 16px;
+    }
+
+    .breadcrumb a {
+      color: var(--tx2);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--gr);
+    }
+
+    /* Overall Status Card */
+    .overall-status-card {
+      background: linear-gradient(135deg, rgba(0, 214, 143, .12), var(--bg2));
+      border: 1px solid rgba(0, 214, 143, .35);
+      border-radius: 16px;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 40px rgba(0, 214, 143, .08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .status-badge-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .pulse-indicator {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--gr);
+      position: relative;
+      box-shadow: 0 0 16px var(--gr);
+      flex-shrink: 0;
+    }
+
+    .pulse-indicator::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      background: var(--gr);
+      animation: pulseRipple 2s infinite ease-out;
+    }
+
+    @keyframes pulseRipple {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: scale(2.6);
+        opacity: 0;
+      }
+    }
+
+    .overall-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .overall-sub {
+      font-size: 13.5px;
+      color: var(--tx2);
+    }
+
+    .uptime-stat-box {
+      text-align: right;
+    }
+
+    .uptime-val {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--gr);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .uptime-lbl {
+      font-size: 12px;
+      color: var(--tx3);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* System Components List */
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .components-card {
+      background: var(--bg2);
+      border: 1px solid var(--bd);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+
+    .component-item {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--bd);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: background .2s;
+    }
+
+    .component-item:last-child {
+      border-bottom: none;
+    }
+
+    .component-item:hover {
+      background: rgba(255, 255, 255, .015);
+    }
+
+    .comp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .comp-name-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .comp-icon {
+      font-size: 18px;
+    }
+
+    .comp-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .comp-desc {
+      font-size: 12.5px;
+      color: var(--tx2);
+      margin-left: 28px;
+    }
+
+    .comp-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--grd);
+      color: var(--gr);
+      border: 1px solid rgba(0, 214, 143, .3);
+    }
+
+    .comp-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gr);
+    }
+
+    /* Uptime 90-day Visual Bar */
+    .uptime-bar-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 4px;
+    }
+
+    .uptime-bars {
+      display: flex;
+      gap: 3px;
+      height: 24px;
+      align-items: center;
+    }
+
+    .bar-day {
+      flex: 1;
+      height: 100%;
+      background: #00d68f;
+      border-radius: 2px;
+      opacity: .85;
+      transition: all .2s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .bar-day:hover {
+      opacity: 1;
+      transform: scaleY(1.15);
+      background: #34f5b2;
+    }
+
+    .uptime-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--tx3);
+    }
+
+    /* Incident Timeline */
+    .timeline-wrap {
+      background: var(--bg2);
+      border: 1px solid var(--bd);
+      border-radius: var(--r);
+      padding: 28px;
+      margin-bottom: 48px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 32px;
+      padding-bottom: 28px;
+      border-left: 2px solid var(--bdh);
+    }
+
+    .timeline-item:last-child {
+      border-left: 2px solid transparent;
+      padding-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -7px;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gr);
+      border: 2px solid var(--bg);
+    }
+
+    .timeline-date {
+      font-size: 12px;
+      color: var(--tx3);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .timeline-desc {
+      font-size: 13px;
+      color: var(--tx2);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--bd);
+      padding: 60px 0 30px;
+      position: relative;
+      z-index: 1;
+      margin-top: 60px;
+    }
+
+    .fg {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .fbrand p {
+      font-size: 13px;
+      color: var(--tx2);
+      margin: 14px 0 20px;
+      max-width: 320px;
+      line-height: 1.6;
+    }
+
+    .fcol h5 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--tx3);
+      margin-bottom: 14px;
+    }
+
+    .fcol ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .fcol a {
+      color: var(--tx2);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color .2s;
+    }
+
+    .fcol a:hover {
+      color: var(--gr);
+    }
+
+    .fbot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--bd);
+      font-size: 12px;
+      color: var(--tx3);
+    }
+
+    @media (max-width: 860px) {
+      .nl,
+      .ne {
+        display: none;
+      }
+
+      .hb {
+        display: block;
+      }
+
+      .fg {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .fg {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .fbot {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .overall-status-card {
+        padding: 22px 20px;
+      }
+
+      .uptime-stat-box {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="ni">
+      <a href="/" class="logo">
+        <img src="/logo.png" alt="Nexa MOS Logo" class="lm" width="34" height="34">
+        <span class="lt">Nexa<span>MOS</span></span>
+      </a>
+      <div class="nl">
+        <a href="/#features">Fitur</a>
+        <a href="/#innovations">Inovasi</a>
+        <a href="/#how">Cara Kerja</a>
+        <a href="/#pricing">Harga</a>
+        <a href="/blog">Blog</a>
+      </div>
+      <div class="ne">
+        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg">Demo &#8599;</a>
+        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp">Masuk CRM</a>
+      </div>
+      <button class="hb" id="hb" aria-label="Menu Mobile">&#9776; Menu</button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mm" id="mm">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+      <a href="/" class="logo" onclick="toggleMenu()">
+        <img src="/logo.png" alt="Nexa MOS Logo" class="lm" width="34" height="34">
+        <span class="lt">Nexa<span>MOS</span></span>
+      </a>
+      <button type="button" onclick="toggleMenu()" aria-label="Tutup Menu"
+        style="background:none;border:1px solid var(--bdh);color:var(--tx2);font-size:18px;border-radius:8px;padding:6px 12px;cursor:pointer">&#10005;</button>
+    </div>
+    <a href="/" onclick="toggleMenu()">Beranda</a>
+    <a href="/#features" onclick="toggleMenu()">Fitur</a>
+    <a href="/#innovations" onclick="toggleMenu()">Inovasi</a>
+    <a href="/#pricing" onclick="toggleMenu()">Harga</a>
+    <a href="/blog" onclick="toggleMenu()">Blog</a>
+    <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px">
+      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg" style="justify-content:center">Demo Live &#8599;</a>
+      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp" style="justify-content:center">Masuk CRM</a>
+    </div>
+  </div>
+
+  <!-- Page Hero -->
+  <header class="page-hero">
+    <div class="w">
+      <div class="breadcrumb">
+        <a href="/">Beranda</a>
+        <span>&rsaquo;</span>
+        <a href="/status">Legal</a>
+        <span>&rsaquo;</span>
+        <span>Status Sistem</span>
+      </div>
+
+      <!-- Overall Status Card -->
+      <div class="overall-status-card">
+        <div class="status-badge-wrap">
+          <div class="pulse-indicator"></div>
+          <div>
+            <h1 class="overall-title">Semua Sistem Beroperasi Normal</h1>
+            <p class="overall-sub">&#9889; Seluruh layanan NexaMOS berjalan optimal tanpa gangguan terdeteksi.</p>
+          </div>
+        </div>
+        <div class="uptime-stat-box">
+          <div class="uptime-val">99.98%</div>
+          <div class="uptime-lbl">Uptime 90 Hari Terakhir</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="w">
+    <!-- Components Status -->
+    <div class="section-title">&#128225; Layanan &amp; Infrastruktur Inti</div>
+    <div class="components-card">
+      <!-- Item 1 -->
+      <div class="component-item">
+        <div class="comp-header">
+          <div class="comp-name-box">
+            <span class="comp-icon">&#127760;</span>
+            <span class="comp-name">Aplikasi Web CRM (Frontend Dashboard)</span>
+          </div>
+          <span class="comp-status-pill">
+            <span class="comp-status-dot"></span> Operasional
+          </span>
+        </div>
+        <div class="comp-desc">Portal resmi dashboard CRM (crm.nexamos.cloud) &amp; antarmuka CRO.</div>
+        <div class="uptime-bar-wrap">
+          <div class="uptime-bars" id="bars1"></div>
+          <div class="uptime-legend">
+            <span>90 hari lalu</span>
+            <span>99.99% Uptime</span>
+            <span>Hari ini</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="component-item">
+        <div class="comp-header">
+          <div class="comp-name-box">
+            <span class="comp-icon">&#9889;</span>
+            <span class="comp-name">Core Backend API Server (nexa-os)</span>
+          </div>
+          <span class="comp-status-pill">
+            <span class="comp-status-dot"></span> Operasional
+          </span>
+        </div>
+        <div class="comp-desc">RESTful API engine, autentikasi sesi JWT, dan sinkronisasi data operasional.</div>
+        <div class="uptime-bar-wrap">
+          <div class="uptime-bars" id="bars2"></div>
+          <div class="uptime-legend">
+            <span>90 hari lalu</span>
+            <span>99.96% Uptime</span>
+            <span>Hari ini</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="component-item">
+        <div class="comp-header">
+          <div class="comp-name-box">
+            <span class="comp-icon">&#128172;</span>
+            <span class="comp-name">WhatsApp Cloud API &amp; Webhook Ingestion</span>
+          </div>
+          <span class="comp-status-pill">
+            <span class="comp-status-dot"></span> Operasional
+          </span>
+        </div>
+        <div class="comp-desc">Penerima webhook dua-jalur hibrida (BYOW &amp; Global Meta API) &amp; smart interactive fallback.</div>
+        <div class="uptime-bar-wrap">
+          <div class="uptime-bars" id="bars3"></div>
+          <div class="uptime-legend">
+            <span>90 hari lalu</span>
+            <span>99.98% Uptime</span>
+            <span>Hari ini</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="component-item">
+        <div class="comp-header">
+          <div class="comp-name-box">
+            <span class="comp-icon">&#128451;&#65039;</span>
+            <span class="comp-name">Dedicated Isolated Tenant Databases</span>
+          </div>
+          <span class="comp-status-pill">
+            <span class="comp-status-dot"></span> Operasional
+          </span>
+        </div>
+        <div class="comp-desc">Kluster basis data MySQL terisolasi per-lembaga dengan koneksi dinamis berkecepatan tinggi.</div>
+        <div class="uptime-bar-wrap">
+          <div class="uptime-bars" id="bars4"></div>
+          <div class="uptime-legend">
+            <span>90 hari lalu</span>
+            <span>100% Uptime</span>
+            <span>Hari ini</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="component-item">
+        <div class="comp-header">
+          <div class="comp-name-box">
+            <span class="comp-icon">&#128220;</span>
+            <span class="comp-name">Event-Sourcing Engine &amp; Projection Sync</span>
+          </div>
+          <span class="comp-status-pill">
+            <span class="comp-status-dot"></span> Operasional
+          </span>
+        </div>
+        <div class="comp-desc">Pencatatan immutable events_log dan sinkronisasi read-model student_current_state.</div>
+        <div class="uptime-bar-wrap">
+          <div class="uptime-bars" id="bars5"></div>
+          <div class="uptime-legend">
+            <span>90 hari lalu</span>
+            <span>99.99% Uptime</span>
+            <span>Hari ini</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="component-item">
+        <div class="comp-header">
+          <div class="comp-name-box">
+            <span class="comp-icon">&#128179;</span>
+            <span class="comp-name">Payment Gateway &amp; Token Verifikasi Formulir</span>
+          </div>
+          <span class="comp-status-pill">
+            <span class="comp-status-dot"></span> Operasional
+          </span>
+        </div>
+        <div class="comp-desc">Verifikasi otomatis bukti transfer registrasi pendaftaran daring dan webhook keuangan.</div>
+        <div class="uptime-bar-wrap">
+          <div class="uptime-bars" id="bars6"></div>
+          <div class="uptime-legend">
+            <span>90 hari lalu</span>
+            <span>100% Uptime</span>
+            <span>Hari ini</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maintenance & Incident History -->
+    <div class="section-title">&#128197; Riwayat Pemeliharaan &amp; Rilis Sistem</div>
+    <div class="timeline-wrap">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">14 September 2026 &bull; Selesai</div>
+        <div class="timeline-title">Pembaruan Modul Verifikasi Pembayaran &amp; Ingestion Bukti Transfer Meta Webhook</div>
+        <div class="timeline-desc">Peningkatan kapabilitas penerimaan bukti bayar via WhatsApp otomatis dan sinkronisasi status ke Registered Opportunity. Tidak ada downtime operasional.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">8 September 2026 &bull; Selesai</div>
+        <div class="timeline-title">Optimasi Indeks Basis Data &amp; Dynamic Tenant Connection Pool</div>
+        <div class="timeline-desc">Peningkatan kecepatan respons query pencarian siswa dan live chat hingga 45%. Pemeliharaan berjalan sukses selama jam sepi (02:00 WIB).</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">1 September 2026 &bull; Selesai</div>
+        <div class="timeline-title">Audit Keamanan Triwulan &amp; Pembaruan Sertifikat SSL/TLS</div>
+        <div class="timeline-desc">Pembaruan sertifikat keamanan HTTPS dan audit kepatuhan enkripsi data istirahat (encryption at rest).</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div class="fg">
+        <div class="fbrand">
+          <div class="logo">
+            <img src="/logo.png" alt="Nexa MOS Logo" class="lm" width="34" height="34">
+            <span class="lt">Nexa<span>MOS</span></span>
+          </div>
+          <p>Platform CRM SaaS Event-Sourcing dengan Pipeline Berbasis Bukti untuk LPK dan Lembaga Pendidikan.</p>
+        </div>
+        <div class="fcol">
+          <h5>Produk</h5>
+          <ul>
+            <li><a href="/#features">Fitur</a></li>
+            <li><a href="/#innovations">Roadmap Inovasi</a></li>
+            <li><a href="/#pricing">Harga</a></li>
+            <li><a href="/#how">Cara Kerja</a></li>
+            <li><a href="https://crm.nexamos.cloud/login" target="_blank">Demo Live</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <h5>Perusahaan</h5>
+          <ul>
+            <li><a href="/#problem">Tentang Nexa</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="https://wa.me/6285659024775" target="_blank">Kontak</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="/privacy">Kebijakan Privasi</a></li>
+            <li><a href="/terms">Syarat &amp; Ketentuan</a></li>
+            <li><a href="/security">Keamanan Data</a></li>
+            <li><a href="/status" style="color:var(--gr);font-weight:600">Status Sistem</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="fbot">
+        <span>&copy; 2026 Nexa MOS. All rights reserved.</span>
+        <span>Made with &#10084;&#65039; for LPK Indonesia</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hb = document.getElementById('hb');
+    const mm = document.getElementById('mm');
+    function toggleMenu() {
+      if (mm) mm.classList.toggle('active');
+    }
+    if (hb) hb.addEventListener('click', toggleMenu);
+
+    // Generate 90-day interactive green status bars
+    const barIds = ['bars1', 'bars2', 'bars3', 'bars4', 'bars5', 'bars6'];
+    barIds.forEach(id => {
+      const container = document.getElementById(id);
+      if (!container) return;
+      for (let i = 0; i < 45; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'bar-day';
+        bar.title = `${45 - i} hari lalu: 100% Operasional`;
+        container.appendChild(bar);
+      }
+    });
+  </script>
+</body>
+
+</html>

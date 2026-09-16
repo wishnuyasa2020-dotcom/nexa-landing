@@ -8,6 +8,22 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/kebijakan-privasi",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/syarat-ketentuan",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/keamanan-data",
+      "destination": "/security.html"
+    },
+    {
+      "source": "/status-sistem",
+      "destination": "/status.html"
+    },
+    {
       "source": "/blog",
       "destination": "https://nexamos-blog.vercel.app/"
     },
