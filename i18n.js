@@ -7,8 +7,14 @@ const I18N_DATA = {
   id: {
     // Meta & Document
     page_title: "NexaMOS - CRM Berbasis Bukti untuk LPK, Lembaga Pendidikan & Bisnis Multi-Sektor",
+    title_status: "Status Sistem & Layanan — NexaMOS CRM",
+    title_security: "Keamanan & Kedaulatan Data — NexaMOS CRM",
+    title_terms: "Syarat & Ketentuan Layanan — NexaMOS CRM",
+    title_privacy: "Kebijakan Privasi — NexaMOS CRM",
+    title_about: "Tentang NexaMOS — CRM Berbasis Bukti untuk Pendidikan Vokasi & Bisnis Multi-Sektor",
     
     // Navigation
+    nav_home: "Beranda",
     nav_features: "Fitur",
     nav_innovations: "Inovasi",
     nav_how: "Cara Kerja",
@@ -16,9 +22,67 @@ const I18N_DATA = {
     nav_proof: "Testimoni",
     nav_blog: "Blog",
     nav_demo_btn: "Demo &#8599;",
+    nav_login_crm: "Masuk CRM",
     nav_start_btn: "Mulai Gratis",
     nav_menu_btn: "&#9776; Menu",
     nav_demo_live: "Demo Live &#8599;",
+    nav_lang_label: "Bahasa / Language:",
+
+    // Breadcrumbs
+    bc_home: "Beranda",
+    bc_legal: "Legal",
+    bc_company: "Perusahaan",
+    bc_status: "Status Sistem",
+    bc_security: "Keamanan Data",
+    bc_terms: "Syarat &amp; Ketentuan",
+    bc_privacy: "Kebijakan Privasi",
+    bc_about: "Tentang NexaMOS",
+
+    // Subpages: Status
+    status_card_title: "Semua Sistem Beroperasi Normal",
+    status_card_sub: "&#9889; Seluruh layanan NexaMOS berjalan optimal tanpa gangguan terdeteksi.",
+    status_uptime_lbl: "Uptime 90 Hari Terakhir",
+    status_section_title: "&#128225; Layanan &amp; Infrastruktur Inti",
+    status_comp_web: "Aplikasi Web CRM (Frontend Dashboard)",
+    status_comp_web_desc: "Portal resmi dashboard CRM (crm.nexamos.cloud) &amp; antarmuka CRO.",
+    status_comp_api: "Core Backend API Server (nexa-os)",
+    status_comp_api_desc: "RESTful API engine, autentikasi sesi JWT, dan sinkronisasi data operasional.",
+    status_comp_wa: "WhatsApp Cloud API &amp; Webhook (Meta)",
+    status_comp_wa_desc: "Gateway integrasi WhatsApp Business API resmi Meta, penerimaan pesan inbound &amp; webhook dispatch.",
+    status_comp_queue: "Redis Queue &amp; Broadcast Worker",
+    status_comp_queue_desc: "Penyalur antrean pesan massal terjadwal, auto nurturing, dan cron jobs otomatis.",
+    status_comp_db: "Dedicated MySQL Database Cluster",
+    status_comp_db_desc: "Penyimpanan database relasional multi-tenant terisolasi per lembaga (zero-leak architecture).",
+    status_comp_cdn: "Storage &amp; CDN Assets",
+    status_comp_cdn_desc: "CDN pengiriman aset statis, dokumen bukti pendaftaran, bukti transfer, dan media WhatsApp.",
+    status_pill_operational: "Operasional",
+    status_legend_90d: "90 hari lalu",
+    status_legend_today: "Hari ini",
+    status_history_title: "&#128340; Riwayat Insiden &amp; Pemeliharaan Terakhir",
+
+    // Subpages: Security
+    sec_badge: "&#128737;&#65039; Keamanan Enterprise &amp; Kepatuhan",
+    sec_hero_title: "Keamanan Data &amp; Arsitektur NexaMOS",
+    sec_meta_1: "&#128197; Standar Keamanan Aktif 2026",
+    sec_meta_2: "&#128274; Enkripsi End-to-End TLS 1.3 &amp; AES-256",
+    sec_meta_3: "&#128451;&#65039; Zero Shared Data Pool",
+
+    // Subpages: Terms
+    terms_badge: "&#9878;&#65039; Perjanjian Layanan SaaS",
+    terms_hero_title: "Syarat &amp; Ketentuan Layanan NexaMOS",
+    terms_meta_1: "&#128197; Terakhir Diperbarui: 16 September 2026",
+    terms_meta_2: "&#128220; Kontrak Penggunaan Platform CRM",
+
+    // Subpages: Privacy
+    priv_badge: "&#128274; Pelindungan Data Pribadi",
+    priv_hero_title: "Kebijakan Privasi NexaMOS",
+    priv_meta_1: "&#128197; Terakhir Diperbarui: 16 September 2026",
+    priv_meta_2: "&#9878;&#65039; Kepatuhan UU No. 27 Tahun 2022 (UU PDP)",
+
+    // Subpages: About
+    about_badge: "&#9889; Manifesto &amp; Rekayasa Sistem",
+    about_hero_title: "Mengakhiri Era Asumsi.<br><span class=\"highlight\">Membangun CRM Berbasis Bukti Nyata.</span>",
+    about_hero_lead: "NexaMOS lahir dari rasa frustrasi melihat ribuan calon siswa vokasi dan miliaran rupiah anggaran LPK lenyap di spreadsheet yang rapuh dan grup WhatsApp yang kacau. Kami membangun sistem saraf digital yang memadukan disiplin penjualan lapangan dengan ketelitian data enterprise.",
 
     // Hero Section
     hero_tag: "&#128994; Live &middot; Battle-Tested di Lapangan &middot; Siap Multi-Sektor",
@@ -211,6 +275,46 @@ const I18N_DATA = {
     price_cta_biz: "Pilih Business",
     price_cta_ent: "Konsultasi Enterprise &rarr;",
 
+    // Pricing Feature Lists - Free
+    price_free_f1: "300 kontak prospek baru/3 bulan (100/bln)",
+    price_free_f2: "10 sekolah / mitra B2B/3 bulan",
+    price_free_f3: "4 User Team (1 Adm, 1 Mgr, 1 Chief, 1 CRO)",
+    price_free_f4: "Live Chat WA + Task List",
+    price_free_f5: "Dashboard Metrik &amp; Kualifikasi FNAR",
+    price_free_f6: "Auto Nurturing &amp; Broadcast",
+    price_free_f7: "BYOW WhatsApp API",
+    price_free_f8: "Dedicated Database",
+
+    // Pricing Feature Lists - Pro
+    price_pro_f1: "1.000 kontak/siswa aktif per bulan (12.000/thn)",
+    price_pro_f2: "20 sekolah / mitra B2B per bulan (240/thn)",
+    price_pro_f3: "5 User Team (1 Adm, 1 Mgr, 1 Chief, 2 CRO)",
+    price_pro_f4: "Live Chat + Shared Team Inbox",
+    price_pro_f5: "Auto Nurturing + Snooze Campaign",
+    price_pro_f6: "Broadcast WhatsApp + Template Dinamis",
+    price_pro_f7: "BYOW (App Meta &amp; No WA Sendiri)",
+    price_pro_f8: "Add-on Seat CRO Rp 100rb/bln",
+
+    // Pricing Feature Lists - Business
+    price_biz_f1: "2.500 kontak/siswa aktif per bulan (30.000/thn)",
+    price_biz_f2: "41 sekolah / mitra B2B per bulan (500/thn)",
+    price_biz_f3: "15 User Team (1 Adm, 1 Mgr, 3 Chief, 10 CRO)",
+    price_biz_f4: "Semua fitur Pro",
+    price_biz_f5: "Manajemen Multi-Periode &amp; Form Publik",
+    price_biz_f6: "Smart WA Routing (Gratis SW Terbuka)",
+    price_biz_f7: "Priority Support Teknis",
+    price_biz_f8: "Add-on Seat CRO Rp 100rb/bln",
+
+    // Pricing Feature Lists - Enterprise
+    price_ent_f1: "8.333 kontak/siswa aktif per bulan (100.000/thn)",
+    price_ent_f2: "166 sekolah / mitra B2B per bulan (2.000/thn)",
+    price_ent_f3: "39 User Team (1 Adm, 3 Mgr, 5 Chief, 30 CRO)",
+    price_ent_f4: "Semua fitur Business",
+    price_ent_f5: "Tersedia Opsi White Label 100%",
+    price_ent_f6: "Dedicated DB Cluster Privat",
+    price_ent_f7: "SLA Guarantee 99.9% &amp; Assisted Onboarding",
+    price_ent_f8: "Perjanjian Kontrak Kerjasama B2B Resmi",
+
     // Testimonials / Proof
     proof_label: "Hasil Nyata",
     proof_title: "Bukan Klaim &mdash; Ini Bukti dari Lapangan",
@@ -244,15 +348,21 @@ const I18N_DATA = {
     // Footer
     footer_desc: "Platform CRM berbasis Event-Sourcing dengan validasi bukti nyata &mdash; dirancang untuk LPK, Lembaga Vokasi, dan Bisnis Multi-Sektor di Indonesia. Setiap status pipeline harus punya buktinya.",
     footer_col_product: "Produk",
+    footer_features: "Fitur Unggulan",
+    footer_innovations: "Roadmap Inovasi",
+    footer_pricing: "Harga",
+    footer_how: "Cara Kerja",
+    footer_demo: "Demo Live",
     footer_col_company: "Perusahaan",
-    footer_col_legal: "Legal",
     footer_about: "Tentang Nexa",
+    footer_blog: "Blog",
     footer_careers: "Karir",
     footer_contact: "Kontak",
+    footer_col_legal: "Legal",
     footer_privacy: "Kebijakan Privasi",
     footer_terms: "Syarat &amp; Ketentuan",
     footer_security: "Keamanan Data",
-    footer_status: "Status",
+    footer_status: "Status Sistem",
     footer_copy: "&copy; 2026 NexaMOS. All rights reserved.",
     footer_made_with: "Made with &#10084;&#65039; for LPK, Lembaga &amp; Bisnis Indonesia",
 
@@ -335,8 +445,14 @@ const I18N_DATA = {
   en: {
     // Meta & Document
     page_title: "NexaMOS - Evidence-Based CRM for Academies, Vocational & Multi-Sector Businesses",
+    title_status: "System & Service Status — NexaMOS CRM",
+    title_security: "Data Security & Architecture — NexaMOS CRM",
+    title_terms: "Terms of Service — NexaMOS CRM",
+    title_privacy: "Privacy Policy — NexaMOS CRM",
+    title_about: "About NexaMOS — Evidence-Based CRM for Vocational Academies & Multi-Sector Businesses",
 
     // Navigation
+    nav_home: "Home",
     nav_features: "Features",
     nav_innovations: "Innovations",
     nav_how: "How It Works",
@@ -344,9 +460,67 @@ const I18N_DATA = {
     nav_proof: "Testimonials",
     nav_blog: "Blog",
     nav_demo_btn: "Demo &#8599;",
+    nav_login_crm: "CRM Login",
     nav_start_btn: "Start Free",
     nav_menu_btn: "&#9776; Menu",
     nav_demo_live: "Live Demo &#8599;",
+    nav_lang_label: "Language / Bahasa:",
+
+    // Breadcrumbs
+    bc_home: "Home",
+    bc_legal: "Legal",
+    bc_company: "Company",
+    bc_status: "System Status",
+    bc_security: "Data Security",
+    bc_terms: "Terms &amp; Conditions",
+    bc_privacy: "Privacy Policy",
+    bc_about: "About NexaMOS",
+
+    // Subpages: Status
+    status_card_title: "All Systems Operational",
+    status_card_sub: "&#9889; All NexaMOS services are operating optimally with no disruptions detected.",
+    status_uptime_lbl: "90-Day Uptime",
+    status_section_title: "&#128225; Core Services &amp; Infrastructure",
+    status_comp_web: "Web CRM Application (Frontend Dashboard)",
+    status_comp_web_desc: "Official CRM dashboard portal (crm.nexamos.cloud) &amp; CRO interface.",
+    status_comp_api: "Core Backend API Server (nexa-os)",
+    status_comp_api_desc: "RESTful API engine, JWT session authentication, and operational data sync.",
+    status_comp_wa: "WhatsApp Cloud API &amp; Webhook (Meta)",
+    status_comp_wa_desc: "Official Meta WhatsApp Business API integration gateway, inbound messages &amp; webhook dispatch.",
+    status_comp_queue: "Redis Queue &amp; Broadcast Worker",
+    status_comp_queue_desc: "Scheduled bulk broadcast queue dispatcher, auto nurturing, and automated cron jobs.",
+    status_comp_db: "Dedicated MySQL Database Cluster",
+    status_comp_db_desc: "Isolated multi-tenant relational database storage per institution (zero-leak architecture).",
+    status_comp_cdn: "Storage &amp; CDN Assets",
+    status_comp_cdn_desc: "CDN delivery for static assets, registration evidence documents, payment receipts, and WhatsApp media.",
+    status_pill_operational: "Operational",
+    status_legend_90d: "90 days ago",
+    status_legend_today: "Today",
+    status_history_title: "&#128340; Incident &amp; Recent Maintenance History",
+
+    // Subpages: Security
+    sec_badge: "&#128737;&#65039; Enterprise Security &amp; Compliance",
+    sec_hero_title: "Data Security &amp; NexaMOS Architecture",
+    sec_meta_1: "&#128197; Active Security Standard 2026",
+    sec_meta_2: "&#128274; End-to-End Encryption TLS 1.3 &amp; AES-256",
+    sec_meta_3: "&#128451;&#65039; Zero Shared Data Pool",
+
+    // Subpages: Terms
+    terms_badge: "&#9878;&#65039; SaaS Service Agreement",
+    terms_hero_title: "NexaMOS Terms of Service",
+    terms_meta_1: "&#128197; Last Updated: September 16, 2026",
+    terms_meta_2: "&#128220; CRM Platform Usage Agreement",
+
+    // Subpages: Privacy
+    priv_badge: "&#128274; Personal Data Protection",
+    priv_hero_title: "NexaMOS Privacy Policy",
+    priv_meta_1: "&#128197; Last Updated: September 16, 2026",
+    priv_meta_2: "&#9878;&#65039; Compliance with Personal Data Protection Law (UU PDP)",
+
+    // Subpages: About
+    about_badge: "&#9889; Manifesto &amp; System Engineering",
+    about_hero_title: "Ending the Era of Assumptions.<br><span class=\"highlight\">Building Real Evidence-Based CRM.</span>",
+    about_hero_lead: "NexaMOS was born out of frustration seeing thousands of prospective vocational students and billions in academy budgets disappear into fragile spreadsheets and chaotic WhatsApp groups. We engineered a digital nervous system marrying frontline sales discipline with enterprise data precision.",
 
     // Hero Section
     hero_tag: "&#128994; Live &middot; Battle-Tested in Operations &middot; Multi-Sector Ready",
@@ -539,6 +713,46 @@ const I18N_DATA = {
     price_cta_biz: "Choose Business",
     price_cta_ent: "Enterprise Consultation &rarr;",
 
+    // Pricing Feature Lists - Free
+    price_free_f1: "300 new prospect contacts/3 months (100/mo)",
+    price_free_f2: "10 schools / B2B partners/3 months",
+    price_free_f3: "4 Team Users (1 Admin, 1 Mgr, 1 Chief, 1 CRO)",
+    price_free_f4: "WhatsApp Live Chat + Task List",
+    price_free_f5: "Metrics Dashboard &amp; FNAR Qualification",
+    price_free_f6: "Auto Nurturing &amp; Broadcast",
+    price_free_f7: "BYOW WhatsApp API",
+    price_free_f8: "Dedicated Database",
+
+    // Pricing Feature Lists - Pro
+    price_pro_f1: "1,000 active contacts/students per month (12,000/yr)",
+    price_pro_f2: "20 schools / B2B partners per month (240/yr)",
+    price_pro_f3: "5 Team Users (1 Admin, 1 Mgr, 1 Chief, 2 CRO)",
+    price_pro_f4: "Live Chat + Shared Team Inbox",
+    price_pro_f5: "Auto Nurturing + Snooze Campaign",
+    price_pro_f6: "WhatsApp Broadcast + Dynamic Templates",
+    price_pro_f7: "BYOW (Bring Your Own Meta App &amp; WA Phone)",
+    price_pro_f8: "Add-on CRO Seat Rp 100k/mo (~$6.5/mo)",
+
+    // Pricing Feature Lists - Business
+    price_biz_f1: "2,500 active contacts/students per month (30,000/yr)",
+    price_biz_f2: "41 schools / B2B partners per month (500/yr)",
+    price_biz_f3: "15 Team Users (1 Admin, 1 Mgr, 3 Chief, 10 CRO)",
+    price_biz_f4: "All Pro Plan Features Included",
+    price_biz_f5: "Multi-Period Intake &amp; Public Forms",
+    price_biz_f6: "Smart WhatsApp Routing (Free Open SW Messages)",
+    price_biz_f7: "Priority Technical Support",
+    price_biz_f8: "Add-on CRO Seat Rp 100k/mo (~$6.5/mo)",
+
+    // Pricing Feature Lists - Enterprise
+    price_ent_f1: "8,333 active contacts/students per month (100,000/yr)",
+    price_ent_f2: "166 schools / B2B partners per month (2,000/yr)",
+    price_ent_f3: "39 Team Users (1 Admin, 3 Mgr, 5 Chief, 30 CRO)",
+    price_ent_f4: "All Business Plan Features Included",
+    price_ent_f5: "100% White Label Custom Branding Available",
+    price_ent_f6: "Private Dedicated DB Cluster",
+    price_ent_f7: "99.9% SLA Guarantee &amp; Dedicated Onboarding Assistance",
+    price_ent_f8: "Formal Enterprise B2B Partnership Agreement",
+
     // Testimonials / Proof
     proof_label: "Real Results",
     proof_title: "Not Empty Claims &mdash; Verified Field Evidence",
@@ -572,11 +786,17 @@ const I18N_DATA = {
     // Footer
     footer_desc: "Event-sourced CRM platform with verifiable evidence gates &mdash; engineered for Academies, Vocational Schools, and Multi-Sector Enterprises in Indonesia. Every pipeline transition demands hard proof.",
     footer_col_product: "Product",
+    footer_features: "Core Features",
+    footer_innovations: "Innovation Roadmap",
+    footer_pricing: "Pricing",
+    footer_how: "How It Works",
+    footer_demo: "Live Demo",
     footer_col_company: "Company",
-    footer_col_legal: "Legal",
     footer_about: "About Nexa",
+    footer_blog: "Blog",
     footer_careers: "Careers",
     footer_contact: "Contact",
+    footer_col_legal: "Legal",
     footer_privacy: "Privacy Policy",
     footer_terms: "Terms of Service",
     footer_security: "Data Security",
@@ -733,8 +953,22 @@ function setLanguage(lang) {
   }
 
   document.documentElement.lang = lang;
-  if (I18N_DATA[lang] && I18N_DATA[lang].page_title) {
-    document.title = I18N_DATA[lang].page_title;
+  try {
+    const path = (window.location && window.location.pathname) ? window.location.pathname.toLowerCase() : '';
+    let titleKey = 'page_title';
+    if (path.includes('status')) titleKey = 'title_status';
+    else if (path.includes('security')) titleKey = 'title_security';
+    else if (path.includes('terms')) titleKey = 'title_terms';
+    else if (path.includes('privacy')) titleKey = 'title_privacy';
+    else if (path.includes('about')) titleKey = 'title_about';
+
+    if (I18N_DATA[lang] && I18N_DATA[lang][titleKey]) {
+      document.title = I18N_DATA[lang][titleKey];
+    }
+  } catch (e) {
+    if (I18N_DATA[lang] && I18N_DATA[lang].page_title) {
+      document.title = I18N_DATA[lang].page_title;
+    }
   }
 
   // Update text content with [data-i18n]

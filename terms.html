@@ -17,6 +17,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="robots" content="index, follow">
 
+  <!-- Internationalization (i18n) Engine -->
+  <script src="/i18n.js"></script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
@@ -213,8 +216,76 @@
       color: var(--tx);
     }
 
-    .hb {
+    /* Language Switcher Styling */
+    .lang-switch-wrap {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(14, 23, 38, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 3px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      gap: 2px;
+      user-select: none;
+    }
+
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 16px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--tx2);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      line-height: 1;
+    }
+
+    .lang-btn:hover {
+      color: var(--tx);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .lang-btn.active {
+      background: rgba(0, 214, 143, 0.15);
+      border-color: rgba(0, 214, 143, 0.4);
+      color: var(--gr);
+      box-shadow: 0 0 12px rgba(0, 214, 143, 0.25);
+    }
+
+    .lang-btn .lang-flag {
+      font-size: 13px;
+      line-height: 1;
+    }
+
+    .nav-mob-actions {
       display: none;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mm-lang-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--bd);
+      margin-bottom: 8px;
+    }
+
+    .mm-lang-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--tx2);
+    }
+
+    .hb {
       background: none;
       border: 1px solid var(--bdh);
       border-radius: 8px;
@@ -580,6 +651,10 @@
         display: none;
       }
 
+      .nav-mob-actions {
+        display: inline-flex;
+      }
+
       .hb {
         display: block;
       }
@@ -616,17 +691,37 @@
         <span class="lt">Nexa<span>MOS</span></span>
       </a>
       <div class="nl">
-        <a href="/#features">Fitur</a>
-        <a href="/#innovations">Inovasi</a>
-        <a href="/#how">Cara Kerja</a>
-        <a href="/#pricing">Harga</a>
-        <a href="/blog">Blog</a>
+        <a href="/#features" data-i18n="nav_features">Fitur</a>
+        <a href="/#innovations" data-i18n="nav_innovations">Inovasi</a>
+        <a href="/#how" data-i18n="nav_how">Cara Kerja</a>
+        <a href="/#pricing" data-i18n="nav_pricing">Harga</a>
+        <a href="/blog" data-i18n="nav_blog">Blog</a>
       </div>
       <div class="ne">
-        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg">Demo &#8599;</a>
-        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp">Masuk CRM</a>
+        <!-- Language Switcher Desktop -->
+        <div class="lang-switch-wrap" role="group" aria-label="Pilih Bahasa / Language Selection">
+          <button type="button" class="lang-btn" data-lang="id" onclick="setLanguage('id')">
+            <span class="lang-flag">🇮🇩</span> ID
+          </button>
+          <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">
+            <span class="lang-flag">🇬🇧</span> EN
+          </button>
+        </div>
+        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg" data-i18n="nav_demo_btn">Demo &#8599;</a>
+        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp" data-i18n="nav_login_crm">Masuk CRM</a>
       </div>
-      <button class="hb" id="hb" aria-label="Menu Mobile">&#9776; Menu</button>
+      <div class="nav-mob-actions">
+        <!-- Language Switcher Mobile Nav -->
+        <div class="lang-switch-wrap" role="group" aria-label="Pilih Bahasa / Language Selection">
+          <button type="button" class="lang-btn" data-lang="id" onclick="setLanguage('id')">
+            <span class="lang-flag">🇮🇩</span> ID
+          </button>
+          <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">
+            <span class="lang-flag">🇬🇧</span> EN
+          </button>
+        </div>
+        <button class="hb" id="hb" aria-label="Menu Mobile" data-i18n="nav_menu_btn">&#9776; Menu</button>
+      </div>
     </div>
   </nav>
 
@@ -640,14 +735,26 @@
       <button type="button" onclick="toggleMenu()" aria-label="Tutup Menu"
         style="background:none;border:1px solid var(--bdh);color:var(--tx2);font-size:18px;border-radius:8px;padding:6px 12px;cursor:pointer">&#10005;</button>
     </div>
-    <a href="/" onclick="toggleMenu()">Beranda</a>
-    <a href="/#features" onclick="toggleMenu()">Fitur</a>
-    <a href="/#innovations" onclick="toggleMenu()">Inovasi</a>
-    <a href="/#pricing" onclick="toggleMenu()">Harga</a>
-    <a href="/blog" onclick="toggleMenu()">Blog</a>
+    <!-- Mobile Menu Language Row -->
+    <div class="mm-lang-row">
+      <span class="mm-lang-label" data-i18n="nav_lang_label">Bahasa / Language:</span>
+      <div class="lang-switch-wrap" role="group">
+        <button type="button" class="lang-btn" data-lang="id" onclick="setLanguage('id')">
+          <span class="lang-flag">🇮🇩</span> ID
+        </button>
+        <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">
+          <span class="lang-flag">🇬🇧</span> EN
+        </button>
+      </div>
+    </div>
+    <a href="/" onclick="toggleMenu()" data-i18n="nav_home">Beranda</a>
+    <a href="/#features" onclick="toggleMenu()" data-i18n="nav_features">Fitur</a>
+    <a href="/#innovations" onclick="toggleMenu()" data-i18n="nav_innovations">Inovasi</a>
+    <a href="/#pricing" onclick="toggleMenu()" data-i18n="nav_pricing">Harga</a>
+    <a href="/blog" onclick="toggleMenu()" data-i18n="nav_blog">Blog</a>
     <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px">
-      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg" style="justify-content:center">Demo Live &#8599;</a>
-      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp" style="justify-content:center">Masuk CRM</a>
+      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg" style="justify-content:center" data-i18n="nav_demo_live">Demo Live &#8599;</a>
+      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp" style="justify-content:center" data-i18n="nav_login_crm">Masuk CRM</a>
     </div>
   </div>
 
@@ -655,18 +762,18 @@
   <header class="page-hero">
     <div class="w">
       <div class="breadcrumb">
-        <a href="/">Beranda</a>
+        <a href="/" data-i18n="bc_home">Beranda</a>
         <span>&rsaquo;</span>
-        <a href="/terms">Legal</a>
+        <a href="/terms" data-i18n="bc_legal">Legal</a>
         <span>&rsaquo;</span>
-        <span>Syarat &amp; Ketentuan</span>
+        <span data-i18n="bc_terms">Syarat &amp; Ketentuan</span>
       </div>
-      <div class="pill-badge">&#9878;&#65039; Perjanjian Layanan SaaS</div>
-      <h1 class="hero-title">Syarat &amp; Ketentuan Layanan NexaMOS</h1>
+      <div class="pill-badge" data-i18n="terms_badge">&#9878;&#65039; Perjanjian Layanan SaaS</div>
+      <h1 class="hero-title" data-i18n="terms_hero_title">Syarat &amp; Ketentuan Layanan NexaMOS</h1>
       <div class="hero-meta">
-        <span>&#128197; Terakhir Diperbarui: 16 September 2026</span>
+        <span data-i18n="terms_meta_1">&#128197; Terakhir Diperbarui: 16 September 2026</span>
         <span>&bull;</span>
-        <span>&#128220; Kontrak Penggunaan Platform CRM</span>
+        <span data-i18n="terms_meta_2">&#128220; Kontrak Penggunaan Platform CRM</span>
         <span>&bull;</span>
         <span>&#127970; LPK &amp; Pendidikan Vokasi</span>
       </div>
@@ -852,36 +959,36 @@
           <p>Platform CRM SaaS Event-Sourcing dengan Pipeline Berbasis Bukti untuk LPK dan Lembaga Pendidikan.</p>
         </div>
         <div class="fcol">
-          <h5>Produk</h5>
+          <h5 data-i18n="footer_col_product">Produk</h5>
           <ul>
-            <li><a href="/#features">Fitur</a></li>
-            <li><a href="/#innovations">Roadmap Inovasi</a></li>
-            <li><a href="/#pricing">Harga</a></li>
-            <li><a href="/#how">Cara Kerja</a></li>
-            <li><a href="https://crm.nexamos.cloud/login" target="_blank">Demo Live</a></li>
+            <li><a href="/#features" data-i18n="footer_features">Fitur</a></li>
+            <li><a href="/#innovations" data-i18n="footer_innovations">Roadmap Inovasi</a></li>
+            <li><a href="/#pricing" data-i18n="footer_pricing">Harga</a></li>
+            <li><a href="/#how" data-i18n="footer_how">Cara Kerja</a></li>
+            <li><a href="https://crm.nexamos.cloud/login" target="_blank" data-i18n="footer_demo">Demo Live</a></li>
           </ul>
         </div>
         <div class="fcol">
-          <h5>Perusahaan</h5>
+          <h5 data-i18n="footer_col_company">Perusahaan</h5>
           <ul>
-            <li><a href="/about">Tentang Nexa</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="https://wa.me/6285659024775" target="_blank">Kontak</a></li>
+            <li><a href="/about" data-i18n="footer_about">Tentang Nexa</a></li>
+            <li><a href="/blog" data-i18n="footer_blog">Blog</a></li>
+            <li><a href="https://wa.me/6285659024775" target="_blank" data-i18n="footer_contact">Kontak</a></li>
           </ul>
         </div>
         <div class="fcol">
-          <h5>Legal</h5>
+          <h5 data-i18n="footer_col_legal">Legal</h5>
           <ul>
-            <li><a href="/privacy">Kebijakan Privasi</a></li>
-            <li><a href="/terms" style="color:var(--gr);font-weight:600">Syarat &amp; Ketentuan</a></li>
-            <li><a href="/security">Keamanan Data</a></li>
-            <li><a href="/status">Status Sistem</a></li>
+            <li><a href="/privacy" data-i18n="footer_privacy">Kebijakan Privasi</a></li>
+            <li><a href="/terms" style="color:var(--gr);font-weight:600" data-i18n="footer_terms">Syarat &amp; Ketentuan</a></li>
+            <li><a href="/security" data-i18n="footer_security">Keamanan Data</a></li>
+            <li><a href="/status" data-i18n="footer_status">Status Sistem</a></li>
           </ul>
         </div>
       </div>
       <div class="fbot">
-        <span>&copy; 2026 Nexa MOS. All rights reserved.</span>
-        <span>Made with &#10084;&#65039; for LPK Indonesia</span>
+        <span data-i18n="footer_copy">&copy; 2026 NexaMOS. All rights reserved.</span>
+        <span data-i18n="footer_made_with">Made with &#10084;&#65039; for LPK, Lembaga &amp; Bisnis Indonesia</span>
       </div>
     </div>
   </footer>
