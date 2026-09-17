@@ -4237,6 +4237,187 @@
     </div>
   </section>
 
+  <script>
+    // ── Dynamic Blog Highlight Loader ──
+    const FALLBACK_BLOG_ARTICLES = [
+      {
+        slug: "intelijen-pasar-dan-kompetitif-pemilik-bisnis-harus-pahami",
+        title: "Mastering Market Intelligence: A Practical Guide for Business Owners",
+        title_id: "Memahami Intelijen Pasar & Kompetitif: Panduan Praktis bagi Pemilik Bisnis",
+        dek: "In the complex information age, business owners need more than raw data—they require the ability to design measurable, collaborative, and visual market intelligence systems that transform insights into sustainable competitive advantage.",
+        dek_id: "Di era informasi yang kompleks, pemilik bisnis tidak cukup hanya mengumpulkan data mentah—mereka membutuhkan kemampuan merancang sistem intelijen pasar yang terukur, kolaboratif, dan visual.",
+        territory: "INTELLIGENCE",
+        articleType: "ANALYSIS",
+        url: "/blog/intelijen-pasar-dan-kompetitif-pemilik-bisnis-harus-pahami",
+        heroImageUrl: "https://nexamos-blog.vercel.app/images/hero-intelijen-pasar-dan-kompetitif-pemilik-bisnis-harus-pahami.webp",
+        author: { name: "Tim Riset & Rekayasa NexaMOS" },
+        publishedAt: "2026-09-17T01:21:14.908Z"
+      },
+      {
+        slug: "cara-mengkonversi-lead-jadi-prospek",
+        title: "Transforming Leads into Qualified Prospects: A Data-Driven Conversion Strategy",
+        title_id: "Mengubah Leads Menjadi Prospek: Strategi Konversi Berbasis Data",
+        dek: "Many businesses still rely on traditional, inefficient approaches. This article explains how CRM integration, personalization, and predictive analytics create a more sophisticated framework for identifying high-quality prospects ready to purchase.",
+        dek_id: "Banyak bisnis masih mengandalkan pendekatan konvensional yang tidak efisien. Artikel ini menjelaskan bagaimana integrasi CRM, personalisasi, dan analitik prediktif menciptakan kerangka kerja yang lebih canggih untuk mengidentifikasi prospek berkualitas tinggi.",
+        territory: "TACTICAL",
+        articleType: "HOW_TO",
+        url: "/blog/cara-mengkonversi-lead-jadi-prospek",
+        heroImageUrl: "https://nexamos-blog.vercel.app/images/hero-cara-mengkonversi-lead-jadi-prospek.webp",
+        author: { name: "Tim Riset & Rekayasa NexaMOS" },
+        publishedAt: "2026-09-16T11:02:36.383Z"
+      },
+      {
+        slug: "crm-bertenaga-ai-taktik-pemasaran-modern",
+        title: "AI-Powered CRM: Strategic Transformation in Modern Marketing Tactics",
+        title_id: "CRM Berbasis AI: Transformasi Strategis dalam Taktik Pemasaran Modern",
+        dek: "How AI-powered CRM is reshaping marketing operations—from simple automation to a competitive differentiator that redefines business models.",
+        dek_id: "Bagaimana CRM bertenaga AI mengubah operasional pemasaran—dari otomatisasi sederhana menjadi pembeda kompetitif yang mendefinisikan ulang model bisnis.",
+        territory: "TACTICAL",
+        articleType: "ANALYSIS",
+        url: "/blog/crm-bertenaga-ai-taktik-pemasaran-modern",
+        heroImageUrl: "https://nexamos-blog.vercel.app/images/hero-crm-bertenaga-ai-taktik-pemasaran-modern.webp",
+        author: { name: "Tim Riset & Rekayasa NexaMOS" },
+        publishedAt: "2026-09-16T05:25:04.836Z"
+      }
+    ];
+
+    window._cachedBlogArticles = null;
+
+    async function fetchBlogArticlesWithFallback() {
+      if (window._cachedBlogArticles && window._cachedBlogArticles.length > 0) {
+        return window._cachedBlogArticles;
+      }
+
+      const endpoints = [
+        '/blog/articles.json',
+        '/articles.json',
+        'https://nexamos-blog.vercel.app/articles.json'
+      ];
+
+      for (const ep of endpoints) {
+        try {
+          const res = await fetch(ep, { cache: 'no-cache' });
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) {
+              window._cachedBlogArticles = data;
+              return data;
+            }
+          }
+        } catch (e) {
+          // Continue to next endpoint fallback
+        }
+      }
+
+      // If all network requests fail, return static fallback
+      window._cachedBlogArticles = FALLBACK_BLOG_ARTICLES;
+      return FALLBACK_BLOG_ARTICLES;
+    }
+
+    function renderBlogCards(articles) {
+      const container = document.getElementById('blogHighlightContainer');
+      if (!container) return;
+
+      const lang = (typeof currentLang !== 'undefined') ? currentLang : (localStorage.getItem('nexamos_lang') || 'en');
+      const isId = lang === 'id';
+      const highlightArticles = articles.slice(0, 3);
+
+      const cardsHtml = highlightArticles.map((art, idx) => {
+        const territory = (art.territory || 'STRATEGY').toUpperCase();
+        const territoryClass = territory === 'TACTICAL' 
+          ? 'badge-tactical' 
+          : territory === 'INTELLIGENCE' 
+          ? 'badge-intelligence' 
+          : 'badge-strategy';
+
+        const territoryLabel = isId 
+          ? (territory === 'TACTICAL' ? 'Taktikal' : territory === 'INTELLIGENCE' ? 'Intelijen' : 'Strategi')
+          : (territory === 'TACTICAL' ? 'Tactical' : territory === 'INTELLIGENCE' ? 'Intelligence' : 'Strategy');
+
+        const articleTypeLabel = art.articleType 
+          ? (isId 
+              ? (art.articleType === 'HOW_TO' ? 'Panduan Praktis' : art.articleType === 'ANALYSIS' ? 'Analisis' : art.articleType.replace('_', ' '))
+              : (art.articleType === 'HOW_TO' ? 'How-To Guide' : art.articleType === 'ANALYSIS' ? 'Analysis' : art.articleType.replace('_', ' ')))
+          : '';
+
+        const pubDate = art.publishedAt 
+          ? new Date(art.publishedAt).toLocaleDateString(isId ? 'id-ID' : 'en-US', { day: 'numeric', month: 'short', year: 'numeric' })
+          : (isId ? 'Terbaru' : 'Latest');
+
+        const readActionLabel = isId ? 'Baca Riset &rarr;' : 'Read Article &rarr;';
+        const authorName = (art.author && art.author.name) ? art.author.name : (isId ? 'Tim Riset NexaMOS' : 'NexaMOS Research Team');
+
+        // Handle bilingual title & dek
+        let displayTitle = art.title;
+        let displayDek = art.dek || '';
+
+        if (art.translations && art.translations[lang]) {
+          if (art.translations[lang].title) displayTitle = art.translations[lang].title;
+          if (art.translations[lang].dek) displayDek = art.translations[lang].dek;
+        } else if (isId) {
+          if (art.title_id) displayTitle = art.title_id;
+          else if (art.heroImageAlt && art.heroImageAlt !== art.title) displayTitle = art.heroImageAlt;
+          if (art.dek_id) displayDek = art.dek_id;
+        }
+
+        let heroImg = art.heroImageUrl || '/og-image.png';
+        if (heroImg.startsWith('/blog/images/')) {
+          heroImg = 'https://nexamos-blog.vercel.app' + heroImg.replace('/blog', '');
+        }
+
+        const articleUrl = art.url ? (art.url.startsWith('http') ? art.url : (art.url.startsWith('/blog') ? art.url : '/blog' + art.url)) : '/blog';
+
+        return `
+          <a href="${articleUrl}" class="blog-dyn-card fu" style="transition-delay: ${idx * 0.1}s">
+            <div class="blog-dyn-thumb">
+              <img src="${heroImg}" alt="${displayTitle}" loading="lazy" onerror="this.onerror=null;this.src='/og-image.png'">
+            </div>
+            <div class="blog-dyn-body">
+              <div class="blog-dyn-badges">
+                <span class="blog-dyn-badge ${territoryClass}">${territoryLabel}</span>
+                ${articleTypeLabel ? `<span class="blog-dyn-badge badge-type">${articleTypeLabel}</span>` : ''}
+              </div>
+              <h3 class="blog-dyn-title">${displayTitle}</h3>
+              <p class="blog-dyn-dek">${displayDek}</p>
+              <div class="blog-dyn-foot">
+                <span class="b-author">${authorName}</span>
+                <span class="b-action">${pubDate} &middot; ${readActionLabel}</span>
+              </div>
+            </div>
+          </a>
+        `;
+      }).join('');
+
+      container.innerHTML = cardsHtml;
+
+      // Trigger IntersectionObserver fade-up animation
+      if (typeof obs !== 'undefined' && obs.observe) {
+        container.querySelectorAll('.fu').forEach(el => obs.observe(el));
+      }
+    }
+
+    async function loadLatestBlogArticles() {
+      const container = document.getElementById('blogHighlightContainer');
+      if (!container) return;
+
+      try {
+        const articles = await fetchBlogArticlesWithFallback();
+        renderBlogCards(articles);
+      } catch (err) {
+        console.warn('Fallback rendering blog highlights:', err);
+        renderBlogCards(FALLBACK_BLOG_ARTICLES);
+      }
+    }
+
+    window.loadLatestBlogArticles = loadLatestBlogArticles;
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadLatestBlogArticles);
+    } else {
+      loadLatestBlogArticles();
+    }
+  </script>
+
   <section id="cta">
     <div class="w">
       <div class="cbox fu">
