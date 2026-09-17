@@ -709,6 +709,60 @@
       }
     }
 
+    @media (max-width: 640px) {
+      .overall-status-card {
+        padding: 24px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .status-badge-wrap {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: flex-start;
+        column-gap: 14px;
+        row-gap: 10px;
+        width: 100%;
+      }
+
+      .overall-text-wrap {
+        display: contents;
+      }
+
+      .pulse-indicator {
+        grid-column: 1;
+        grid-row: 1;
+        width: 16px;
+        height: 16px;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      .overall-title {
+        grid-column: 2;
+        grid-row: 1;
+        font-size: 19px;
+        line-height: 1.35;
+        margin-bottom: 0;
+      }
+
+      .overall-sub {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--tx2);
+      }
+
+      .uptime-stat-box {
+        text-align: left;
+        width: 100%;
+        padding-top: 16px;
+        border-top: 1px solid rgba(0, 214, 143, .15);
+      }
+    }
+
     @media (max-width: 520px) {
       .fg {
         grid-template-columns: 1fr;
@@ -826,7 +880,7 @@
       <div class="overall-status-card">
         <div class="status-badge-wrap">
           <div class="pulse-indicator"></div>
-          <div>
+          <div class="overall-text-wrap">
             <h1 class="overall-title" data-i18n="status_card_title">Semua Sistem Beroperasi Normal</h1>
             <p class="overall-sub" data-i18n="status_card_sub">&#9889; Seluruh layanan NexaMOS berjalan optimal tanpa gangguan terdeteksi.</p>
           </div>
@@ -842,26 +896,26 @@
   <!-- Main Content -->
   <main class="w">
     <!-- Components Status -->
-    <div class="section-title">&#128225; Layanan &amp; Infrastruktur Inti</div>
+    <div class="section-title" data-i18n="status_section_title">&#128225; Layanan &amp; Infrastruktur Inti</div>
     <div class="components-card">
       <!-- Item 1 -->
       <div class="component-item">
         <div class="comp-header">
           <div class="comp-name-box">
             <span class="comp-icon">&#127760;</span>
-            <span class="comp-name">Aplikasi Web CRM (Frontend Dashboard)</span>
+            <span class="comp-name" data-i18n="status_comp_web">Aplikasi Web CRM (Frontend Dashboard)</span>
           </div>
           <span class="comp-status-pill">
-            <span class="comp-status-dot"></span> Operasional
+            <span class="comp-status-dot"></span> <span data-i18n="status_pill_operational">Operasional</span>
           </span>
         </div>
-        <div class="comp-desc">Portal resmi dashboard CRM (crm.nexamos.cloud) &amp; antarmuka CRO.</div>
+        <div class="comp-desc" data-i18n="status_comp_web_desc">Portal resmi dashboard CRM (crm.nexamos.cloud) &amp; antarmuka CRO.</div>
         <div class="uptime-bar-wrap">
           <div class="uptime-bars" id="bars1"></div>
           <div class="uptime-legend">
-            <span>90 hari lalu</span>
+            <span data-i18n="status_legend_90d">90 hari lalu</span>
             <span>99.99% Uptime</span>
-            <span>Hari ini</span>
+            <span data-i18n="status_legend_today">Hari ini</span>
           </div>
         </div>
       </div>
@@ -871,19 +925,19 @@
         <div class="comp-header">
           <div class="comp-name-box">
             <span class="comp-icon">&#9889;</span>
-            <span class="comp-name">Core Backend API Server (nexa-os)</span>
+            <span class="comp-name" data-i18n="status_comp_api">Core Backend API Server (nexa-os)</span>
           </div>
           <span class="comp-status-pill">
-            <span class="comp-status-dot"></span> Operasional
+            <span class="comp-status-dot"></span> <span data-i18n="status_pill_operational">Operasional</span>
           </span>
         </div>
-        <div class="comp-desc">RESTful API engine, autentikasi sesi JWT, dan sinkronisasi data operasional.</div>
+        <div class="comp-desc" data-i18n="status_comp_api_desc">RESTful API engine, autentikasi sesi JWT, dan sinkronisasi data operasional.</div>
         <div class="uptime-bar-wrap">
           <div class="uptime-bars" id="bars2"></div>
           <div class="uptime-legend">
-            <span>90 hari lalu</span>
+            <span data-i18n="status_legend_90d">90 hari lalu</span>
             <span>99.96% Uptime</span>
-            <span>Hari ini</span>
+            <span data-i18n="status_legend_today">Hari ini</span>
           </div>
         </div>
       </div>
@@ -893,19 +947,19 @@
         <div class="comp-header">
           <div class="comp-name-box">
             <span class="comp-icon">&#128172;</span>
-            <span class="comp-name">WhatsApp Cloud API &amp; Webhook Ingestion</span>
+            <span class="comp-name" data-i18n="status_comp_wa">WhatsApp Cloud API &amp; Webhook Ingestion</span>
           </div>
           <span class="comp-status-pill">
-            <span class="comp-status-dot"></span> Operasional
+            <span class="comp-status-dot"></span> <span data-i18n="status_pill_operational">Operasional</span>
           </span>
         </div>
-        <div class="comp-desc">Penerima webhook dua-jalur hibrida (BYOW &amp; Global Meta API) &amp; smart interactive fallback.</div>
+        <div class="comp-desc" data-i18n="status_comp_wa_desc">Penerima webhook dua-jalur hibrida (BYOW &amp; Global Meta API) &amp; smart interactive fallback.</div>
         <div class="uptime-bar-wrap">
           <div class="uptime-bars" id="bars3"></div>
           <div class="uptime-legend">
-            <span>90 hari lalu</span>
+            <span data-i18n="status_legend_90d">90 hari lalu</span>
             <span>99.98% Uptime</span>
-            <span>Hari ini</span>
+            <span data-i18n="status_legend_today">Hari ini</span>
           </div>
         </div>
       </div>
@@ -915,19 +969,19 @@
         <div class="comp-header">
           <div class="comp-name-box">
             <span class="comp-icon">&#128451;&#65039;</span>
-            <span class="comp-name">Dedicated Isolated Tenant Databases</span>
+            <span class="comp-name" data-i18n="status_comp_db">Dedicated Isolated Tenant Databases</span>
           </div>
           <span class="comp-status-pill">
-            <span class="comp-status-dot"></span> Operasional
+            <span class="comp-status-dot"></span> <span data-i18n="status_pill_operational">Operasional</span>
           </span>
         </div>
-        <div class="comp-desc">Kluster basis data MySQL terisolasi per-lembaga dengan koneksi dinamis berkecepatan tinggi.</div>
+        <div class="comp-desc" data-i18n="status_comp_db_desc">Kluster basis data MySQL terisolasi per-lembaga dengan koneksi dinamis berkecepatan tinggi.</div>
         <div class="uptime-bar-wrap">
           <div class="uptime-bars" id="bars4"></div>
           <div class="uptime-legend">
-            <span>90 hari lalu</span>
+            <span data-i18n="status_legend_90d">90 hari lalu</span>
             <span>100% Uptime</span>
-            <span>Hari ini</span>
+            <span data-i18n="status_legend_today">Hari ini</span>
           </div>
         </div>
       </div>
@@ -937,19 +991,19 @@
         <div class="comp-header">
           <div class="comp-name-box">
             <span class="comp-icon">&#128220;</span>
-            <span class="comp-name">Event-Sourcing Engine &amp; Projection Sync</span>
+            <span class="comp-name" data-i18n="status_comp_events">Event-Sourcing Engine &amp; Projection Sync</span>
           </div>
           <span class="comp-status-pill">
-            <span class="comp-status-dot"></span> Operasional
+            <span class="comp-status-dot"></span> <span data-i18n="status_pill_operational">Operasional</span>
           </span>
         </div>
-        <div class="comp-desc">Pencatatan immutable events_log dan sinkronisasi read-model student_current_state.</div>
+        <div class="comp-desc" data-i18n="status_comp_events_desc">Pencatatan immutable events_log dan sinkronisasi read-model student_current_state.</div>
         <div class="uptime-bar-wrap">
           <div class="uptime-bars" id="bars5"></div>
           <div class="uptime-legend">
-            <span>90 hari lalu</span>
+            <span data-i18n="status_legend_90d">90 hari lalu</span>
             <span>99.99% Uptime</span>
-            <span>Hari ini</span>
+            <span data-i18n="status_legend_today">Hari ini</span>
           </div>
         </div>
       </div>
@@ -959,46 +1013,46 @@
         <div class="comp-header">
           <div class="comp-name-box">
             <span class="comp-icon">&#128179;</span>
-            <span class="comp-name">Payment Gateway &amp; Token Verifikasi Formulir</span>
+            <span class="comp-name" data-i18n="status_comp_payment">Payment Gateway &amp; Token Verifikasi Formulir</span>
           </div>
           <span class="comp-status-pill">
-            <span class="comp-status-dot"></span> Operasional
+            <span class="comp-status-dot"></span> <span data-i18n="status_pill_operational">Operasional</span>
           </span>
         </div>
-        <div class="comp-desc">Verifikasi otomatis bukti transfer registrasi pendaftaran daring dan webhook keuangan.</div>
+        <div class="comp-desc" data-i18n="status_comp_payment_desc">Verifikasi otomatis bukti transfer registrasi pendaftaran daring dan webhook keuangan.</div>
         <div class="uptime-bar-wrap">
           <div class="uptime-bars" id="bars6"></div>
           <div class="uptime-legend">
-            <span>90 hari lalu</span>
+            <span data-i18n="status_legend_90d">90 hari lalu</span>
             <span>100% Uptime</span>
-            <span>Hari ini</span>
+            <span data-i18n="status_legend_today">Hari ini</span>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Maintenance & Incident History -->
-    <div class="section-title">&#128197; Riwayat Pemeliharaan &amp; Rilis Sistem</div>
+    <div class="section-title" data-i18n="status_history_title">&#128197; Riwayat Pemeliharaan &amp; Rilis Sistem</div>
     <div class="timeline-wrap">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">14 September 2026 &bull; Selesai</div>
-        <div class="timeline-title">Pembaruan Modul Verifikasi Pembayaran &amp; Ingestion Bukti Transfer Meta Webhook</div>
-        <div class="timeline-desc">Peningkatan kapabilitas penerimaan bukti bayar via WhatsApp otomatis dan sinkronisasi status ke Registered Opportunity. Tidak ada downtime operasional.</div>
+        <div class="timeline-date" data-i18n="status_tl1_date">14 September 2026 &bull; Selesai</div>
+        <div class="timeline-title" data-i18n="status_tl1_title">Pembaruan Modul Verifikasi Pembayaran &amp; Ingestion Bukti Transfer Meta Webhook</div>
+        <div class="timeline-desc" data-i18n="status_tl1_desc">Peningkatan kapabilitas penerimaan bukti bayar via WhatsApp otomatis dan sinkronisasi status ke Registered Opportunity. Tidak ada downtime operasional.</div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">8 September 2026 &bull; Selesai</div>
-        <div class="timeline-title">Optimasi Indeks Basis Data &amp; Dynamic Tenant Connection Pool</div>
-        <div class="timeline-desc">Peningkatan kecepatan respons query pencarian siswa dan live chat hingga 45%. Pemeliharaan berjalan sukses selama jam sepi (02:00 WIB).</div>
+        <div class="timeline-date" data-i18n="status_tl2_date">8 September 2026 &bull; Selesai</div>
+        <div class="timeline-title" data-i18n="status_tl2_title">Optimasi Indeks Basis Data &amp; Dynamic Tenant Connection Pool</div>
+        <div class="timeline-desc" data-i18n="status_tl2_desc">Peningkatan kecepatan respons query pencarian siswa dan live chat hingga 45%. Pemeliharaan berjalan sukses selama jam sepi (02:00 WIB).</div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">1 September 2026 &bull; Selesai</div>
-        <div class="timeline-title">Audit Keamanan Triwulan &amp; Pembaruan Sertifikat SSL/TLS</div>
-        <div class="timeline-desc">Pembaruan sertifikat keamanan HTTPS dan audit kepatuhan enkripsi data istirahat (encryption at rest).</div>
+        <div class="timeline-date" data-i18n="status_tl3_date">1 September 2026 &bull; Selesai</div>
+        <div class="timeline-title" data-i18n="status_tl3_title">Audit Keamanan Triwulan &amp; Pembaruan Sertifikat SSL/TLS</div>
+        <div class="timeline-desc" data-i18n="status_tl3_desc">Pembaruan sertifikat keamanan HTTPS dan audit kepatuhan enkripsi data istirahat (encryption at rest).</div>
       </div>
     </div>
   </main>
@@ -1012,7 +1066,7 @@
             <img src="/logo.png" alt="Nexa MOS Logo" class="lm" width="34" height="34">
             <span class="lt">Nexa<span>MOS</span></span>
           </div>
-          <p>Platform CRM SaaS Event-Sourcing dengan Pipeline Berbasis Bukti untuk LPK dan Lembaga Pendidikan.</p>
+          <p data-i18n="footer_desc">Platform CRM SaaS Event-Sourcing dengan Pipeline Berbasis Bukti untuk LPK dan Lembaga Pendidikan.</p>
         </div>
         <div class="fcol">
           <h5 data-i18n="footer_col_product">Produk</h5>
@@ -1065,7 +1119,8 @@
       for (let i = 0; i < 45; i++) {
         const bar = document.createElement('div');
         bar.className = 'bar-day';
-        bar.title = `${45 - i} hari lalu: 100% Operasional`;
+        const isEn = (localStorage.getItem('nexamos_lang') || 'en') === 'en';
+        bar.title = isEn ? `${45 - i} days ago: 100% Operational` : `${45 - i} hari lalu: 100% Operasional`;
         container.appendChild(bar);
       }
     });
