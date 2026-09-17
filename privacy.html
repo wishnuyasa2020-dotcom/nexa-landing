@@ -286,13 +286,27 @@
     }
 
     .hb {
+      display: none;
+      align-items: center;
+      justify-content: center;
       background: none;
       border: 1px solid var(--bdh);
       border-radius: 8px;
-      padding: 8px 12px;
+      width: 36px;
+      height: 36px;
+      padding: 0;
       cursor: pointer;
       color: var(--tx2);
-      font-size: 14px;
+      font-size: 18px;
+      line-height: 1;
+      font-family: inherit;
+      transition: all .2s;
+    }
+
+    .hb:hover {
+      color: var(--tx);
+      border-color: var(--bd);
+      background: var(--bg4);
     }
 
     .mm {
@@ -656,7 +670,7 @@
       }
 
       .hb {
-        display: block;
+        display: inline-flex;
       }
 
       .fg {
@@ -720,7 +734,7 @@
             <span class="lang-flag">🇬🇧</span> EN
           </button>
         </div>
-        <button class="hb" id="hb" aria-label="Menu Mobile" data-i18n="nav_menu_btn">&#9776; Menu</button>
+        <button class="hb" id="hb" aria-label="Menu" data-i18n="nav_menu_btn">&#9776;</button>
       </div>
     </div>
   </nav>

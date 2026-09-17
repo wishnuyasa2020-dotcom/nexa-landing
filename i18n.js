@@ -24,7 +24,7 @@ const I18N_DATA = {
     nav_demo_btn: "Demo &#8599;",
     nav_login_crm: "Masuk CRM",
     nav_start_btn: "Mulai Gratis",
-    nav_menu_btn: "&#9776; Menu",
+    nav_menu_btn: "&#9776;",
     nav_demo_live: "Demo Live &#8599;",
     nav_lang_label: "Bahasa / Language:",
 
@@ -462,7 +462,7 @@ const I18N_DATA = {
     nav_demo_btn: "Demo &#8599;",
     nav_login_crm: "CRM Login",
     nav_start_btn: "Start Free",
-    nav_menu_btn: "&#9776; Menu",
+    nav_menu_btn: "&#9776;",
     nav_demo_live: "Live Demo &#8599;",
     nav_lang_label: "Language / Bahasa:",
 
