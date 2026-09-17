@@ -2366,6 +2366,82 @@
       margin-top: 4px;
     }
 
+    /* ── Tenant Type Gateway Cards ────────────────────────────── */
+    .m-gateway-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .m-gateway-card {
+      position: relative;
+      padding: 13px 12px;
+      border-radius: 12px;
+      border: 1.5px solid var(--bd);
+      background: rgba(255,255,255,.03);
+      cursor: pointer;
+      transition: all .2s cubic-bezier(0.16,1,0.3,1);
+      text-align: left;
+      user-select: none;
+    }
+
+    .m-gateway-card:hover {
+      border-color: rgba(0,214,143,.4);
+      background: rgba(0,214,143,.05);
+      transform: translateY(-2px);
+    }
+
+    .m-gateway-card.selected {
+      border-color: var(--gr);
+      background: rgba(0,214,143,.08);
+      box-shadow: 0 0 18px rgba(0,214,143,.18);
+    }
+
+    .m-gateway-card.selected .mgc-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .mgc-icon {
+      font-size: 22px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .mgc-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--tx);
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+
+    .mgc-sub {
+      font-size: 10.5px;
+      color: var(--tx3);
+      line-height: 1.4;
+    }
+
+    .mgc-check {
+      position: absolute;
+      top: 9px;
+      right: 9px;
+      width: 18px;
+      height: 18px;
+      background: var(--gr);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #000;
+      font-weight: 900;
+      opacity: 0;
+      transform: scale(.6);
+      transition: all .2s;
+    }
+
     .m-footer-text {
       font-size: 12px;
       color: var(--tx3);
@@ -4234,27 +4310,38 @@
         <div class="m-alert" id="signupAlert"></div>
 
         <form class="m-form" id="signupForm" onsubmit="handleSignupSubmit(event)">
-          <!-- STEP 1: PROFIL LEMBAGA (KUESIONER SQL B2B) -->
+          <!-- STEP 1: PROFIL LEMBAGA (KUESIONER + GERBANG TIPE) -->
           <div id="step1Profil">
             <div
               style="font-size:12.5px;font-weight:700;color:var(--gr);margin-bottom:12px;display:flex;align-items:center;gap:6px;">
               <span>&#128203;</span> Langkah 1 dari 2: Profil &amp; Kualifikasi Lembaga
             </div>
 
-            <div class="m-field">
-              <label for="institution_type">Jenis / Kategori Lembaga <span style="color:var(--gr)">*</span></label>
+            <!-- GERBANG UTAMA: Pilih Tipe Bisnis -->
+            <div class="m-field" style="margin-bottom:4px;">
+              <label style="margin-bottom:6px;">Bisnis Anda bergerak di bidang apa? <span style="color:var(--gr)">*</span></label>
+              <div class="m-gateway-grid" id="gatewayGrid">
+                <div class="m-gateway-card" id="gw-lpk" onclick="selectTenantType('lpk')">
+                  <div class="mgc-check">✓</div>
+                  <span class="mgc-icon">🎓</span>
+                  <div class="mgc-title">LPK / Vokasi / Kursus</div>
+                  <div class="mgc-sub">Magang Jepang, Bimbel, Pelatihan Kerja, SMK Swasta</div>
+                </div>
+                <div class="m-gateway-card" id="gw-general" onclick="selectTenantType('general')">
+                  <div class="mgc-check">✓</div>
+                  <span class="mgc-icon">🏢</span>
+                  <div class="mgc-title">Bisnis Umum</div>
+                  <div class="mgc-sub">Klinik, Retail, Agensi, Properti, Jasa &amp; lainnya</div>
+                </div>
+              </div>
+              <input type="hidden" id="tenant_type" name="tenant_type" value="">
+            </div>
+
+            <div class="m-field" style="margin-top:12px;">
+              <label for="institution_type">Jenis / Kategori Lebih Spesifik <span style="color:var(--gr)">*</span></label>
               <select id="institution_type" name="institution_type" class="m-input"
                 style="background:var(--bg3);color:var(--tx);cursor:pointer;" required>
-                <option value="" disabled selected>-- Pilih Kategori Lembaga --</option>
-                <option value="LPK Program Jepang (SSW / Magang)">LPK Program Magang &amp; Kerja Jepang (SSW/Trainee)
-                </option>
-                <option value="LPK Program Jerman, Korea &amp; Australia">LPK Program Jerman (Ausbildung), Korea, atau
-                  Australia</option>
-                <option value="Bimbel Kedinasan / Akpol / CPNS">Bimbel Kedinasan / Akpol / Akmil / CPNS</option>
-                <option value="Bimbel UTBK &amp; Masuk PTN">Bimbel UTBK &amp; Masuk PTN</option>
-                <option value="SMK Swasta / Vokasi">SMK Swasta / Lembaga Pendidikan Vokasi</option>
-                <option value="Kursus Bahasa &amp; Sertifikasi">Kursus Bahasa Asing &amp; Sertifikasi Keahlian</option>
-                <option value="Lainnya">Lainnya / Lembaga Pendidikan Terkait</option>
+                <option value="" disabled selected>-- Pilih setelah memilih tipe bisnis di atas --</option>
               </select>
             </div>
 
@@ -4517,14 +4604,73 @@
       document.getElementById('stepPill2').classList.remove('active');
       const alertBox = document.getElementById('signupAlert');
       if (alertBox) { alertBox.className = 'm-alert'; alertBox.textContent = ''; }
+      // Reset gateway if going back
+      const currentType = document.getElementById('tenant_type').value;
+      if (currentType) selectTenantType(currentType); // re-apply state if user goes back
+    }
+
+    // ── Tenant Type Gateway Logic ──────────────────────────────
+    const INSTITUTION_OPTIONS = {
+      lpk: [
+        { value: 'LPK Program Jepang (SSW / Magang)', label: 'LPK Program Magang & Kerja Jepang (SSW / Trainee)' },
+        { value: 'LPK Program Jerman, Korea & Australia', label: 'LPK Program Jerman (Ausbildung), Korea, atau Australia' },
+        { value: 'Bimbel Kedinasan / Akpol / CPNS', label: 'Bimbel Kedinasan / Akpol / Akmil / CPNS' },
+        { value: 'Bimbel UTBK & Masuk PTN', label: 'Bimbel UTBK & Masuk PTN' },
+        { value: 'SMK Swasta / Vokasi', label: 'SMK Swasta / Lembaga Pendidikan Vokasi' },
+        { value: 'Kursus Bahasa & Sertifikasi', label: 'Kursus Bahasa Asing & Sertifikasi Keahlian' },
+        { value: 'Lainnya (LPK / Vokasi)', label: 'Lainnya / Lembaga Pendidikan Terkait' },
+      ],
+      general: [
+        { value: 'Klinik / Kesehatan / Estetika', label: 'Klinik, Rumah Sakit, atau Layanan Estetika' },
+        { value: 'Retail / Toko', label: 'Retail, Toko Online / Offline' },
+        { value: 'Properti / Developer', label: 'Properti, Agen Properti, atau Developer' },
+        { value: 'Agensi Digital / Kreatif', label: 'Agensi Digital, Marketing, atau Kreatif' },
+        { value: 'Jasa Umum / B2B', label: 'Jasa Umum, Konsultasi, atau B2B Lainnya' },
+        { value: 'Kuliner / F&B', label: 'Kuliner, Restoran, atau Food & Beverage' },
+        { value: 'Lainnya (Bisnis Umum)', label: 'Bisnis / Industri Lainnya' },
+      ]
+    };
+
+    function selectTenantType(type) {
+      // Update cards visual
+      document.getElementById('gw-lpk').classList.toggle('selected', type === 'lpk');
+      document.getElementById('gw-general').classList.toggle('selected', type === 'general');
+      // Save to hidden input
+      document.getElementById('tenant_type').value = type;
+      // Populate institution_type dropdown dynamically
+      const select = document.getElementById('institution_type');
+      select.innerHTML = '<option value="" disabled selected>-- Pilih Kategori --</option>';
+      (INSTITUTION_OPTIONS[type] || []).forEach(opt => {
+        const el = document.createElement('option');
+        el.value = opt.value;
+        el.textContent = opt.label;
+        select.appendChild(el);
+      });
+      // Update brand_name label to be contextual
+      const brandLabel = document.querySelector('label[for="brand_name"]');
+      if (brandLabel) {
+        brandLabel.innerHTML = (type === 'lpk'
+          ? 'Nama Lembaga / LPK / Bimbel'
+          : 'Nama Bisnis / Perusahaan') + ' <span style="color:var(--gr)">*</span>';
+      }
+      // Clear alert if was shown
+      const alertBox = document.getElementById('signupAlert');
+      if (alertBox) { alertBox.className = 'm-alert'; alertBox.textContent = ''; }
     }
 
     function goToStep2() {
       const alertBox = document.getElementById('signupAlert');
+      const tenantType = document.getElementById('tenant_type').value;
       const instType = document.getElementById('institution_type').value;
       const instAddr = document.getElementById('institution_address').value.trim();
       const teamSize = document.getElementById('team_size').value;
 
+      if (!tenantType) {
+        alertBox.className = 'm-alert error';
+        alertBox.textContent = 'Mohon pilih tipe bisnis Anda terlebih dahulu (LPK/Vokasi atau Bisnis Umum).';
+        document.getElementById('gatewayGrid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
       if (!instType) {
         alertBox.className = 'm-alert error';
         alertBox.textContent = 'Mohon pilih kategori/bidang lembaga Anda.';
@@ -4603,6 +4749,8 @@
       submitText.innerHTML = '&#9203; Mengirim Pengajuan Beta...';
 
       try {
+        const tenant_type = document.getElementById('tenant_type').value || 'lpk';
+
         const res = await fetch('https://nexa-os-pmr8.onrender.com/api/v1/saas/apply-beta', {
           method: 'POST',
           headers: {
@@ -4610,6 +4758,7 @@
           },
           body: JSON.stringify({
             brand_name,
+            tenant_type,
             institution_type,
             institution_address,
             team_size,
