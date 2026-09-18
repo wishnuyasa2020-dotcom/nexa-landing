@@ -34,5 +34,5 @@ nexa-landing/
 ```
 
 ## Link Demo
-- Demo CRM: https://crm.nexamos.cloud/login
+- Demo CRM: https://demo.nexamos.cloud
 - Login: admin / admin123

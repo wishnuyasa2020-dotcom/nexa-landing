@@ -388,7 +388,7 @@ const I18N_DATA = {
     hero_sub: "Stop kelola ratusan prospek pakai grup WA dan spreadsheet yang kacau. NexaMOS hadir dengan <strong>pipeline berbasis bukti</strong>, Smart WhatsApp Routing, dan otomasi nurturing &mdash; terbukti tangguh untuk <strong>LPK &amp; Lembaga Vokasi</strong>, serta adaptif untuk <strong>Klinik, Retail, Agensi, Jasa &amp; Bisnis Multi-Sektor</strong>.",
     hero_cta_demo: "&#128640; Coba Demo &mdash; Gratis",
     hero_cta_features: "Lihat Semua Fitur &rarr;",
-    hero_note: "Tidak perlu kartu kredit &middot; <a href=\"javascript:void(0)\" onclick=\"openSignupModal()\" style=\"color:var(--gr);font-weight:600;text-decoration:underline\">Daftar Akun Bisnis / Lembaga</a> &middot; <a href=\"https://crm.nexamos.cloud/login\" target=\"_blank\">Demo: admin / admin123</a>",
+    hero_note: "Tidak perlu kartu kredit &middot; <a href=\"javascript:void(0)\" onclick=\"openSignupModal()\" style=\"color:var(--gr);font-weight:600;text-decoration:underline\">Daftar Akun Bisnis / Lembaga</a> &middot; <a href=\"https://demo.nexamos.cloud\" target=\"_blank\">Demo: admin / admin123</a>",
     
     // Hero Stats
     stat_1_label: "Modul Operasional Live",
@@ -1128,7 +1128,7 @@ const I18N_DATA = {
     hero_sub: "Stop juggling hundreds of prospects across messy WhatsApp groups and spreadsheets. NexaMOS delivers an <strong>evidence-based pipeline</strong>, Smart WhatsApp Routing, and automated nurturing &mdash; battle-tested for <strong>Vocational Academies &amp; Training Institutions</strong>, and fully adaptive for <strong>Clinics, Retail, Agencies, Services &amp; Multi-Sector Businesses</strong>.",
     hero_cta_demo: "&#128640; Try Demo &mdash; Free",
     hero_cta_features: "Explore All Features &rarr;",
-    hero_note: "No credit card required &middot; <a href=\"javascript:void(0)\" onclick=\"openSignupModal()\" style=\"color:var(--gr);font-weight:600;text-decoration:underline\">Register Business / Academy</a> &middot; <a href=\"https://crm.nexamos.cloud/login\" target=\"_blank\">Demo: admin / admin123</a>",
+    hero_note: "No credit card required &middot; <a href=\"javascript:void(0)\" onclick=\"openSignupModal()\" style=\"color:var(--gr);font-weight:600;text-decoration:underline\">Register Business / Academy</a> &middot; <a href=\"https://demo.nexamos.cloud\" target=\"_blank\">Demo: admin / admin123</a>",
 
     // Hero Stats
     stat_1_label: "Live Operational Modules",

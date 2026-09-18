@@ -3414,7 +3414,7 @@
             <span class="lang-flag">🇬🇧</span> EN
           </button>
         </div>
-        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg bsm" data-i18n="nav_demo_btn">Demo
+        <a href="https://demo.nexamos.cloud" target="_blank" class="btn bg bsm" data-i18n="nav_demo_btn">Demo
           &#8599;</a>
         <button type="button" onclick="openSignupModal()" class="btn bp bsm" data-i18n="nav_start_btn">Mulai Gratis</button>
       </div>
@@ -3462,7 +3462,7 @@
     <a href="#proof" onclick="cm()" data-i18n="nav_proof">Testimoni</a>
     <a href="/blog" onclick="cm()" data-i18n="nav_blog">Blog</a>
     <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px">
-      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bg" data-i18n="nav_demo_live">Demo Live &#8599;</a>
+      <a href="https://demo.nexamos.cloud" target="_blank" class="btn bg" data-i18n="nav_demo_live">Demo Live &#8599;</a>
       <button type="button" class="btn bp" onclick="cm(); openSignupModal()" data-i18n="nav_start_btn">Mulai Gratis</button>
     </div>
   </div>
@@ -3475,13 +3475,13 @@
         hadir dengan <strong>pipeline berbasis bukti</strong>, Smart WhatsApp Routing, dan otomasi nurturing &mdash;
         terbukti tangguh untuk <strong>LPK &amp; Lembaga Vokasi</strong>, serta adaptif untuk <strong>Klinik, Retail, Agensi, Jasa &amp; Bisnis Multi-Sektor</strong>.</p>
       <div class="hc fu" style="transition-delay:.3s">
-        <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp" data-i18n="hero_cta_demo">&#128640; Coba Demo &mdash;
+        <a href="https://demo.nexamos.cloud" target="_blank" class="btn bp" data-i18n="hero_cta_demo">&#128640; Coba Demo &mdash;
           Gratis</a>
         <a href="#features" class="btn bg" data-i18n="hero_cta_features">Lihat Semua Fitur &rarr;</a>
       </div>
       <p class="hn fu" style="transition-delay:.4s" data-i18n="hero_note">Tidak perlu kartu kredit &middot; <a href="javascript:void(0)"
           onclick="openSignupModal()" style="color:var(--gr);font-weight:600;text-decoration:underline">Daftar Akun
-          Bisnis / Lembaga</a> &middot; <a href="https://crm.nexamos.cloud/login" target="_blank">Demo: admin /
+          Bisnis / Lembaga</a> &middot; <a href="https://demo.nexamos.cloud" target="_blank">Demo: admin /
           admin123</a></p>
       <div class="sr fu" style="transition-delay:.5s">
         <div class="sc">
@@ -4487,7 +4487,7 @@
         <p class="cs" data-i18n="cta_sub">Bergabunglah dengan lembaga pendidikan &amp; pelaku bisnis yang sudah membuktikan NexaMOS di lapangan. Setup selesai
           dalam 30 menit.</p>
         <div class="cb">
-          <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp"
+          <a href="https://demo.nexamos.cloud" target="_blank" class="btn bp"
             style="padding:15px 34px;font-size:15px" data-i18n="cta_btn_demo">&#127919; Coba Demo Sekarang</a>
           <a href="https://wa.me/6285659024775" target="_blank" class="btn bg"
             style="padding:15px 34px;font-size:15px" data-i18n="cta_btn_wa">&#128172; Tanya via WhatsApp</a>
@@ -4534,7 +4534,7 @@
             <li><a href="#innovations" data-i18n="nav_innovations">Roadmap Inovasi</a></li>
             <li><a href="#pricing" data-i18n="nav_pricing">Harga</a></li>
             <li><a href="#how" data-i18n="nav_how">Cara Kerja</a></li>
-            <li><a href="https://crm.nexamos.cloud/login" target="_blank" data-i18n="nav_demo_live">Demo Live</a></li>
+            <li><a href="https://demo.nexamos.cloud" target="_blank" data-i18n="nav_demo_live">Demo Live</a></li>
           </ul>
         </div>
         <div class="fcol">
@@ -4568,7 +4568,7 @@
           WIB</span></span>
     </div>
     <div class="dbar-actions">
-      <a href="https://crm.nexamos.cloud/login" target="_blank" class="btn bp bsm" data-i18n="dbar_btn_demo">Buka Demo &#8599;</a>
+      <a href="https://demo.nexamos.cloud" target="_blank" class="btn bp bsm" data-i18n="dbar_btn_demo">Buka Demo &#8599;</a>
       <button type="button" onclick="openSignupModal()" class="btn bg bsm"
         style="border-color:rgba(0,214,143,0.35);color:var(--gr);background:rgba(0,214,143,0.08);cursor:pointer" data-i18n="dbar_btn_start">Mulai
         Gratis &rarr;</button>
@@ -5171,7 +5171,7 @@
 
     // Analytics: Track Demo Link Clicks (Meta ViewContent & GA4 click_demo)
     document.addEventListener('click', (e) => {
-      const demoLink = e.target && e.target.closest ? e.target.closest('a[href*="crm.nexamos.cloud"]') : null;
+      const demoLink = e.target && e.target.closest ? e.target.closest('a[href*="demo.nexamos.cloud"], a[href*="crm.nexamos.cloud"]') : null;
       if (demoLink) {
         if (typeof fbq === 'function') {
           fbq('track', 'ViewContent', {
