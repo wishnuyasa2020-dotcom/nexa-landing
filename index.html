@@ -906,7 +906,7 @@
     .pipe {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       flex-grow: 1;
       margin-bottom: 16px;
     }
@@ -914,21 +914,22 @@
     .ps {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 9px 12px;
+      gap: 10px;
+      padding: 6.5px 11px;
       background: rgba(4, 8, 15, .45);
       border: 1px solid var(--bd);
-      border-radius: 10px;
-      transition: border-color .2s;
+      border-radius: 9px;
+      transition: border-color .2s, transform .15s;
     }
 
     .ps:hover {
       border-color: var(--bdh);
+      transform: translateX(2px);
     }
 
     .pb {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
       border-radius: 7px;
       display: flex;
       align-items: center;
@@ -938,24 +939,48 @@
       flex-shrink: 0;
     }
 
+    .pb.a {
+      background: rgba(148, 163, 184, .12);
+      color: #94a3b8;
+    }
+
+    .pb.kp {
+      background: rgba(148, 163, 184, .18);
+      color: #cbd5e1;
+      font-size: 9px;
+      letter-spacing: -0.5px;
+    }
+
     .pb.l {
+      background: rgba(251, 191, 36, .12);
+      color: var(--am);
+    }
+
+    .pb.p {
       background: var(--bld);
       color: var(--bl);
     }
 
-    .pb.p {
+    .pb.o {
       background: var(--pud);
       color: var(--pu);
     }
 
-    .pb.o {
+    .pb.r {
+      background: rgba(192, 132, 252, .14);
+      color: #c084fc;
+    }
+
+    .pb.c {
       background: var(--grd);
       color: var(--gr);
     }
 
-    .pb.c {
-      background: rgba(251, 191, 36, .12);
-      color: var(--am);
+    .pb.pc {
+      background: rgba(45, 212, 191, .14);
+      color: #2dd4bf;
+      font-size: 9px;
+      letter-spacing: -0.5px;
     }
 
     .pb.d {
@@ -964,13 +989,15 @@
     }
 
     .pi h5 {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
+      line-height: 1.2;
     }
 
     .pi small {
       font-size: 11px;
       color: var(--tx3);
+      line-height: 1.3;
     }
 
     .pa {
@@ -3663,6 +3690,20 @@
           </div>
           <div class="pipe">
             <div class="ps">
+              <div class="pb a">A</div>
+              <div class="pi">
+                <h5>Audience</h5><small data-i18n="pipe_aud_desc">Target market &amp; kontak dingin belum teridentifikasi</small>
+              </div>
+              <div class="pa">&#8595;</div>
+            </div>
+            <div class="ps">
+              <div class="pb kp">KP</div>
+              <div class="pi">
+                <h5>Known Profile</h5><small data-i18n="pipe_kp_desc">Identitas terdata, belum verifikasi minat awal</small>
+              </div>
+              <div class="pa">&#8595;</div>
+            </div>
+            <div class="ps">
               <div class="pb l">L</div>
               <div class="pi">
                 <h5>Lead</h5><small data-i18n="pipe_lead_desc">Kontak valid + minat awal terverifikasi</small>
@@ -3679,21 +3720,28 @@
             <div class="ps">
               <div class="pb o">O</div>
               <div class="pi">
-                <h5>Opportunity</h5><small data-i18n="pipe_opp_desc">Home Visit / konsultasi orang tua terlaksana</small>
+                <h5>Opportunity</h5><small data-i18n="pipe_opp_desc">Lolos Commitment Threshold &amp; konsultasi keputusan</small>
+              </div>
+              <div class="pa">&#8595;</div>
+            </div>
+            <div class="ps">
+              <div class="pb r">R</div>
+              <div class="pi">
+                <h5>Registered</h5><small data-i18n="pipe_reg_desc">Registration Conversion: formulir &amp; fee terverifikasi</small>
               </div>
               <div class="pa">&#8595;</div>
             </div>
             <div class="ps">
               <div class="pb c">C</div>
               <div class="pi">
-                <h5>Customer</h5><small data-i18n="pipe_cust_desc">DP terverifikasi admin keuangan</small>
+                <h5>Customer</h5><small data-i18n="pipe_cust_desc">Core Conversion: DP / pembayaran inti terverifikasi</small>
               </div>
               <div class="pa">&#8595;</div>
             </div>
             <div class="ps">
-              <div class="pb d">D</div>
+              <div class="pb pc">PC</div>
               <div class="pi">
-                <h5>Delivery State</h5><small data-i18n="pipe_deliv_desc">Pre-Core &#8594; Training / Layanan &#8594; Retention</small>
+                <h5>Post-Customer</h5><small data-i18n="pipe_post_desc">Layanan core selesai &bull; Hubungan pasca-layanan (Alumni)</small>
               </div>
             </div>
           </div>

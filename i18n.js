@@ -451,10 +451,14 @@ const I18N_DATA = {
 
     sol_box_tag: "&#9989; Solusi NexaMOS",
     sol_box_desc: "Pipeline Berbasis Bukti &mdash; status hanya berubah jika ada bukti nyata:",
+    pipe_aud_desc: "Target market &amp; kontak dingin belum teridentifikasi",
+    pipe_kp_desc: "Identitas terdata, belum verifikasi minat awal",
     pipe_lead_desc: "Kontak valid + minat awal terverifikasi",
     pipe_prospect_desc: "Lulus FNAR: Fit, Need, Ability, Readiness",
-    pipe_opp_desc: "Home Visit / konsultasi orang tua terlaksana",
-    pipe_cust_desc: "DP terverifikasi admin keuangan",
+    pipe_opp_desc: "Lolos Commitment Threshold &amp; konsultasi keputusan",
+    pipe_reg_desc: "Registration Conversion: formulir &amp; fee terverifikasi",
+    pipe_cust_desc: "Core Conversion: DP / pembayaran inti terverifikasi",
+    pipe_post_desc: "Layanan core selesai &bull; Hubungan pasca-layanan (Alumni)",
     pipe_deliv_desc: "Pre-Core &#8594; Training / Layanan &#8594; Retention",
     sol_foot: "<span>&#10004;</span> Hasil: Validitas mutlak &amp; 100% audit-ready",
 
@@ -1187,10 +1191,14 @@ const I18N_DATA = {
 
     sol_box_tag: "&#9989; The NexaMOS Solution",
     sol_box_desc: "Evidence-Based Pipeline &mdash; statuses only advance upon verified, verifiable proof:",
+    pipe_aud_desc: "Target market &amp; cold audience not yet qualified",
+    pipe_kp_desc: "Identity recorded, awaiting initial interest verification",
     pipe_lead_desc: "Valid contact + verified initial interest",
     pipe_prospect_desc: "Passed FNAR: Fit, Need, Ability, Readiness",
-    pipe_opp_desc: "Decision consultation or stakeholder interview completed",
-    pipe_cust_desc: "Deposit payment verified by finance admin",
+    pipe_opp_desc: "Crossed Commitment Threshold &amp; decision consultation",
+    pipe_reg_desc: "Registration Conversion: verified registration fee &amp; form",
+    pipe_cust_desc: "Core Conversion: core deposit verified by finance",
+    pipe_post_desc: "Core service completed &bull; Post-customer relationship (Alumni)",
     pipe_deliv_desc: "Pre-Core &#8594; Training / Service Fulfillment &#8594; Retention",
     sol_foot: "<span>&#10004;</span> Result: Absolute data integrity &amp; 100% audit-ready",
 
