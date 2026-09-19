@@ -1628,7 +1628,266 @@ function setLanguage(lang) {
   if (typeof loadLatestBlogArticles === 'function') {
     loadLatestBlogArticles();
   }
+
+  // Check and update language switch suggestion banner
+  if (typeof window.checkLanguageBanner === 'function') {
+    window.checkLanguageBanner();
+  }
 }
+
+function ensureLanguageBanner() {
+  if (document.getElementById('nexamos-lang-banner')) return;
+
+  // 1. Inject Styles if not yet present
+  if (!document.getElementById('nexamos-lang-banner-style')) {
+    const styleEl = document.createElement('style');
+    styleEl.id = 'nexamos-lang-banner-style';
+    styleEl.textContent = `
+.nexamos-lang-banner {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  max-width: 480px;
+  width: calc(100% - 48px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  pointer-events: none;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.nexamos-lang-banner.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nexamos-lang-banner.dismissing {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.lang-banner-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.4), 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.lang-banner-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.lang-banner-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.lang-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  min-width: 0;
+}
+
+.lang-banner-title {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.lang-banner-sub {
+  font-size: 0.775rem;
+  font-weight: 400;
+  color: #64748b;
+  line-height: 1.25;
+}
+
+.lang-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.lang-banner-btn-dismiss {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  font-size: 0.825rem;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.lang-banner-btn-dismiss:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.lang-banner-btn-dismiss:active {
+  transform: scale(0.97);
+}
+
+.lang-banner-btn-switch {
+  background: #0284c7;
+  color: #ffffff;
+  border: none;
+  font-size: 0.825rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.28);
+  white-space: nowrap;
+}
+
+.lang-banner-btn-switch:hover {
+  background: #0369a1;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.38);
+}
+
+.lang-banner-btn-switch:active {
+  transform: translateY(0) scale(0.97);
+}
+
+@media (max-width: 640px) {
+  .nexamos-lang-banner {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    width: calc(100% - 32px);
+    max-width: 100%;
+  }
+
+  .lang-banner-card {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lang-banner-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .lang-banner-actions {
+    justify-content: flex-end;
+    width: 100%;
+  }
+}
+`;
+    document.head.appendChild(styleEl);
+  }
+
+  // 2. Inject Banner Element into body
+  const banner = document.createElement('aside');
+  banner.id = 'nexamos-lang-banner';
+  banner.className = 'nexamos-lang-banner';
+  banner.setAttribute('aria-label', 'Saran Alih Bahasa');
+  banner.style.display = 'none';
+  banner.innerHTML = `
+    <div class="lang-banner-card">
+      <div class="lang-banner-info">
+        <span class="lang-banner-flag" aria-hidden="true">🇮🇩</span>
+        <div class="lang-banner-text">
+          <strong class="lang-banner-title">Baca Konten dalam Bahasa Indonesia</strong>
+          <span class="lang-banner-sub">Read content in Indonesian</span>
+        </div>
+      </div>
+      <div class="lang-banner-actions">
+        <button type="button" class="lang-banner-btn-dismiss" onclick="dismissLanguageBanner()">Nanti</button>
+        <button type="button" class="lang-banner-btn-switch" onclick="acceptLanguageSwitch()">Ubah Bahasa</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(banner);
+}
+
+window.acceptLanguageSwitch = function() {
+  try {
+    localStorage.setItem('nexamos_lang_banner_dismissed', 'true');
+  } catch (e) {}
+  setLanguage('id');
+  const banner = document.getElementById('nexamos-lang-banner');
+  if (banner) {
+    banner.classList.remove('visible');
+    banner.classList.add('dismissing');
+    setTimeout(() => {
+      banner.style.display = 'none';
+      banner.classList.remove('dismissing');
+    }, 350);
+  }
+};
+
+window.dismissLanguageBanner = function() {
+  try {
+    localStorage.setItem('nexamos_lang_banner_dismissed', 'true');
+  } catch (e) {}
+  const banner = document.getElementById('nexamos-lang-banner');
+  if (banner) {
+    banner.classList.remove('visible');
+    banner.classList.add('dismissing');
+    setTimeout(() => {
+      banner.style.display = 'none';
+      banner.classList.remove('dismissing');
+    }, 350);
+  }
+};
+
+window.checkLanguageBanner = function() {
+  if (document.readyState === 'loading') {
+    return;
+  }
+  ensureLanguageBanner();
+  const banner = document.getElementById('nexamos-lang-banner');
+  if (!banner) return;
+  let isDismissed = false;
+  try {
+    isDismissed = localStorage.getItem('nexamos_lang_banner_dismissed') === 'true';
+  } catch (e) {}
+
+  const activeLang = document.documentElement.lang || currentLang || 'en';
+  if (activeLang === 'en' && !isDismissed) {
+    banner.style.display = 'block';
+    requestAnimationFrame(() => {
+      banner.classList.add('visible');
+    });
+  } else {
+    banner.classList.remove('visible');
+    banner.style.display = 'none';
+  }
+};
 
 function refreshModalDynamicTexts() {
   const tenantTypeInput = document.getElementById('tenant_type');
