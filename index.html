@@ -4301,6 +4301,19 @@
     // ── Dynamic Blog Highlight Loader ──
     const FALLBACK_BLOG_ARTICLES = [
       {
+        slug: "insight-marketing-output-intelejen-pasar",
+        title: "Enterprise Insight Marketing: Building Actionable Intelligence for Strategic Decision-Making",
+        title_id: "Memahami Output Intelejen Pasar: Membangun Strategi Insight Marketing yang Efektif untuk Segmen Enterprise",
+        dek: "This article explains why enterprise-level marketing insights must move beyond 'content for content' approaches and adopt predictive models with measurable KPIs to deliver actionable intelligence.",
+        dek_id: "Artikel ini menjelaskan bagaimana insight marketing enterprise harus melewati pendekatan 'content for content' dan mengadopsi model predictive serta KPI yang terukur untuk menghasilkan actionable intelligence.",
+        territory: "INTELLIGENCE",
+        articleType: "ANALYSIS",
+        url: "/blog/insight-marketing-output-intelejen-pasar",
+        heroImageUrl: "https://nexamos-blog.vercel.app/images/hero-insight-marketing-output-intelejen-pasar.webp",
+        author: { name: "Tim Riset & Rekayasa NexaMOS" },
+        publishedAt: "2026-09-17T05:32:55.371Z"
+      },
+      {
         slug: "intelijen-pasar-dan-kompetitif-pemilik-bisnis-harus-pahami",
         title: "Mastering Market Intelligence: A Practical Guide for Business Owners",
         title_id: "Memahami Intelijen Pasar & Kompetitif: Panduan Praktis bagi Pemilik Bisnis",
@@ -4325,19 +4338,6 @@
         heroImageUrl: "https://nexamos-blog.vercel.app/images/hero-cara-mengkonversi-lead-jadi-prospek.webp",
         author: { name: "Tim Riset & Rekayasa NexaMOS" },
         publishedAt: "2026-09-16T11:02:36.383Z"
-      },
-      {
-        slug: "crm-bertenaga-ai-taktik-pemasaran-modern",
-        title: "AI-Powered CRM: Strategic Transformation in Modern Marketing Tactics",
-        title_id: "CRM Berbasis AI: Transformasi Strategis dalam Taktik Pemasaran Modern",
-        dek: "How AI-powered CRM is reshaping marketing operations—from simple automation to a competitive differentiator that redefines business models.",
-        dek_id: "Bagaimana CRM bertenaga AI mengubah operasional pemasaran—dari otomatisasi sederhana menjadi pembeda kompetitif yang mendefinisikan ulang model bisnis.",
-        territory: "TACTICAL",
-        articleType: "ANALYSIS",
-        url: "/blog/crm-bertenaga-ai-taktik-pemasaran-modern",
-        heroImageUrl: "https://nexamos-blog.vercel.app/images/hero-crm-bertenaga-ai-taktik-pemasaran-modern.webp",
-        author: { name: "Tim Riset & Rekayasa NexaMOS" },
-        publishedAt: "2026-09-16T05:25:04.836Z"
       }
     ];
 
@@ -4348,15 +4348,20 @@
         return window._cachedBlogArticles;
       }
 
+      // Query parameter cache-buster agar browser/CDN selalu mengambil feed artikel terbaru
+      const cacheBust = `?t=${Date.now()}`;
       const endpoints = [
+        `https://nexamos-blog.vercel.app/articles.json${cacheBust}`,
+        `/blog/articles.json${cacheBust}`,
+        `/articles.json${cacheBust}`,
+        'https://nexamos-blog.vercel.app/articles.json',
         '/blog/articles.json',
-        '/articles.json',
-        'https://nexamos-blog.vercel.app/articles.json'
+        '/articles.json'
       ];
 
       for (const ep of endpoints) {
         try {
-          const res = await fetch(ep, { cache: 'no-cache' });
+          const res = await fetch(ep, { cache: 'no-store' });
           if (res.ok) {
             const data = await res.json();
             if (Array.isArray(data) && data.length > 0) {

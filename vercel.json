@@ -32,6 +32,10 @@
       "destination": "/about.html"
     },
     {
+      "source": "/articles.json",
+      "destination": "https://nexamos-blog.vercel.app/articles.json"
+    },
+    {
       "source": "/blog",
       "destination": "https://nexamos-blog.vercel.app/"
     },
