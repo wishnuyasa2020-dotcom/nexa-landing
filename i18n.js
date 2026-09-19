@@ -1607,6 +1607,15 @@ function setLanguage(lang) {
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
 
+  // Dynamically synchronize ?lang= to all Demo & CRM links across the page
+  document.querySelectorAll('a[href*="demo.nexamos.cloud"], a[href*="crm.nexamos.cloud"]').forEach(a => {
+    try {
+      const url = new URL(a.href);
+      url.searchParams.set('lang', lang);
+      a.href = url.toString();
+    } catch (e) {}
+  });
+
   // Refresh dynamic dropdown options in modal if opened
   refreshModalDynamicTexts();
 

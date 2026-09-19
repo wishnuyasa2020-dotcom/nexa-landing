@@ -5173,6 +5173,12 @@
     document.addEventListener('click', (e) => {
       const demoLink = e.target && e.target.closest ? e.target.closest('a[href*="demo.nexamos.cloud"], a[href*="crm.nexamos.cloud"]') : null;
       if (demoLink) {
+        try {
+          const activeL = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'en';
+          const u = new URL(demoLink.href);
+          u.searchParams.set('lang', activeL);
+          demoLink.href = u.toString();
+        } catch (err) {}
         if (typeof fbq === 'function') {
           fbq('track', 'ViewContent', {
             content_name: 'Live Demo CRM',
